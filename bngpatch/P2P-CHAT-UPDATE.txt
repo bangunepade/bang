@@ -1,0 +1,1 @@
+P2P trade chat added. Only authenticated buyer and seller can read/send messages for an accepted trade. Messages are stored server-side under internalP2PEscrows/{tradeId}/messages. Existing Firestore rules remain unchanged; all chat access goes through the authenticated Netlify function. Deploy the full ZIP and test using two test accounts before production use.

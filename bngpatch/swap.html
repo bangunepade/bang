@@ -1,0 +1,235 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BANG BNG Swap</title><link rel="stylesheet" href="/assets/bng-pages.css"><style>.netlify-badge{display:none!important}
+.swap-ledger-card{margin-top:18px;padding:18px;border:1px solid #4f46e5;border-radius:18px;background:linear-gradient(135deg,rgba(79,70,229,.16),rgba(14,165,233,.08) 48%,rgba(16,185,129,.09));box-shadow:0 14px 35px rgba(0,0,0,.2)}.swap-ledger-card h3{margin:0 0 8px;color:#c4b5fd}.swap-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em}.swap-chip.gas{background:rgba(245,158,11,.16);color:#fcd34d;border:1px solid rgba(245,158,11,.4)}.swap-chip.public{background:rgba(16,185,129,.14);color:#6ee7b7;border:1px solid rgba(16,185,129,.4)}.swap-tx-id{font:700 12px/1.5 ui-monospace,monospace;overflow-wrap:anywhere;color:#93c5fd}.swap-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin-top:12px}.swap-result-item{padding:11px;border-radius:12px;background:rgba(8,12,24,.55);border:1px solid rgba(148,163,184,.22)}.swap-result-item small{display:block;color:#a5b4fc;margin-bottom:5px}.swap-result-item strong{overflow-wrap:anywhere}.swap-verify-link{display:inline-block;margin-top:12px;color:#6ee7b7;font-weight:800;text-decoration:none}.swap-verify-link:hover{text-decoration:underline}
+</style>
+
+<style id="bang-bng-network-theme">.global-network-strip{display:flex;align-items:center;gap:14px;min-height:52px;padding:7px 18px;overflow:auto;background:linear-gradient(90deg,#73000a,#ef101e 48%,#7c000b);border-bottom:1px solid #ff3742;box-shadow:0 7px 28px rgba(240,21,36,.28);color:#fff;font-weight:800;white-space:nowrap}.global-network-strip .gn-title{font-size:17px;font-weight:950;padding:8px 14px;border-radius:10px;background:rgba(80,0,0,.35);border:1px solid rgba(255,255,255,.16)}.global-network-strip .gn-online{margin-left:auto;background:#6f0710;border:1px solid rgba(255,255,255,.25);padding:7px 12px;border-radius:999px}.global-network-strip span:not(.gn-title):not(.gn-online){opacity:.96}
+</style>
+<link rel="stylesheet" href="assets/bng-themes.css">
+<script src="assets/bng-themes.js" defer></script>
+<style>body:not(.bng-auth-ready)>:not(#bngSiteAuthGate){visibility:hidden}body:not(.bng-auth-ready){background:#050403}</style>
+<script src="/assets/bng-global-time.js" defer></script>
+
+<script type="module" src="assets/bng-site-auth.js"></script>
+<script src="/assets/bng-simulated-price.js" defer></script>  <link rel="stylesheet" href="/assets/bng-compat.css">
+
+<!-- Social preview cards: Open Graph + X/Twitter -->
+<meta property="og:site_name" content="BANG BNG">
+<meta property="og:title" content="BANG BNG Swap">
+<meta property="og:description" content="Explore the BANG BNG platform, internal coin features, wallet, and community updates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://1bang.top/swap.html">
+<meta property="og:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:secure_url" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BANG BNG blockchain network preview artwork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BANG BNG Swap">
+<meta name="twitter:description" content="Explore the BANG BNG platform and community updates.">
+<meta name="twitter:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+</head>
+<body>
+<script src="/assets/bng-compat.js" defer></script><main class="page-shell"><div class="page-card">
+<h1>BANG BNG INTERNAL SWAP</h1><p>Internal ledger asset exchange • <span class="swap-chip gas">⚡ BNG INTERNAL FEE · 0.50%</span></p>
+<div class="panel" id="internalSwapPanel">
+<h2>Internal account swap</h2>
+<p>Swap BNG to or from BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE and XRP. Minimum swap size is 2 BNG-equivalent. Every swap charges a separate 0.50% fee in BNG. You must hold enough BNG to pay this fee. Rates and destination treasury reserves must be configured. This is an internal ledger exchange, not an on-chain transaction.</p>
+<label for="internalFrom">From asset</label><select id="internalFrom"><option>BNG</option><option>BTC</option><option>BNB</option><option>USDT</option><option>ADA</option><option>BCH</option><option>ETH</option><option>SOL</option><option>DOGE</option><option>XRP</option></select>
+<input id="internalAmount" inputmode="decimal" type="number" min="0.00000001" step="0.00000001" placeholder="Amount to swap (minimum value: 2 BNG)">
+<p id="fromPrice" class="small" aria-live="polite">Current reference price: loading…</p><label for="internalTo">To asset</label><select id="internalTo"><option>USDT</option><option>BNG</option><option>BTC</option><option>BNB</option><option>ADA</option><option>BCH</option><option>ETH</option><option>SOL</option><option>DOGE</option><option>XRP</option></select><p id="toPrice" class="small" aria-live="polite">Current reference price: loading…</p>
+<div class="quote"><div>Swap input <span id="iGross">—</span></div><div>Estimated BNG gas fee (0.50% BNG-equivalent) <span id="iFee">—</span></div><div>Fee currency <span>BNG</span></div><div>Estimated output <span id="iOut">—</span></div></div>
+<button id="internalSwap">Swap internal balance</button><p id="internalStatus" role="status">Sign in to your BANG BNG account. Rates and treasury reserves must be configured before swaps can execute.</p><div id="swapReceipt" class="swap-ledger-card" hidden aria-live="polite"><h3>✓ Swap receipt</h3><p><span class="swap-chip gas">BNG GAS FEE</span></p><div class="swap-result-grid"><div class="swap-result-item"><small>Permanent transaction ID</small><strong id="receiptTx" class="swap-tx-id">—</strong></div><div class="swap-result-item"><small>Swap</small><strong id="receiptPair">—</strong></div><div class="swap-result-item"><small>BNG gas fee</small><strong id="receiptFee">—</strong></div><div class="swap-result-item"><small>Status</small><strong id="receiptStatus">—</strong></div><div class="swap-result-item"><small>Date / time / year</small><strong id="receiptTime">—</strong></div></div><a class="swap-verify-link" id="receiptVerify" href="/explorer.html">Verify in BANG BNG Explorer ↗</a></div>
+<p class="small">BTC/BNB/USDT/ADA/BCH/ETH/SOL/DOGE/XRP balances shown here are internal ledger units and cannot be mined. Each internal swap charges its 0.50% gas fee in BNG, assigns a permanent BNG-TX ID, and publishes limited verification details in the BANG BNG Explorer. This does not send a blockchain transaction.</p>
+</div>
+
+
+<nav><a href="/">Home</a> · <a href="/p2p.html">P2P</a> · <a href="/swap.html">Swap</a> · <a href="/explorer.html">Explorer</a> · <a href="/docs.html">Docs</a></nav>
+</div></main>
+<script type="module">
+import { initializeApp, getApp, getApps } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
+import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+import { firebaseConfig } from './firebase-config.js';
+const app = getApps().find(a => a.name === 'bang-bng-site-auth') || initializeApp(firebaseConfig, 'bang-bng-site-auth');
+const auth = getAuth(app);
+await setPersistence(auth,browserLocalPersistence).catch(()=>{});
+const el = id => document.getElementById(id);
+let currentUser = null;
+const round8 = n => Math.round((Number(n) + Number.EPSILON) * 1e8) / 1e8;
+const fmt = n => Number.isFinite(n) ? n.toLocaleString(undefined,{maximumFractionDigits:8}) : '—';
+function quote(){
+ const amount=Number(el('internalAmount').value), from=el('internalFrom').value, to=el('internalTo').value;
+ el('iGross').textContent=Number.isFinite(amount)&&amount>0?fmt(amount)+' '+from:'—';
+ el('iFee').textContent=Number.isFinite(amount)&&amount>0?(from==='BNG'?fmt(round8(amount*.005))+' BNG':'Rate calculated securely on server'):'—';
+ el('iNet').textContent='Minimum swap value: 2 BNG-equivalent';
+ el('iOut').textContent='Rate required';
+}
+['internalAmount','internalFrom','internalTo'].forEach(id=>el(id).addEventListener('input',quote));
+let requestBusy=false;
+el('internalSwap').addEventListener('click',async()=>{
+ if(requestBusy)return;
+ const from=el('internalFrom').value,to=el('internalTo').value,amount=Number(el('internalAmount').value);
+ if(!currentUser){el('internalStatus').textContent='Please sign in to your BANG BNG account first.';return;}
+ if(from===to){el('internalStatus').textContent='Choose two different assets.';return;}
+ if(!Number.isFinite(amount)||amount<=0){el('internalStatus').textContent='Enter a valid positive amount.';return;}
+ if(from==='BNG'&&amount<2){el('internalStatus').textContent='Minimum swap size is 2 BNG.';return;}
+ const swapId=(crypto.randomUUID?crypto.randomUUID():Date.now().toString(16)+'-'+Math.random().toString(16).slice(2));
+ if(!confirm('Swap '+amount+' '+from+' to '+to+' using internal ledger balances? A 0.50% fee in BNG will be deducted separately. Minimum swap value is 2 BNG-equivalent. A limited transaction receipt will be publicly verifiable in the Explorer. This is not an on-chain transaction.'))return;
+ requestBusy=true;el('internalSwap').disabled=true;el('internalStatus').textContent='Checking rates, balance and treasury reserve…';
+ try{
+  const token=await currentUser.getIdToken();
+  const response=await fetch('/api/wallet/swap',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({from,to,amount,swapId})});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||'Internal swap failed.');
+  el('internalStatus').textContent='Swap completed in the internal ledger. Permanent transaction ID: '+data.transactionId+'. No blockchain transaction was sent.';
+  el('receiptTx').textContent=data.transactionId||'—';el('receiptPair').textContent=fmt(data.amountIn)+' '+from+' → '+fmt(data.amountOut)+' '+to;el('receiptFee').textContent=fmt(data.gasFeeBng??data.feeAmount)+' BNG';el('receiptStatus').textContent='COMPLETED · INTERNAL';el('receiptTime').textContent=new Date(data.createdAtMs||Date.now()).toLocaleString(undefined,{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZoneName:'short'});el('receiptVerify').href='/explorer.html?verify='+encodeURIComponent(data.transactionId||'');el('swapReceipt').hidden=false;
+  el('internalAmount').value='';quote();
+ }catch(e){el('internalStatus').textContent=e.message||'Internal swap failed.';}
+ finally{requestBusy=false;el('internalSwap').disabled=false;}
+});
+onAuthStateChanged(auth,user=>{currentUser=user;if(user)el('internalStatus').textContent='Signed in. Internal swaps require configured server rates and sufficient treasury reserves.';else el('internalStatus').textContent='Sign in to your BANG BNG account to swap internal balances.';});
+const marketIds={BTC:'bitcoin',BCH:'bitcoin-cash',ADA:'cardano',SOL:'solana',ETH:'ethereum',BNB:'binancecoin',DOGE:'dogecoin',USDT:'tether',XRP:'ripple'};
+let marketPrices={};
+async function refreshSwapPrices(){
+ try{
+  const r=await fetch('/.netlify/functions/crypto-market?prices=1',{cache:'no-store'}); if(!r.ok) throw new Error('Market feed unavailable');
+  const d=await r.json(); marketPrices=d.prices||{};
+  let bngUsd=null;
+  try { const br=await fetch('/.netlify/functions/bng-price',{cache:'no-store'}); if(br.ok){const bd=await br.json(); bngUsd=Number(bd.priceUsd??bd.usd??bd.price??bd.referencePrice);}} catch(_){}
+  const label=a=>{if(a==='BNG')return Number.isFinite(bngUsd)&&bngUsd>0?'BNG internal reference: $'+bngUsd.toFixed(6)+' (not an exchange quote)':'BNG internal reference price unavailable';const id=marketIds[a],v=marketPrices[id]?.usd;return Number.isFinite(Number(v))?'Live '+a+' market price: $'+Number(v).toLocaleString(undefined,{maximumFractionDigits:8}):a+' market price unavailable';};
+  el('fromPrice').textContent=label(el('internalFrom').value);el('toPrice').textContent=label(el('internalTo').value);
+ }catch(_){el('fromPrice').textContent='Market prices temporarily unavailable; estimates are not guaranteed.';el('toPrice').textContent='Market prices temporarily unavailable; estimates are not guaranteed.';}
+}
+function updateSelectedPrices(){const label=a=>{if(a==='BNG')return 'BNG internal reference price (not an exchange quote)';const id=marketIds[a],v=marketPrices[id]?.usd;return Number.isFinite(Number(v))?'Live '+a+' price: $'+Number(v).toLocaleString(undefined,{maximumFractionDigits:8}):a+' price unavailable';};el('fromPrice').textContent=label(el('internalFrom').value);el('toPrice').textContent=label(el('internalTo').value);}
+['internalFrom','internalTo'].forEach(id=>el(id).addEventListener('change',updateSelectedPrices));
+refreshSwapPrices();setInterval(refreshSwapPrices,60000);
+quote();
+</script>
+<!-- BANG BNG visitor analytics -->
+<script>
+(function(){
+  const KEY_PARAM="analytics";
+  const params=new URLSearchParams(location.search);
+  const adminKey=params.get(KEY_PARAM);
+  if(adminKey){try{sessionStorage.setItem("bangAnalyticsKey",adminKey)}catch(e){}}
+  const adminKeyStored=(()=>{try{return sessionStorage.getItem("bangAnalyticsKey")||""}catch(e){return ""}})();
+
+  let sid="";
+  try{
+    sid=sessionStorage.getItem("bangVisitorId")||"";
+    if(!sid){
+      sid=(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2));
+      sessionStorage.setItem("bangVisitorId",sid);
+    }
+  }catch(e){sid=Date.now()+"-"+Math.random().toString(36).slice(2)}
+
+  function send(action){
+    const payload={sessionId:sid,action:action,page:location.pathname+location.hash,referrer:document.referrer};
+    return fetch("/api/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),keepalive:true}).catch(()=>{});
+  }
+  send("visit");
+  const heartbeat=setInterval(()=>send("active"),20000);
+
+  document.addEventListener("click",function(e){
+    const el=e.target.closest("button,a");
+    if(!el)return;
+    const id=(el.id||"").toLowerCase();
+    const txt=(el.textContent||"").toLowerCase();
+    if(id==="connect" || txt.includes("connect metamask")) send("connect");
+  },true);
+
+  document.addEventListener("visibilitychange",()=>{
+    if(document.visibilityState==="visible") send("active");
+  });
+
+  // Private owner-only mini dashboard. It appears only after the correct
+  // BANG_ANALYTICS_KEY is supplied as ?analytics=... once.
+  if(adminKeyStored){
+    const traceButton=document.createElement("button");
+    traceButton.id="bangTrackingButton";
+    traceButton.type="button";
+    traceButton.textContent="◉ TRACKING";
+    traceButton.title="Open BANG TRACE analytics";
+    traceButton.setAttribute("aria-label","Open BANG TRACE analytics");
+    document.body.appendChild(traceButton);
+    const style=document.createElement("style");
+    style.textContent=`
+      #bangTrackingButton{position:fixed;left:10px;top:62px;z-index:100000;padding:5px 9px;border-radius:7px;border:1px solid rgba(190,170,110,.28);background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(190,145,45,.10));color:rgba(225,211,175,.78);font:700 9px system-ui,Arial;letter-spacing:.10em;backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;opacity:.78;transition:all .2s ease}
+      #bangTrackingButton:hover{opacity:1;border-color:rgba(245,211,110,.55);color:#f5d36e;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(190,145,45,.18))}
+      #bangTrackingButton:active{transform:translateY(1px)}
+      #bangTrace{position:fixed;left:8px;top:91px;z-index:99999;width:235px;background:rgba(5,4,3,.94);
+        border:1px solid #3d2b0e;border-radius:10px;box-shadow:0 12px 35px #0009;color:#eee;padding:9px;
+        font:11px system-ui,Arial;backdrop-filter:blur(10px)}
+      #bangTrace .bt-head{display:flex;justify-content:space-between;align-items:center;color:#f6d36e;font-weight:900;margin-bottom:7px}
+      #bangTrace .bt-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #21190d}
+      #bangTrace .bt-row:last-child{border:0}
+      #bangTrace .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}
+      #bangTrace .grey{background:#888}.blue{background:#168cff}.red{background:#ff334c}
+      #bangTrace .green{color:#22d37b}.market-up{color:#22d37b}.market-down{color:#ff4d61}.market-flat{color:#bdb5a5}
+      #bangTrace .bt-list{max-height:180px;overflow:auto;margin-top:5px}
+      #bangTrace .ip{font-family:monospace;font-size:10px;color:#d9d0bd}
+      #bangTrace .time{color:#80745e;font-size:9px}
+      #bangTrace .bt-close{border:0;background:none;color:#8f8062;cursor:pointer}
+      @media(max-width:480px){#bangTrackingButton{top:58px;left:7px;font-size:8px;padding:5px 7px}#bangTrace{top:88px;left:7px;width:calc(100vw - 14px)}}
+    `;
+    document.head.appendChild(style);
+    const box=document.createElement("aside");
+    box.id="bangTrace";
+    box.innerHTML=`<div class="bt-head"><span>◉ BANG TRACE</span><button class="bt-close" title="Hide">×</button></div>
+      <div class="bt-row"><span><i class="dot grey"></i>Visitors</span><b id="btVisitors">0</b></div>
+      <div class="bt-row"><span><i class="dot blue"></i>Active</span><b id="btActive">0</b></div>
+      <div class="bt-row"><span><i class="dot red"></i>Connect</span><b id="btConnect">0</b></div>
+      <div class="bt-row"><span>Market</span><b id="btMarket" class="market-flat">—</b></div>
+      <div class="bt-row"><span>BNG Price</span><b id="btPrice">—</b></div>
+      <div class="bt-list" id="btList"></div>`;
+    document.body.appendChild(box);
+    box.querySelector(".bt-close").onclick=()=>box.remove();
+    traceButton.onclick=()=>{
+      const existing=document.getElementById("bangTrace");
+      if(existing){existing.style.display=existing.style.display==="none"?"block":"none";return;}
+      location.reload();
+    };
+
+    async function refreshTrace(){
+      try{
+        const r=await fetch("/api/analytics",{headers:{Authorization:"Bearer "+adminKeyStored},cache:"no-store"});
+        if(!r.ok)return;
+        const d=await r.json();
+        document.getElementById("btVisitors").textContent=d.counts.visitors;
+        document.getElementById("btActive").textContent=d.counts.active;
+        document.getElementById("btConnect").textContent=d.counts.connect;
+        try{
+          const mr=await fetch("/.netlify/functions/bng-price",{cache:"no-store"});
+          if(mr.ok){
+            const m=await mr.json();
+            const change=Number(m.priceChange24h);
+            const price=Number(m.priceUsd);
+            const marketEl=document.getElementById("btMarket");
+            const priceEl=document.getElementById("btPrice");
+            if(Number.isFinite(change)){
+              const sign=change>0?"+":(change<0?"−":"");
+              marketEl.textContent=`${sign}${Math.abs(change).toFixed(2)}%`;
+              marketEl.className=change>0?"market-up":(change<0?"market-down":"market-flat");
+            }
+            if(Number.isFinite(price)) priceEl.textContent=`$${price.toFixed(8)}`;
+          }
+        }catch(e){}
+        const list=document.getElementById("btList");
+        list.innerHTML=(d.recent||[]).slice(0,25).map(x=>{
+          const cls=x.status==="connect"?"red":(x.status==="active"?"blue":"grey");
+          const label=x.status==="connect"?"Connect":(x.status==="active"?"Active":"Visit");
+          return `<div class="bt-row"><span><i class="dot ${cls}"></i>${label}</span><span class="ip">${String(x.ip).replace(/[<>&]/g,"")}</span></div>`;
+        }).join("");
+      }catch(e){}
+    }
+    refreshTrace(); setInterval(refreshTrace,10000);
+  }
+})();
+</script>
+
+
+<link rel="stylesheet" href="/assets/beginner-friendly.css">
+<script src="/assets/beginner-friendly.js" defer></script>
+<script src="assets/bng-cookie-consent.js" defer></script>
+
+</body></html>

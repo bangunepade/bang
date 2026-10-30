@@ -1,0 +1,114 @@
+[[redirects]]
+  from = "/api/bang-ai"
+  to = "/.netlify/functions/bang-ai"
+  status = 200
+
+[[redirects]]
+[[redirects]]
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/security-events"
+  to = "/.netlify/functions/security-events"
+  status = 200
+
+[[redirects]]
+  from = "/api/status"
+  to = "/.netlify/functions/status"
+  status = 200
+
+[[redirects]]
+  from = "/api/track"
+  to = "/.netlify/functions/track"
+  status = 200
+
+[[redirects]]
+  from = "/api/analytics"
+  to = "/.netlify/functions/analytics"
+  status = 200
+
+[[redirects]]
+  from = "/api/activity-news"
+  to = "/.netlify/functions/activity-news"
+  status = 200
+
+[[redirects]]
+  from = "/api/public-stats"
+  to = "/.netlify/functions/public-stats"
+  status = 200
+
+[[redirects]]
+  from = "/api/crypto-market"
+  to = "/.netlify/functions/crypto-market"
+  status = 200
+
+[[redirects]]
+  from = "/api/bng-price"
+  to = "/.netlify/functions/bng-price"
+  status = 200
+
+[[redirects]]
+  from = "/api/mining/state"
+  to = "/.netlify/functions/mining-state"
+  status = 200
+
+[[redirects]]
+  from = "/api/mining/toggle"
+  to = "/.netlify/functions/mining-toggle"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/state"
+  to = "/.netlify/functions/wallet-state"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/withdraw"
+  to = "/.netlify/functions/wallet-withdraw"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/transfer"
+  to = "/.netlify/functions/wallet-transfer"
+  status = 200
+
+
+[[redirects]]
+  from = "/api/p2p/escrow"
+  to = "/.netlify/functions/p2p-internal-escrow"
+  status = 200
+
+[[redirects]]
+  from = "/api/internal-explorer"
+  to = "/.netlify/functions/internal-explorer"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/recover-transfer"
+  to = "/.netlify/functions/wallet-recover-transfer"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/admin-balances"
+  to = "/.netlify/functions/wallet-admin-balances"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/swap"
+  to = "/.netlify/functions/internal-swap"
+  status = 200
+
+[[redirects]]
+  from = "/api/account/welcome-bonus"
+  to = "/.netlify/functions/welcome-bonus"
+  status = 200
+
+[[redirects]]
+  from = "/api/turnstile-verify"
+  to = "/.netlify/functions/turnstile-verify"
+  status = 200

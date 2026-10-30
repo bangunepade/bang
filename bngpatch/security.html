@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Security IP Audit • BANG BNG</title><link rel="stylesheet" href="/assets/bng-pages.css"><link rel="stylesheet" href="/assets/bng-themes.css"><script src="/assets/bng-themes.js" defer></script><style>
+body{background:#08060d;color:#f6f1ff}.security-wrap{max-width:1200px;margin:auto;padding:24px}.security-card{background:#130d1d;border:1px solid #39264c;border-radius:16px;padding:18px;margin:16px 0}.muted{color:#a99bb8}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}.stat{padding:14px;background:#0d0914;border:1px solid #30213f;border-radius:12px}.stat b{display:block;font-size:24px;color:#f4c65d}.tools{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.tools input,.tools select{padding:10px;border-radius:8px;background:#08060d;border:1px solid #49335e;color:white;min-width:180px}.btn{padding:10px 14px;border:0;border-radius:9px;background:#9b5cff;color:white;font-weight:800;cursor:pointer}.table-wrap{overflow:auto}table{width:100%;min-width:900px;border-collapse:collapse}th,td{text-align:left;padding:11px;border-bottom:1px solid #33233f;font-size:12px;vertical-align:top}th{color:#f4c65d}.mono{font-family:monospace;overflow-wrap:anywhere}.notice{border-left:3px solid #f4c65d;padding:10px 12px;background:#211a0c;color:#eadcb7;font-size:13px}#status{white-space:pre-wrap;color:#e5d9f0}
+</style><script src="/assets/bng-global-time.js" defer></script>
+
+  <link rel="stylesheet" href="/assets/bng-compat.css">
+
+<!-- Social preview cards: Open Graph + X/Twitter -->
+<meta property="og:site_name" content="BANG BNG">
+<meta property="og:title" content="Security IP Audit • BANG BNG">
+<meta property="og:description" content="Explore the BANG BNG platform, internal coin features, wallet, and community updates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://1bang.top/security.html">
+<meta property="og:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:secure_url" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BANG BNG blockchain network preview artwork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security IP Audit • BANG BNG">
+<meta name="twitter:description" content="Explore the BANG BNG platform and community updates.">
+<meta name="twitter:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+</head><body>
+<script src="/assets/bng-compat.js" defer></script><header class="security-wrap"><a href="/">← BANG BNG Home</a><h1>Owner Security Dashboard</h1><p class="muted">Account-linked registration and sign-in IP audit. Access is verified by Firebase custom claim on the server.</p></header><main class="security-wrap"><section class="security-card"><div class="notice"><b>Historical limitation:</b> this dashboard cannot reconstruct IP addresses that were not previously recorded. New records begin after this feature is deployed. IP addresses may be shared by households, offices, mobile carriers, or VPNs and do not prove a person's identity.</div><p id="status">Checking administrator access…</p><div class="tools"><input id="search" placeholder="Search email, UID, or IP"><select id="eventFilter"><option value="">All events</option><option value="registration">Registration</option><option value="login">Email login</option><option value="google_sign_in">Google sign-in</option></select><button class="btn" id="refresh">Refresh records</button><button class="btn" id="export">Export filtered CSV</button></div><div class="stats"><div class="stat">Records<b id="total">—</b></div><div class="stat">With IP<b id="withIp">—</b></div><div class="stat">IP unavailable<b id="noIp">—</b></div><div class="stat">Repeated IPs<b id="repeat">—</b></div></div></section><section class="security-card"><h2>Security events</h2><div class="table-wrap"><table><thead><tr><th>Time</th><th>Event</th><th>Account email</th><th>Firebase UID</th><th>Client IP</th><th>Capture</th><th>Browser</th></tr></thead><tbody id="rows"><tr><td colspan="7">Sign in to view records.</td></tr></tbody></table></div></section><section class="security-card"><h2>Repeated IP addresses</h2><div class="table-wrap"><table><thead><tr><th>IP</th><th>Event count</th></tr></thead><tbody id="repeatRows"><tr><td colspan="2">No data loaded.</td></tr></tbody></table></div><p class="muted">Repeated IPs are review signals only; multiple legitimate users can share the same public IP.</p></section></main>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
+import {getAuth,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+import {firebaseConfig} from './firebase-config.js';
+const app=initializeApp(firebaseConfig,'bang-bng-security-dashboard'),auth=getAuth(app);let records=[],repeated=[];
+const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function filtered(){const q=$('search').value.trim().toLowerCase(),f=$('eventFilter').value;return records.filter(r=>(!f||r.eventType===f)&&(!q||[r.email,r.uid,r.ip].some(v=>String(v||'').toLowerCase().includes(q))))}
+function render(){const list=filtered();$('total').textContent=records.length;$('withIp').textContent=records.filter(r=>r.ip).length;$('noIp').textContent=records.filter(r=>!r.ip).length;$('repeat').textContent=repeated.length;$('rows').innerHTML=list.length?list.map(r=>`<tr><td>${esc(new Date(r.at).toLocaleString())}</td><td>${esc(r.eventType)}</td><td>${esc(r.email||'Unavailable')}</td><td class="mono">${esc(r.uid)}</td><td class="mono">${esc(r.ip||'Unavailable')}</td><td>${esc(r.ipCapture||'unknown')}</td><td>${esc(r.userAgent||'Unavailable')}</td></tr>`).join(''):'<tr><td colspan="7">No matching records.</td></tr>';$('repeatRows').innerHTML=repeated.length?repeated.map(r=>`<tr><td class="mono">${esc(r.ip)}</td><td>${r.count}</td></tr>`).join(''):'<tr><td colspan="2">No repeated IPs in the returned records.</td></tr>'}
+async function load(){const user=auth.currentUser;if(!user){$('status').textContent='Please sign in with the owner account on the main site, then open this dashboard.';return} $('status').textContent='Verifying owner access and loading logs…';try{const token=await user.getIdToken(true),res=await fetch('/api/security-events',{headers:{Authorization:'Bearer '+token},cache:'no-store'}),data=await res.json();if(!res.ok)throw new Error(data.error||'Access denied.');records=data.records||[];repeated=data.repeatedIps||[];$('status').textContent=`Authorized. Showing up to ${records.length} most recent security events. This feature only records events after deployment.`;render()}catch(e){$('status').textContent=e.message||'Could not load security records.';$('rows').innerHTML='<tr><td colspan="7">Records unavailable. Confirm backend configuration and owner admin claim.</td></tr>'}}
+$('refresh').onclick=load;$('search').addEventListener('input',render);$('eventFilter').onchange=render;$('export').onclick=()=>{const list=filtered(),cols=['at','eventType','email','uid','ip','ipCapture','userAgent'];const csv=[cols.join(','),...list.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='bang-bng-security-events.csv';a.click();URL.revokeObjectURL(a.href)};
+onAuthStateChanged(auth,()=>load());
+</script>
+<script src="assets/bng-cookie-consent.js" defer></script>
+
+</body></html>

@@ -1,0 +1,25 @@
+BANG BNG — Cloudflare Turnstile bot protection
+
+Included:
+- CAPTCHA challenge before email/password sign-in and account creation.
+- CAPTCHA challenge before Google sign-in.
+- Server-side verification with Cloudflare Siteverify (a browser-only check is not trusted).
+- Verification fails closed if the server secret is missing or verification fails.
+- Existing Firebase authentication, balances, mining, wallet and P2P data are not changed.
+
+REQUIRED SETUP BEFORE DEPLOYMENT
+1. In Cloudflare, open Turnstile and add a widget for:
+   - 1bang.top
+   - www.1bang.top
+   Choose Managed mode.
+2. Copy the Turnstile SITE KEY. In BOTH files:
+   - assets/bng-site-auth.js
+   - bngpatch/assets/bng-site-auth.js
+   replace REPLACE_WITH_CLOUDFLARE_TURNSTILE_SITE_KEY with the SITE KEY.
+3. In Netlify > Site configuration > Environment variables, add:
+   TURNSTILE_SECRET_KEY = the Turnstile SECRET KEY
+   Do not put the secret in any HTML or JavaScript file.
+4. Redeploy the site so the function receives the environment variable.
+5. Test email sign-in, new registration, and Google sign-in. The challenge must complete first.
+
+Note: This protects the central sign-in/register gate. It is not a complete WAF or rate limiter for every public endpoint. Configure Cloudflare WAF/rate limiting for sensitive API routes as an additional layer. If Turnstile is not configured, authentication attempts are intentionally blocked rather than silently bypassing bot protection.

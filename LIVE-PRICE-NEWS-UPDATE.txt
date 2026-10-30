@@ -1,0 +1,1 @@
+Updated BANG BNG site package: NEWS line now includes a red live BNG USD price and refreshes periodically from the public market-data endpoint. Existing video/chart assets were preserved.

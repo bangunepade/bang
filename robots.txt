@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.netlify/
+Disallow: /bngpatch/
+Sitemap: https://1bang.top/sitemap.xml

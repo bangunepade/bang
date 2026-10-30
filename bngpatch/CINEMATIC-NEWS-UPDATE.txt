@@ -1,0 +1,7 @@
+Cinematic NEWS update:
+- Removed the separate NEWS bar above the cinematic.
+- All old NEWS items remain in the same cinematic NEWS ticker.
+- Live BNG price is inserted into that same scrolling line and shown in red.
+- P2P/escrow, future BANG BNG Mainnet, and Active/Visited/Connect information are appended to the same ticker.
+- Activity stats come from a public aggregate endpoint and no IP address is returned or displayed.
+- The owner trace panel also no longer displays IP addresses.

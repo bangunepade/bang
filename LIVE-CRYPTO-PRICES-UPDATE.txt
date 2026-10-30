@@ -1,0 +1,10 @@
+LIVE CRYPTO PRICES + BTC DEFAULT CHART
+======================================
+- Added Netlify function /api/crypto-market using CoinGecko public market endpoints.
+- Home-page asset cards now show USD reference prices and 24-hour change for BTC, BCH, ADA, SOL, ETH, BNB, DOGE, USDT, XRP and LTC.
+- BNG price is fetched from the existing /api/bng-price endpoint; its existing market behavior is preserved.
+- The chart defaults to BTC/USDT and includes tabs for BTC, ETH, SOL, ADA, BCH, BNB, DOGE, USDT, XRP, LTC and BNG.
+- CoinGecko chart history is sampled price history, not exchange OHLCV. The chart labels this clearly.
+- Prices are reference market prices, not executable quotes. Token deposits, swaps, withdrawals, and P2P support are not enabled merely by showing a price.
+- Optional: set COINGECKO_API_KEY in Netlify environment variables to use a CoinGecko Demo API key. The function attempts public access if no key is configured.
+- Live data needs internet access and may be temporarily unavailable or rate-limited by the provider.

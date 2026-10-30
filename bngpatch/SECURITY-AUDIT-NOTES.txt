@@ -1,0 +1,22 @@
+BANG BNG Community - security audit notes (updated)
+
+FIXED IN THIS PACKAGE:
+- Mining state changes now go through authenticated Cloud Functions.
+- Firestore rules deny direct client create/update/delete for miningUsers; signed-in users can read only their own record.
+- Account deletion requires the owner to enter the email matching the signed-in account and password, reauthenticates with Firebase Email/Password, then invokes a recent-auth protected server function.
+- Server account deletion attempts to remove the user's profile, mining state, and their chat messages before deleting Firebase Authentication account.
+
+DEPLOYMENT REQUIREMENTS:
+- Deploy Cloud Functions and Firestore rules separately from Netlify: firebase deploy --only functions,firestore:rules
+- Deploy to a staging Firebase project and test before production.
+- Existing Google-only users cannot use the email/password reauthentication dialog unless their account has a linked email/password provider.
+- One-hour auto logout remains a client-side convenience and is not equivalent to server-side token revocation.
+- Rewards are provisional app records, not on-chain tokens.
+
+ADMIN TRANSFER RECOVERY
+- The explorer includes an administrator-only recovery panel for completed internal BNG transfers.
+- POST /api/wallet/recover-transfer requires a valid Firebase ID token with admin:true custom claim.
+- Recovery requires the exact transfer ID and a reason (8–500 characters), checks the original transfer and recipient balance, and uses a Firestore transaction to prevent duplicate recovery and balance races.
+- The full original amount must still be present in the recipient's internal wallet. If not, recovery is rejected without changing balances.
+- Original transfer records are retained; recovery records are appended to walletTransactions and walletTransferRecoveries, and the original transfer is marked with recovery metadata.
+- This affects only the internal ledger; it cannot reverse external/on-chain transfers. Verify in a Firebase staging project before production deployment.

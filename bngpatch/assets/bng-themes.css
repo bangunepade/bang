@@ -1,0 +1,57 @@
+/* BANG BNG user themes — gold is the default */
+:root{--theme-accent:#f6b72c;--theme-accent2:#ffe18a;--theme-bg:#050403;--theme-panel:#0e0a05;--theme-line:#3d2b0e;--theme-muted:#a99a76;--theme-glow:rgba(246,183,44,.18)}
+html[data-bng-theme="blue"]{--theme-accent:#4da3ff;--theme-accent2:#b9ddff;--theme-bg:#030914;--theme-panel:#071426;--theme-line:#153b63;--theme-muted:#91a9c2;--theme-glow:rgba(77,163,255,.20)}
+html[data-bng-theme="dark"]{--theme-accent:#b8b8c4;--theme-accent2:#ffffff;--theme-bg:#050505;--theme-panel:#0d0d0f;--theme-line:#29292e;--theme-muted:#9999a3;--theme-glow:rgba(255,255,255,.10)}
+html[data-bng-theme="purple"]{--theme-accent:#a970ff;--theme-accent2:#e0c6ff;--theme-bg:#090512;--theme-panel:#130a20;--theme-line:#402568;--theme-muted:#a99bbb;--theme-glow:rgba(169,112,255,.20)}
+html[data-bng-theme="green"]{--theme-accent:#39d98a;--theme-accent2:#b7ffd9;--theme-bg:#03100b;--theme-panel:#071a12;--theme-line:#15543b;--theme-muted:#8fb5a4;--theme-glow:rgba(57,217,138,.18)}
+html[data-bng-theme="red"]{--theme-accent:#ff5364;--theme-accent2:#ffc1c8;--theme-bg:#110507;--theme-panel:#1c090d;--theme-line:#64202b;--theme-muted:#b9959a;--theme-glow:rgba(255,83,100,.18)}
+
+/* Main BANG BNG pages */
+html[data-bng-theme] body{background-color:var(--theme-bg)}
+html[data-bng-theme] header{border-color:var(--theme-line)}
+html[data-bng-theme] .wallet{border-color:var(--theme-accent);color:var(--theme-accent2)}
+html[data-bng-theme] .tag,html[data-bng-theme] .value,html[data-bng-theme] .mono{color:var(--theme-accent)}
+html[data-bng-theme] .hero h1{background:linear-gradient(var(--theme-accent2),var(--theme-accent));-webkit-background-clip:text}
+html[data-bng-theme] .card{border-color:var(--theme-line);background:linear-gradient(145deg,color-mix(in srgb,var(--theme-panel) 92%,transparent),color-mix(in srgb,var(--theme-bg) 96%,transparent))}
+html[data-bng-theme] .primary{background:linear-gradient(135deg,var(--theme-accent2),var(--theme-accent));color:var(--theme-bg)}
+html[data-bng-theme] .btn{border-color:var(--theme-line);color:var(--theme-accent2);background:var(--theme-panel)}
+html[data-bng-theme] .chart,html[data-bng-theme] .live-chart{border-color:var(--theme-line);background:var(--theme-bg)}
+
+/* Theme picker */
+.bng-theme-wrap{position:relative;display:inline-flex;align-items:center;z-index:1000}
+.bng-theme-button{border:1px solid var(--theme-line);background:var(--theme-panel);color:var(--theme-accent2);border-radius:10px;padding:9px 11px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.bng-theme-menu{position:absolute;right:0;top:calc(100% + 8px);width:180px;padding:7px;background:rgba(8,8,12,.98);border:1px solid var(--theme-line);border-radius:13px;box-shadow:0 18px 50px #0009;display:none}
+.bng-theme-menu.open{display:block}
+.bng-theme-option{width:100%;border:0;background:transparent;color:#eee;text-align:left;padding:9px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:9px}
+.bng-theme-option:hover{background:var(--theme-glow)}
+.bng-theme-dot{width:12px;height:12px;border-radius:50%;display:inline-block;box-shadow:0 0 10px currentColor}
+@media(max-width:700px){.bng-theme-button{padding:8px 9px;font-size:12px}.bng-theme-button .theme-label{display:none}.bng-theme-menu{right:0}}
+
+/* Community chat theme variables */
+html[data-bng-theme] .bng-chat-theme-target{--bg:var(--theme-bg);--panel:var(--theme-panel);--line:var(--theme-line);--purple:var(--theme-accent);--gold:var(--theme-accent2);--text:#f7f4fb;--muted:var(--theme-muted)}
+
+/* Expanded BANG BNG themes */
+html[data-bng-theme="orange"]{--theme-accent:#ff8a24;--theme-accent2:#ffd0a3;--theme-bg:#120900;--theme-panel:#211004;--theme-line:#71330b;--theme-muted:#c4a084;--theme-glow:rgba(255,138,36,.20)}
+html[data-bng-theme="pink"]{--theme-accent:#ff70b8;--theme-accent2:#ffd0e8;--theme-bg:#140711;--theme-panel:#220d1d;--theme-line:#70234f;--theme-muted:#c7a0b7;--theme-glow:rgba(255,112,184,.20)}
+html[data-bng-theme="teal"]{--theme-accent:#35d6c5;--theme-accent2:#b5fff7;--theme-bg:#031110;--theme-panel:#071d1b;--theme-line:#17615b;--theme-muted:#8ebdb8;--theme-glow:rgba(53,214,197,.20)}
+html[data-bng-theme="ocean"]{--theme-accent:#2878ff;--theme-accent2:#b5d0ff;--theme-bg:#030817;--theme-panel:#08132b;--theme-line:#1b4388;--theme-muted:#93a9d2;--theme-glow:rgba(40,120,255,.20)}
+html[data-bng-theme="sunset"]{--theme-accent:#ff6b4a;--theme-accent2:#ffd0a8;--theme-bg:#160806;--theme-panel:#26100d;--theme-line:#743022;--theme-muted:#c8a099;--theme-glow:rgba(255,107,74,.20)}
+html[data-bng-theme="rose"]{--theme-accent:#ff8c9d;--theme-accent2:#ffd8de;--theme-bg:#15070b;--theme-panel:#260d14;--theme-line:#742b3c;--theme-muted:#c7a0a8;--theme-glow:rgba(255,140,157,.20)}
+html[data-bng-theme="lime"]{--theme-accent:#b6e343;--theme-accent2:#e8ffac;--theme-bg:#0b1002;--theme-panel:#151e05;--theme-line:#465d16;--theme-muted:#aab98a;--theme-glow:rgba(182,227,67,.18)}
+html[data-bng-theme="ice"]{--theme-accent:#8be9ff;--theme-accent2:#d8f9ff;--theme-bg:#041015;--theme-panel:#0a1d25;--theme-line:#286071;--theme-muted:#9bbfc9;--theme-glow:rgba(139,233,255,.18)}
+html[data-bng-theme="coffee"]{--theme-accent:#c58b5b;--theme-accent2:#f0d0ae;--theme-bg:#100a06;--theme-panel:#20140d;--theme-line:#5b3a24;--theme-muted:#b9a08b;--theme-glow:rgba(197,139,91,.18)}
+html[data-bng-theme="neon"]{--theme-accent:#c5ff35;--theme-accent2:#eaffad;--theme-bg:#080b04;--theme-panel:#121806;--theme-line:#435b12;--theme-muted:#a8b98a;--theme-glow:rgba(197,255,53,.18)}
+
+/* Apply selected palette consistently to the community chat itself. */
+.bng-chat-theme-target{background:var(--theme-bg,#08060d)!important;color:var(--text,#f7f4fb)}
+.bng-chat-theme-target aside{background:var(--theme-panel,#0c0912)!important;border-color:var(--theme-line,#2a2038)!important}
+.bng-chat-theme-target .top,.bng-chat-theme-target .composer,.bng-chat-theme-target .chat-status{border-color:var(--theme-line,#2a2038)!important;background:var(--theme-panel,#110d19)!important}
+.bng-chat-theme-target .welcome,.bng-chat-theme-target .card{background:var(--theme-panel,#110b18)!important;border-color:var(--theme-line,#2a2038)!important}
+.bng-chat-theme-target .room.active,.bng-chat-theme-target .room:hover{background:var(--theme-glow,rgba(169,112,255,.18))!important;color:#fff}
+.bng-chat-theme-target .room.active{box-shadow:inset 3px 0 var(--theme-accent,#a970ff)!important}
+.bng-chat-theme-target .btn,.bng-chat-theme-target .send,.bng-chat-theme-target .invite button{background:var(--theme-accent,#a970ff)!important;color:#fff!important}
+.bng-chat-theme-target .composer input,.bng-chat-theme-target .invite input{background:var(--theme-bg,#08060d)!important;border-color:var(--theme-line,#2a2038)!important;color:#fff!important}
+.bng-chat-theme-target .bubble{color:var(--theme-accent2,#e0c6ff)!important}
+.bng-chat-theme-target .avatar,.bng-chat-theme-target .profile-photo-preview{border-color:var(--theme-accent,#a970ff)!important}
+.bng-chat-theme-target .photo-actions button{background:var(--theme-panel,#21172c)!important;border:1px solid var(--theme-line,#2a2038)!important}
+.bng-chat-theme-target .photo-actions button.primary-photo{background:var(--theme-accent,#8c4ee8)!important}

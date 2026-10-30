@@ -1,0 +1,8 @@
+BANG BNG P2P offer-card redesign
+================================
+- Updated public marketplace offer cards to a mobile-first, two-row layout inspired by the supplied Symplix screenshot.
+- Top row shows asset, available BNG amount, fixed/market price label, payment methods, and estimated total.
+- Bottom row shows a vendor avatar, vendor/account label, and Buy button for open sell offers.
+- Public offers remain visible without signing in; creating offers and managing trades still require authentication.
+- Existing offer API, internal-ledger escrow actions, payment steps, and dispute controls are retained.
+- Displayed offer amounts and totals are informational website-ledger values. Payment methods are not independently verified by the website.

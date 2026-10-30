@@ -1,0 +1,27 @@
+BANG BNG P2P PUBLIC OFFERS — BUGFIX AUDIT
+Date: 2026-10-16
+
+Checks performed:
+- Checked JavaScript syntax for Netlify functions and asset JavaScript files with Node.js; all passed.
+- Reviewed P2P public offer list and authenticated escrow actions.
+- Confirmed the P2P page explicitly allows public offer browsing while requiring sign-in for create/manage actions.
+- Confirmed public GET only returns offers with status=open.
+
+Fix applied:
+- Public GET previously included the seller's complete internal wallet address in the JSON response, even though the page visually shortened it. Public responses now return only the generic label "BNG internal account". The authenticated private view remains unchanged.
+
+Important deployment checks:
+- This was a static/source audit, not a live Firebase or Netlify test.
+- Public offer listing still requires the Netlify function to have a valid FIREBASE_SERVICE_ACCOUNT_JSON environment variable and Firestore access.
+- Preserve existing Firestore rules and user balances. Do not publish service-account credentials in the ZIP or repository.
+- P2P escrow is an internal website ledger, not on-chain escrow; external M-Pesa/bank payments are not automatically verified.
+
+
+MULTI-ASSET P2P UPDATE
+- Enabled P2P escrow for BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE and XRP, matching the internal swap and wallet asset set.
+- Sell offers lock the selected token; buy-offer sellers lock the selected token when accepting.
+- The existing 0.878690% P2P fee remains charged separately in BNG.
+- Minimum offer value is checked server-side as 10 BNG-equivalent using token USD reference prices and the internal BNG reference.
+- Added per-asset balance and fee checks, 8-decimal amount precision, asset-specific trade labels, and market quote lookups for supported tokens.
+- Checked modified Netlify function and inline P2P JavaScript syntax with Node.js; checks passed.
+- This is a source-level check only. No live Firebase, Netlify deployment, or real trade test was performed.

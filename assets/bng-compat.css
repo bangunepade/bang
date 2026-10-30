@@ -1,0 +1,31 @@
+/* Best-effort graceful rendering for older browsers; modern theme styles remain in control. */
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background-color: #08060d; color: #f7f4fb; }
+img, video, canvas { max-width: 100%; }
+img { height: auto; }
+button, input, select, textarea { font: inherit; max-width: 100%; }
+button, a, input, select, textarea { -ms-touch-action: manipulation; touch-action: manipulation; }
+button { cursor: pointer; }
+/* Basic fallbacks when CSS custom properties, grid, or flexbox are missing. */
+@supports not (color: var(--compat-test)) {
+  body { background: #08060d; color: #f7f4fb; }
+  a { color: #d9c7ff; }
+  header, nav, main, section, footer { max-width: 100%; }
+  .card, .panel, .box, .stat, .chart, .beginner-guide { background: #110d19; border: 1px solid #2a2038; }
+  .btn, button, input, select, textarea { border: 1px solid #514267; }
+  .btn, button { background: #21172c; color: #f7f4fb; padding: 8px 12px; }
+  .wrap, .container, main { width: 94%; margin-left: auto; margin-right: auto; }
+  .stats, .grid, .two, .cards, .features { display: block; }
+  .stats > *, .grid > *, .two > *, .cards > *, .features > * { margin: 8px 0; }
+}
+@media screen and (max-width: 760px) {
+  .wrap, .container, main { width: 94%; }
+  nav { height: auto; min-height: 54px; }
+  .navlinks { white-space: normal; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .two { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 42px; }
+  table { display: block; max-width: 100%; overflow-x: auto; }
+}
+.bng-legacy-notice { display:none; box-sizing:border-box; margin:10px auto; width:94%; max-width:1100px; padding:12px 14px; background:#33250a; border:1px solid #b27b1c; border-radius:8px; color:#fff1c2; font:14px/1.5 Arial,Helvetica,sans-serif; }
+.bng-legacy-notice strong { display:block; margin-bottom:3px; }

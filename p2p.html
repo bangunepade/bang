@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#7b00ff">
+<meta name="description" content="BANG BNG Global Peer2Peer (P2P) — buy and sell BNG with live market reference data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://1bang.top/p2p.html">
+<meta property="og:title" content="BANG BNG Global Peer2Peer (P2P)">
+<meta property="og:description" content="Trade BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE and XRP through the BANG BNG internal P2P marketplace.">
+<meta property="og:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:secure_url" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BANG BNG official community and project preview">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BANG BNG Global Peer2Peer (P2P)">
+<meta name="twitter:description" content="Trade supported BANG BNG ecosystem assets through the internal P2P marketplace.">
+<meta name="twitter:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta name="twitter:image:alt" content="BANG BNG official community and project preview">
+<title>BANG BNG Peer2Peer (P2P) Trading</title>
+<link rel="icon" href="/assets/bang-bng-current-logo.jpg">
+<link rel="stylesheet" href="/assets/bng-pages.css">
+<style>
+:root{
+  --p:#8b00ff;--p2:#b52cff;--p3:#5a00c9;--red:#f01524;--red2:#8f0712;
+  --bg:#06030d;--panel:#0d0718;--panel2:#120b20;--line:rgba(180,74,255,.35);
+  --text:#f7f2ff;--muted:#b9a9c9;--green:#18e78a;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:system-ui,Arial,sans-serif;background:radial-gradient(circle at 10% 0%,#210047 0,#08030f 34%,#030207 100%);min-height:100vh}
+a{color:inherit;text-decoration:none}.wrap{width:min(1500px,96%);margin:auto}
+.network-bar{background:linear-gradient(90deg,#73000a,#ef101e 48%,#7c000b);border-bottom:1px solid #ff3742;box-shadow:0 7px 28px rgba(240,21,36,.28);position:sticky;top:0;z-index:100}
+.network-inner{min-height:68px;display:flex;align-items:center;gap:12px;padding:9px 18px;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;font-size:23px;letter-spacing:.02em;white-space:nowrap;margin-right:18px}.brand img{width:48px;height:48px;object-fit:contain}
+.network-title{font-weight:950;font-size:18px;padding:10px 18px;border-radius:12px;background:rgba(80,0,0,.35);border:1px solid rgba(255,255,255,.16);white-space:nowrap}
+.network-chip{display:flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(255,255,255,.15);border-radius:11px;background:rgba(45,0,0,.24);font-weight:750;white-space:nowrap}.dot{width:11px;height:11px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.network-online{margin-left:auto;border:1px solid rgba(255,255,255,.25);background:#6f0710;border-radius:999px;padding:8px 14px;font-weight:900;white-space:nowrap}
+.purple-nav{background:linear-gradient(180deg,#0d031a,#09020f);border-bottom:1px solid #a500ff;box-shadow:0 8px 35px rgba(111,0,255,.25);position:sticky;top:68px;z-index:99}
+.nav-inner{display:flex;align-items:center;gap:4px;min-height:76px;overflow:auto}.nav-item{display:flex;align-items:center;gap:9px;padding:20px 25px;border-radius:12px;font-size:18px;font-weight:800;color:#dfd3eb;white-space:nowrap}.nav-item:hover{background:#1d0b31}.nav-item.active{background:linear-gradient(135deg,#a000ff,#6200ff);box-shadow:0 0 25px rgba(155,0,255,.5);color:#fff}.nav-icon{font-size:25px;color:#d09aff}.nav-spacer{flex:1}.social-tab{width:58px;height:52px;display:grid;place-items:center;border-radius:11px;font-size:30px;font-weight:900;border:1px solid #a75cff;background:#07050a;box-shadow:0 0 18px rgba(180,70,255,.18)}.social-tab.facebook{background:linear-gradient(145deg,#1657e8,#267dff);border-color:#69a4ff}.social-tab:hover{transform:translateY(-1px)}
+main{padding:20px 0 60px}.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(520px,.98fr);gap:0;align-items:stretch}.hero-image{min-height:520px;background:#050308;border:1px solid #8b18ff;border-right:0;border-radius:20px 0 0 20px;overflow:hidden;box-shadow:0 18px 65px rgba(92,0,160,.25)}.hero-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 28%}
+.trade-panel{background:linear-gradient(145deg,#160726,#08040e);border:1px solid #9e18ff;border-radius:0 20px 20px 0;box-shadow:0 18px 65px rgba(92,0,160,.3);padding:18px;min-width:0}.trade-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.trade-title{display:flex;align-items:center;gap:12px}.trade-title .arrows{font-size:42px;color:#a700ff;line-height:.7}.trade-title h1{font-size:32px;margin:0}.trade-title h1 span{color:#b300ff}.trade-title p{margin:3px 0;color:#a998b8}.pair-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 12px}.pair-tab{border:1px solid #8f32d7;background:#09050e;color:#eee;border-radius:12px;padding:12px 10px;font-weight:850;cursor:pointer}.pair-tab.active{background:linear-gradient(135deg,#8c00ff,#6b00f6);border-color:#c58aff;box-shadow:0 0 20px rgba(140,0,255,.45)}
+.market-card{border:1px solid #35194a;border-radius:15px;background:#050308;padding:12px}.market-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.market-name{font-weight:900;font-size:18px}.market-price{font-size:28px;font-weight:950}.market-change{color:var(--green);font-weight:900}.range{display:flex;gap:5px}.range button{border:1px solid #332040;background:#100b17;color:#cbbad6;border-radius:7px;padding:6px 9px;font-weight:800;cursor:pointer}.range button.active{background:#7600ff;color:#fff;border-color:#bb77ff}.chart-box{height:255px;margin-top:6px}.chart-box canvas{width:100%;height:100%;display:block}
+.converter{display:grid;grid-template-columns:1fr 48px 1fr;gap:12px;align-items:center;margin-top:14px}.quote-card{background:#0b0711;border:1px solid #3a214e;border-radius:14px;padding:12px}.quote-label{color:#b9aac7;font-size:13px}.quote-value{display:flex;align-items:center;gap:9px;margin-top:8px;background:#171020;border:1px solid #3b2650;border-radius:11px;padding:11px;font-size:20px;font-weight:900}.quote-value input{min-width:0;width:100%;background:transparent;border:0;outline:0;color:#fff;font-size:20px;font-weight:900}.token-badge{white-space:nowrap}.swap-circle{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#7600ff;border:1px solid #d58bff;font-size:25px;font-weight:900;box-shadow:0 0 20px rgba(118,0,255,.45)}.trade-btn{width:100%;margin-top:14px;padding:15px;border:0;border-radius:13px;background:linear-gradient(135deg,#8b00ff,#6d00ff);color:#fff;font-size:21px;font-weight:950;cursor:pointer;box-shadow:0 10px 30px rgba(111,0,255,.35)}
+.section-card{margin-top:14px;background:linear-gradient(145deg,rgba(20,10,31,.95),rgba(7,4,12,.98));border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 12px 32px rgba(0,0,0,.18)}.section-card h2{font-size:clamp(18px,4.5vw,23px);line-height:1.25}.offer-details{margin-top:12px;border:1px solid #49265f;border-radius:13px;background:rgba(12,6,19,.75);overflow:hidden}.offer-details>summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:850}.offer-details>summary::-webkit-details-marker{display:none}.offer-details>summary:after{content:"＋";color:#d8a2ff;font-size:22px}.offer-details[open]>summary:after{content:"−"}.offer-form-body{padding:0 13px 14px}.offer-form-body .field{margin:8px 0}.offer-form-body .field input,.offer-form-body .field select{box-sizing:border-box;min-height:42px;padding:10px 11px;font-size:14px}.offer-form-body .field input[type="number"].compact-number{width:8ch;min-width:7ch;max-width:100%;font-variant-numeric:tabular-nums;transition:width .12s ease}.offer-form-body .field input[type="number"].compact-number:focus{border-color:#b76bff;box-shadow:0 0 0 2px rgba(183,107,255,.14)}.offer-form-body .p2p-grid{gap:8px 12px}.offer-form-body .muted,.offer-form-body .note{font-size:12px}.offer-form-body #internalEscrowCreate{width:100%;min-height:44px}.section-card .muted{font-size:14px}.section-card .p2p-grid{gap:10px}.section-card h2{margin:0 0 8px}.muted{color:var(--muted);line-height:1.55}.p2p-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field{margin:9px 0}.field label{display:block;color:#bbaaca;font-size:12px;margin-bottom:5px}.field input{width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #6d3a91;background:#130b1c;color:#fff;padding:11px 14px;border-radius:9px;cursor:pointer;font-weight:800}.btn.primary{background:linear-gradient(135deg,#8d00ff,#6800e9);border-color:#b76bff}.btn.red{background:linear-gradient(135deg,#e91527,#a10713);border-color:#ff6973}.status{padding:10px 12px;border:1px solid #3a2549;border-radius:10px;background:#08050d;margin-top:10px}.result{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,monospace;font-size:12px;color:#ddd}.address{font-size:11px;word-break:break-all;color:#bbaaca}
+.note{font-size:12px;color:#9f8dac;line-height:1.5}
+.fx-panel{margin-top:14px;padding:14px;border:1px solid #492461;border-radius:15px;background:linear-gradient(145deg,#10071b,#07040c)}
+.fx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fx-panel h3,.tradecalc h3{margin:0 0 8px}.fx-control{width:100%;min-width:0;padding:12px;border-radius:10px;border:1px solid #402652;background:#08050d;color:#fff;font-weight:750}.fx-result{font-size:24px;font-weight:950;overflow-wrap:anywhere}.tradecalc{margin-top:14px;padding:14px;border:1px solid #492461;border-radius:15px;background:#08050d}.calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.calc-output{background:#160b22;border:1px solid #542875;border-radius:12px;padding:12px}.calc-output strong{font-size:22px;display:block;margin-top:4px}.calc-keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:10px}.calc-keys button{padding:12px 6px;border-radius:9px;border:1px solid #492461;background:#170d22;color:#fff;font-weight:850;font-size:17px;cursor:pointer}.calc-keys button.operator{background:#4b0879}.calc-keys button.equals{background:#7600ff}.calc-display{width:100%;padding:13px;border:1px solid #542875;border-radius:10px;background:#050308;color:#fff;font-size:24px;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:650px){.fx-grid,.calc-grid{grid-template-columns:1fr}}.footer{text-align:center;color:#816f8e;padding:30px 0}
+/* P2P theme presets and price-mode colors */
+body.p2p-theme-emerald{--p:#00c98d;--p2:#3bf0b1;--p3:#007b59;--line:rgba(30,220,160,.38);--panel:#061711;--panel2:#092219;background:radial-gradient(circle at 10% 0%,#063d2a 0,#06100d 38%,#030806 100%)}
+body.p2p-theme-blue{--p:#168bff;--p2:#5ab4ff;--p3:#0757b5;--line:rgba(55,155,255,.4);--panel:#06101e;--panel2:#091a2d;background:radial-gradient(circle at 10% 0%,#062b59 0,#070b14 38%,#03050a 100%)}
+body.p2p-theme-gold{--p:#e8a817;--p2:#ffd76a;--p3:#996300;--line:rgba(235,180,35,.4);--panel:#191205;--panel2:#211807;background:radial-gradient(circle at 10% 0%,#493000 0,#100b04 38%,#050402 100%)}
+.theme-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.theme-tools button{border:1px solid #684083;border-radius:999px;padding:8px 12px;color:#fff;background:#130b1c;font-weight:800}.theme-tools button[aria-pressed="true"]{outline:2px solid var(--p2);background:var(--p3)}
+.price-mode{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.price-mode label{display:flex;gap:8px;align-items:center;padding:11px;border:1px solid #49315c;border-radius:11px;background:#0b0711;font-weight:850;cursor:pointer}.price-mode label.fixed{border-color:#3d91ff}.price-mode label.market{border-color:#23c98a}.price-mode input{accent-color:var(--p)}.price-hint{padding:10px;border-radius:10px;font-size:12px;line-height:1.5}.price-hint.fixed{background:rgba(40,125,255,.12);border:1px solid rgba(70,150,255,.45)}.price-hint.market{background:rgba(20,190,125,.1);border:1px solid rgba(40,220,150,.4)}
+
+@media(max-width:1050px){.hero-grid{grid-template-columns:1fr}.hero-image{border-right:1px solid #8b18ff;border-radius:20px 20px 0 0;min-height:auto}.hero-image img{height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center 28%}.trade-panel{border-radius:0 0 20px 20px}.network-inner{flex-wrap:nowrap}.network-online{margin-left:0}.p2p-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.network-title{display:none}.brand{font-size:18px}.network-chip{font-size:12px}.nav-item{padding:17px 14px;font-size:15px}.nav-item:nth-child(n+5){display:none}.social-tab{width:48px;height:45px;font-size:25px}.trade-title h1{font-size:25px}.trade-title .arrows{font-size:32px}.pair-tabs{grid-template-columns:1fr}.converter{grid-template-columns:1fr}.swap-circle{margin:auto}.chart-box{height:220px}}
+
+/* Traderoom redesign inspired by the supplied reference: clean conversation layout,
+   high-contrast safety notice, compact responsive composer, and black default theme. */
+:root{--p:#b78cff;--p2:#d4b4ff;--p3:#302044;--line:rgba(194,164,225,.24);--bg:#090b10;--panel:#11141b;--panel2:#171b24;--text:#f4f5f8;--muted:#a8afbd}
+body{background:#090b10}.network-bar{background:#101319;border-bottom:1px solid #292e39;box-shadow:0 4px 18px rgba(0,0,0,.28)}
+.network-title,.network-chip{background:#171b23;border-color:#333946}.purple-nav{background:#0e1117;border-bottom:1px solid #282e39;box-shadow:0 4px 18px rgba(0,0,0,.22)}
+.nav-item.active{background:#282d38;box-shadow:none;color:#fff}.nav-icon,.trade-title .arrows{color:#d2b5ff}
+.trade-panel,.section-card{background:#11141b;border-color:#2a303b;box-shadow:0 8px 24px rgba(0,0,0,.2)}.hero-image{border-color:#2a303b;box-shadow:none}
+.pair-tab{background:#171b23;border-color:#353b48}.pair-tab.active,.trade-btn,.btn.primary{background:linear-gradient(135deg,#7350a7,#4f3478);border-color:#b99be0;box-shadow:none}
+.market-card,.quote-card,.quote-value,.status,.fx-panel,.tradecalc{background:#0d1016;border-color:#2a303b}.section-card .section-card{background:#0d1016;border-color:#2a303b}
+.theme-tools button{background:#171b23;border-color:#353b48}.theme-tools button[aria-pressed="true"]{outline:2px solid #d2b5ff;background:#393047}
+body.p2p-theme-emerald{--p:#00c98d;--p2:#3bf0b1;--p3:#007b59;--line:rgba(30,220,160,.38);--panel:#061711;--panel2:#092219;background:#06100d}
+body.p2p-theme-blue{--p:#168bff;--p2:#5ab4ff;--p3:#0757b5;--line:rgba(55,155,255,.4);--panel:#06101e;--panel2:#091a2d;background:#070b14}
+body.p2p-theme-gold{--p:#e8a817;--p2:#ffd76a;--p3:#996300;--line:rgba(235,180,35,.4);--panel:#191205;--panel2:#211807;background:#100b04}
+.p2p-chat{display:none;margin-top:14px;width:100%;padding:14px;border:1px solid #303642;border-radius:15px;background:#101319;color:#f3f4f6}
+.p2p-chat .chat-safety{padding:14px 16px;margin:0 0 14px;border-radius:12px;background:#ffe779;color:#4c431b;border:1px solid #f0d65a;line-height:1.55;font-size:14px}
+.p2p-chat .chat-topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.p2p-chat .chat-topline strong{font-size:17px;color:#fff}.p2p-chat .chat-topline .chat-private{font-size:12px;color:#a8afbd}
+.p2p-chat .chat-messages{max-height:340px!important;min-height:100px;overflow:auto;padding:12px!important;background:#0b0e13!important;border:1px solid #2b303a!important;border-radius:12px!important;margin-bottom:12px!important}
+.p2p-chat .chat-messages>div{padding:11px 12px!important;margin:8px 0;border:1px solid #242a34;border-radius:11px;background:#171b23}.p2p-chat .chat-messages strong{color:#f4f5f8}.p2p-chat .chat-messages small{display:block;margin:3px 0 7px}
+.p2p-chat [data-chat-input]{min-height:54px;flex:1 1 220px!important;background:#fff!important;color:#16181d!important;border:1px solid #d4d7dd!important;border-radius:10px!important;font:inherit}
+.p2p-chat [data-action="chat-send"]{min-height:48px;padding:12px 18px;background:#252a34;border-color:#3b424e}.p2p-chat .chat-compose{display:flex;gap:9px;align-items:stretch;flex-wrap:wrap}
+.p2p-chat .chat-footnote{display:block;margin-top:10px;color:#a8afbd;font-size:12px;line-height:1.5}.actions:has(.p2p-chat){display:block}.actions:has(.p2p-chat)>button{margin:3px}
+@media(max-width:650px){.network-inner{min-height:56px;padding:7px 10px}.brand{font-size:18px}.brand img{width:38px;height:38px}.purple-nav{top:56px}.nav-inner{min-height:58px}.nav-item{padding:14px 12px;font-size:14px}.trade-panel{padding:12px}.trade-title h1{font-size:25px}.p2p-chat{padding:10px}.p2p-chat .chat-safety{padding:12px;font-size:13px}.p2p-chat .chat-messages{max-height:300px!important}}
+
+
+/* Public marketplace offer cards: compact Symlix-inspired two-row listing */
+#internalEscrowOffers{display:grid;grid-template-columns:1fr!important;gap:14px!important}
+.p2p-offer-card{margin:0!important;padding:10px!important;background:#fff!important;color:#20364b!important;border:1px solid #e5e8ed!important;border-radius:12px!important;box-shadow:0 3px 0 rgba(15,23,42,.08)!important;overflow:hidden}
+.p2p-offer-card .offer-quote{background:#f7f9fc;border:1px solid #edf0f4;border-radius:11px;padding:12px 10px 10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,.9fr) minmax(0,1fr);align-items:center;gap:8px;min-height:94px}
+.p2p-offer-card .offer-asset{font-weight:850;font-size:15px;line-height:1.25;overflow-wrap:anywhere}
+.p2p-offer-card .offer-range{color:#7f8794;font-size:13px;margin-top:10px;white-space:normal;overflow-wrap:anywhere}
+.p2p-offer-card .offer-price{text-align:center;min-width:0;font-size:16px;color:#596579;font-weight:600}
+.p2p-offer-card .offer-arrow{height:14px;position:relative;margin:8px 0 8px;background:#cbd3dc;clip-path:polygon(0 38%,92% 38%,92% 0,100% 50%,92% 100%,92% 62%,0 62%)}
+.p2p-offer-card .offer-price-tag{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:99px;background:#08a66b;color:white;font-size:12px;white-space:nowrap;max-width:100%}
+.p2p-offer-card .offer-price-tag.market{background:#a9b4bf;color:#fff}
+.p2p-offer-card .offer-price-tag.discount{background:#f28a35;color:white}
+.p2p-offer-card .offer-payment{text-align:right;font-weight:850;font-size:14px;overflow-wrap:anywhere;color:#23394e}
+.p2p-offer-card .offer-vendor{display:flex;align-items:center;gap:10px;padding:11px 2px 2px;min-width:0}
+.p2p-offer-card .offer-avatar{width:48px;height:48px;flex:0 0 48px;border-radius:50%;display:grid;place-items:center;background:#8b5cf6;color:#fff;font-size:22px;font-weight:600;border:3px solid #f0f3f7;box-shadow:0 1px 4px #d7dce4}
+.p2p-offer-card .offer-vendor-info{min-width:0;flex:1}
+.p2p-offer-card .offer-vendor-name{font-weight:850;font-size:14px;color:#647084;overflow-wrap:anywhere}
+.p2p-offer-card .offer-vendor-sub{color:#a2aab5;font-size:12px;margin-top:2px}
+.p2p-offer-card .offer-vendor-sub .verified{color:#6d8296}
+.p2p-offer-card .offer-action{flex:0 0 auto;min-width:64px;min-height:48px;padding:10px 13px!important;border-radius:6px!important;background:#fa2455!important;border:1px solid #ff6685!important;color:white!important;box-shadow:0 3px 0 #e6b8c2!important;font-size:15px!important}
+.p2p-offer-card .offer-meta{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0;color:#647084;font-size:11px}
+.p2p-offer-card .offer-meta span{background:#f2f5f8;padding:4px 7px;border-radius:6px;overflow-wrap:anywhere}
+.p2p-offer-card .offer-controls{margin-top:10px;border-top:1px solid #edf0f4;padding-top:10px}
+.p2p-offer-card .offer-controls .btn{font-size:12px;padding:9px 10px}
+.p2p-offer-card .offer-controls .p2p-chat{color:#f4f5f8}
+@media(min-width:900px){#internalEscrowOffers{grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start}.p2p-offer-card .offer-quote{grid-template-columns:minmax(0,1fr) minmax(90px,.8fr) minmax(0,1fr)}}
+@media(max-width:380px){.p2p-offer-card .offer-quote{grid-template-columns:minmax(0,1fr) minmax(78px,.8fr) minmax(0,1fr);gap:5px;padding:10px 7px}.p2p-offer-card .offer-asset,.p2p-offer-card .offer-payment{font-size:12px}.p2p-offer-card .offer-price{font-size:14px}.p2p-offer-card .offer-avatar{width:42px;height:42px;flex-basis:42px}.p2p-offer-card .offer-action{min-width:56px;padding:8px!important}}
+
+</style>
+<style>
+
+/* BANG BNG P2P — premium exchange-style offer interface */
+.p2p-offer-card{
+  background:#151a21!important;color:#eaecef!important;
+  border:1px solid #2b3139!important;border-radius:16px!important;
+  padding:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.22)!important;
+}
+.p2p-offer-card .offer-quote{
+  background:#1e2329!important;border:1px solid #2b3139!important;
+  border-radius:12px!important;padding:15px 13px!important;
+  min-height:112px;gap:10px;
+}
+.p2p-offer-card .offer-asset{color:#f0b90b!important;font-size:15px!important;font-weight:750!important}
+.p2p-offer-card .offer-range{color:#848e9c!important;font-size:12px!important;line-height:1.45}
+.p2p-offer-card .offer-price{color:#f0b90b!important;font-size:19px!important;font-weight:800!important;letter-spacing:-.35px}
+.p2p-offer-card .offer-arrow{background:#5e6673!important;height:10px!important;opacity:.85}
+.p2p-offer-card .offer-price-tag{
+  background:rgba(2,192,118,.14)!important;color:#02c076!important;
+  border:1px solid rgba(2,192,118,.25)!important;border-radius:5px!important;
+  font-size:11px!important;font-weight:700!important;padding:5px 9px!important
+}
+.p2p-offer-card .offer-price-tag.market{background:rgba(132,142,156,.13)!important;color:#b7bdc6!important;border-color:#3b424c!important}
+.p2p-offer-card .offer-price-tag.discount{background:rgba(240,185,11,.13)!important;color:#f0b90b!important;border-color:rgba(240,185,11,.25)!important}
+.p2p-offer-card .offer-payment{color:#eaecef!important;font-size:14px!important;font-weight:750!important}
+.p2p-offer-card .offer-vendor{padding:14px 2px 3px!important;gap:11px}
+.p2p-offer-card .offer-avatar{background:#29313d!important;color:#f0b90b!important;border:1px solid #3b424c!important;box-shadow:none!important;width:42px!important;height:42px!important;flex-basis:42px!important;font-size:18px!important}
+.p2p-offer-card .offer-vendor-name{color:#eaecef!important;font-size:13px!important;font-weight:750!important}
+.p2p-offer-card .offer-vendor-sub{color:#848e9c!important;font-size:11px!important}
+.p2p-offer-card .offer-vendor-sub .verified{color:#02c076!important;font-weight:700}
+.p2p-offer-card .offer-action{
+  background:#02c076!important;border:0!important;color:#fff!important;
+  box-shadow:none!important;border-radius:7px!important;min-height:40px!important;
+  min-width:72px!important;padding:9px 16px!important;font-weight:750!important;font-size:13px!important
+}
+.p2p-offer-card .offer-meta{gap:7px!important;margin-top:12px!important;color:#848e9c!important;font-size:10px!important}
+.p2p-offer-card .offer-meta span{
+  background:#1e2329!important;border:1px solid #2b3139!important;
+  color:#aeb6c2!important;border-radius:5px!important;padding:5px 8px!important
+}
+.p2p-offer-card .offer-meta span:has(+ span){max-width:100%}
+.p2p-offer-card .offer-controls{border-top:1px solid #2b3139!important;padding-top:12px!important;margin-top:12px!important}
+.p2p-offer-card .offer-controls .btn,
+.p2p-offer-card .offer-controls button{
+  background:#1e2329!important;border:1px solid #3b424c!important;color:#eaecef!important;
+  border-radius:7px!important;box-shadow:none!important;font-weight:650!important;
+  min-height:40px!important;padding:9px 13px!important
+}
+.p2p-offer-card .offer-controls button[data-action*="dispute"],
+.p2p-offer-card .offer-controls button[data-action*="release"]{border-color:rgba(2,192,118,.4)!important}
+.p2p-offer-card .offer-controls button[data-action*="chat"]{border-color:#3b424c!important}
+#internalEscrowOffers{gap:12px!important}
+@media(max-width:420px){
+ .p2p-offer-card{padding:10px!important;border-radius:13px!important}
+ .p2p-offer-card .offer-quote{grid-template-columns:minmax(0,1fr) minmax(78px,.8fr) minmax(0,1fr)!important;gap:6px!important;padding:11px 8px!important}
+ .p2p-offer-card .offer-price{font-size:15px!important}
+ .p2p-offer-card .offer-asset,.p2p-offer-card .offer-payment{font-size:12px!important}
+ .p2p-offer-card .offer-action{min-width:58px!important;padding:8px 10px!important;font-size:12px!important}
+}
+
+</style>
+<link rel="stylesheet" href="assets/bng-themes.css">
+
+<style>
+/* Circular escrow seal: purple-to-green means the internal ledger lock was confirmed. */
+.escrow-seal-row{display:flex;align-items:center;gap:13px;margin:12px 0 4px;padding:12px;border:1px solid #393047;border-radius:14px;background:linear-gradient(110deg,rgba(133,70,210,.10),rgba(0,190,125,.08));}
+.escrow-seal{width:76px;height:76px;flex:0 0 76px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(from 220deg,#9b5cff 0deg,#7b42d6 115deg,#11c98b 245deg,#8d5bdf 360deg);box-shadow:0 0 0 4px rgba(154,91,229,.12),0 0 22px rgba(22,201,139,.13);}
+.escrow-seal:before{content:"";position:absolute;inset:5px;border-radius:50%;background:#10131a;border:1px solid rgba(255,255,255,.12);}
+.escrow-seal-core{position:relative;z-index:1;text-align:center;color:#fff;font-size:22px;line-height:1}
+.escrow-seal-core small{display:block;margin-top:4px;font-size:8px;letter-spacing:1px;font-weight:900;color:#a7f3d0}
+.escrow-seal-row.pending{background:rgba(143,99,190,.07);border-color:#514064}
+.escrow-seal-row.pending .escrow-seal{background:conic-gradient(#70538d,#42334f,#70538d)}
+.escrow-seal-row.pending .escrow-seal-core small{color:#cbb4e8}
+.escrow-seal-copy{min-width:0;flex:1}.escrow-seal-title{font-size:12px;font-weight:900;letter-spacing:.55px;color:#a7f3d0}
+.escrow-seal-row.pending .escrow-seal-title{color:#d6b7ff}.escrow-seal-copy p{margin:4px 0 0;color:#a8afbd;font-size:11px;line-height:1.5}.escrow-seal-copy strong{color:#f4f5f8}
+.escrow-funded-pill{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:4px 8px;border-radius:99px;background:linear-gradient(90deg,rgba(150,82,230,.22),rgba(0,194,128,.18));border:1px solid rgba(93,210,163,.35);color:#b9f6dc;font-size:10px;font-weight:850}
+@media(max-width:380px){.escrow-seal-row{gap:9px;padding:9px}.escrow-seal{width:66px;height:66px;flex-basis:66px}.escrow-seal-copy p{font-size:10px}}
+</style>
+<script src="assets/bng-themes.js" defer></script>
+<style>body{background:#050403}</style>
+<script src="/assets/bng-global-time.js" defer></script>
+
+<script type="module" src="assets/bng-site-auth.js"></script>
+<script src="/assets/bng-simulated-price.js" defer></script>  <link rel="stylesheet" href="/assets/bng-compat.css">
+
+<style>
+.offer-expiry{font-weight:750!important;color:#02c076!important}
+.p2p-offer-card [data-action="renew"]{border:1px solid rgba(240,185,11,.45)!important;color:#f0b90b!important}
+.offer-no-expiry{font-weight:750!important;color:#02c076!important}
+.offer-renew-field{display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0}
+.offer-renew-field label{width:100%;font-size:11px;color:#848e9c}
+.offer-renew-field select{background:#1e2329;color:#eaecef;border:1px solid #3b424c;border-radius:7px;padding:9px;min-width:130px;max-width:100%}
+.offer-renew-field button{flex:1}
+.p2p-offer-card [data-action="renew"]:hover{background:rgba(240,185,11,.12)!important}
+</style>
+
+<style>
+/* Professional multi-select payment method picker */
+.payment-native-select{display:none!important}
+.payment-picker{display:grid;gap:16px;margin-top:10px}
+.payment-search{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #3b4554;border-radius:10px;background:#0e141c;color:#eaecef;font-size:14px;outline:none}
+.payment-search:focus{border-color:#b47aff;box-shadow:0 0 0 2px rgba(180,122,255,.14)}
+.payment-search::placeholder{color:#758194}
+.payment-group[hidden],.payment-option[hidden]{display:none!important}
+.payment-group{display:grid;gap:9px}
+.payment-group-title{display:flex;align-items:center;gap:8px;color:#aeb8c7;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.payment-group-title:after{content:"";height:1px;background:#303744;flex:1}
+.payment-group-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.payment-option{
+ display:flex;align-items:center;gap:10px;min-width:0;min-height:58px;
+ padding:10px 11px;border:1px solid #303744;border-radius:11px;
+ background:linear-gradient(145deg,#171d26,#121720);color:#eaecef;
+ text-align:left;cursor:pointer;transition:border-color .15s,background .15s,transform .15s;
+ box-shadow:0 3px 10px rgba(0,0,0,.13)
+}
+.payment-option:active{transform:scale(.985)}
+.payment-option[aria-pressed="true"]{border-color:#02c076;background:linear-gradient(145deg,rgba(2,192,118,.15),#151d22);box-shadow:inset 0 0 0 1px rgba(2,192,118,.12)}
+.payment-logo{
+ width:34px;height:34px;flex:0 0 34px;border-radius:10px;
+ display:grid;place-items:center;background:var(--brand-bg,#27313d);
+ color:var(--brand-fg,#fff);font-size:11px;font-weight:900;letter-spacing:-.5px;
+ border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)
+}
+.payment-name{font-size:13px;line-height:1.25;font-weight:700;overflow-wrap:anywhere;flex:1}
+.payment-check{width:18px;height:18px;flex:0 0 18px;border-radius:50%;border:1.5px solid #687383;display:grid;place-items:center;color:#fff;font-size:11px}
+.payment-option[aria-pressed="true"] .payment-check{background:#02c076;border-color:#02c076}
+.payment-option[aria-pressed="true"] .payment-check:after{content:"✓";font-weight:900}
+.payment-option:focus-visible{outline:2px solid #b47aff;outline-offset:2px}
+.payment-selection-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid #303744;border-radius:9px;background:#111720;color:#aeb8c7;font-size:12px}
+.payment-selection-summary strong{color:#02c076}
+@media(max-width:390px){.payment-group-grid{grid-template-columns:1fr}.payment-option{min-height:54px}.payment-logo{width:32px;height:32px;flex-basis:32px}}
+@media(min-width:600px){.payment-group-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<script src="/assets/bng-compat.js" defer></script>
+<div class="network-bar"><div class="wrap network-inner">
+  <a class="brand" href="/"><img src="/assets/bang-bng-current-logo.jpg" alt="BANG BNG"><span>BANG BNG</span></a>
+  <div class="network-title">NETWORK</div>
+  <div class="network-chip">▣ Contract</div>
+  <div class="network-online"><span class="dot" style="display:inline-block;vertical-align:middle;margin-right:6px"></span>Online</div>
+</div></div>
+<nav class="purple-nav"><div class="wrap nav-inner">
+  <a class="nav-item" href="/"><span class="nav-icon">⌂</span>Home</a>
+  <a class="nav-item active" href="/p2p.html"><span class="nav-icon">⇄</span>Peer2Peer (P2P)</a>
+  <a class="nav-item" href="/swap.html"><span class="nav-icon">⇄</span>Swap</a>
+  <a class="nav-item" href="/#dashboard"><span class="nav-icon">▣</span>Wallet</a>
+  <a class="nav-item" href="/chart.html"><span class="nav-icon">▥</span>Chart</a>
+  <a class="nav-item" href="/#chart"><span class="nav-icon">◉</span>Pairs</a>
+  <a class="nav-item" href="/about.html"><span class="nav-icon">ⓘ</span>About</a>
+  <span class="nav-spacer"></span>
+  <a class="social-tab" href="https://x.com/1bang_bng" target="_blank" rel="noopener" aria-label="BANG BNG on X">X</a>
+  <a class="social-tab facebook" href="https://m.facebook.com/profile.php?id=100064884480897&name=xhp_nt__fb__action__open_user" target="_blank" rel="noopener" aria-label="BANG BNG on Facebook">F</a>
+</div></nav>
+
+<main class="wrap">
+<section class="hero-grid">
+  <div class="hero-image"><img src="/assets/bng-p2p-official.jpg" alt="BANG BNG Peer2Peer (P2P) trading" loading="eager"></div>
+  <div class="trade-panel">
+    <div class="trade-head"><div class="trade-title"><div class="arrows">⇄</div><div><h1>Peer2Peer <span>(P2P) TRADING</span></h1><p>Live indicative BNG value • multi-currency tools</p></div></div></div>
+    <div class="pair-tabs"><button class="pair-tab active" data-pair="BNGBNB">🪙 BNG/BNB</button><button class="pair-tab" data-pair="BTCUSDT">₿ BTC/USDT</button><button class="pair-tab" data-pair="BNBUSDT">◆ BNB/USDT</button></div>
+    <div class="market-card">
+      <div class="market-top"><div><div class="market-name" id="marketPair">BNG/BNB</div><div class="market-price" id="marketPrice">Loading…</div><div class="market-change" id="marketChange">—</div></div><div class="range"><button data-range="24" class="active">1H</button><button data-range="48">4H</button><button data-range="72">1D</button></div></div>
+      <div class="chart-box"><canvas id="p2pChart" aria-label="P2P market chart"></canvas></div>
+    </div>
+    <div class="converter">
+      <div class="quote-card"><div class="quote-label">You Pay</div><div class="quote-value"><input id="payAmount" value="1" type="number" min="0" step="any"><span class="token-badge" id="payToken">BNG</span></div><div class="quote-label" id="payUsd">≈ $— USD</div></div>
+      <div class="swap-circle">⇄</div>
+      <div class="quote-card"><div class="quote-label">You Receive</div><div class="quote-value"><input id="receiveAmount" value="0" type="number" min="0" step="any"><span class="token-badge" id="receiveToken">BNB</span></div><div class="quote-label" id="receiveUsd">≈ $— USD</div></div>
+    </div>
+    <button class="trade-btn" onclick="document.getElementById('escrow').scrollIntoView({behavior:'smooth'})">⇄ &nbsp; TRADE P2P</button>
+    <div class="status" id="marketStatus">Market data loading…</div>
+    <section class="fx-panel" aria-labelledby="fxTitle">
+      <h3 id="fxTitle">🌐 BNG Multi-Currency Converter</h3>
+      <p class="note">Indicative conversion using the latest available BNG market quote and reference FX rates. This is not an executable swap or a guaranteed sale price.</p>
+      <div class="fx-grid">
+        <div class="field"><label for="fxAmount">Amount</label><input class="fx-control" id="fxAmount" type="number" min="0" step="any" value="1" inputmode="decimal"></div>
+        <div class="field"><label for="fxFrom">From</label><select class="fx-control" id="fxFrom"><option value="BNG">BNG</option><option value="USD">USD — US Dollar</option><option value="KES">KES — Kenyan Shilling</option><option value="BTC">BTC — Bitcoin</option><option value="BNB">BNB</option><option value="USDT">USDT</option><option value="USDC">USDC</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="UGX">UGX — Ugandan Shilling</option><option value="TZS">TZS — Tanzanian Shilling</option><option value="NGN">NGN — Nigerian Naira</option><option value="ZAR">ZAR — South African Rand</option><option value="INR">INR — Indian Rupee</option><option value="JPY">JPY — Japanese Yen</option><option value="CAD">CAD — Canadian Dollar</option><option value="AUD">AUD — Australian Dollar</option></select></div>
+        <div class="field"><label for="fxTo">Convert to</label><select class="fx-control" id="fxTo"><option value="KES">KES — Kenyan Shilling</option><option value="USD">USD — US Dollar</option><option value="BNG">BNG</option><option value="BTC">BTC — Bitcoin</option><option value="BNB">BNB</option><option value="USDT">USDT</option><option value="USDC">USDC</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="UGX">UGX — Ugandan Shilling</option><option value="TZS">TZS — Tanzanian Shilling</option><option value="NGN">NGN — Nigerian Naira</option><option value="ZAR">ZAR — South African Rand</option><option value="INR">INR — Indian Rupee</option><option value="JPY">JPY — Japanese Yen</option><option value="CAD">CAD — Canadian Dollar</option><option value="AUD">AUD — Australian Dollar</option></select></div>
+      </div>
+      <div class="calc-output"><span class="note" id="fxSummary">Estimated conversion</span><div class="fx-result" id="fxResult">Loading rates…</div><p class="note" id="bngMarketValue">BNG market value loading…</p></div>
+      <div class="actions" style="margin-top:10px"><button class="btn" id="fxSwap" type="button">⇄ Swap currencies</button><button class="btn" id="fxRefresh" type="button">↻ Refresh rates</button></div>
+    </section>
+    <section class="tradecalc" aria-labelledby="calcTitle">
+      <h3 id="calcTitle">🧮 Professional Trade Calculator</h3>
+      <p class="note">Calculate BNG trade totals, an illustrative 0.5% platform fee, and net amount. Fee is an estimate only; the server's actual rules prevail.</p>
+      <div class="calc-grid">
+        <div class="field"><label for="tcAmount">BNG amount</label><input class="fx-control" id="tcAmount" type="number" min="0" step="any" value="10"></div>
+        <div class="field"><label for="tcPrice">Price per BNG (USD by default)</label><input class="fx-control" id="tcPrice" type="number" min="0" step="any" value="0"></div>
+        <div class="field"><label for="tcFee">Illustrative fee (%)</label><input class="fx-control" id="tcFee" type="number" min="0" max="100" step="0.01" value="0.5"></div>
+        <div class="field"><label for="tcCurrency">Currency</label><select class="fx-control" id="tcCurrency"><option value="USD" selected>USD</option><option value="KES">KES</option></select></div>
+      </div>
+      <div class="calc-grid"><div class="calc-output"><span class="note">Gross trade value</span><strong id="tcGross">—</strong></div><div class="calc-output"><span class="note">Estimated fee</span><strong id="tcFeeValue">—</strong></div><div class="calc-output"><span class="note">Total incl. fee</span><strong id="tcTotal">—</strong></div><div class="calc-output"><span class="note">Net after fee</span><strong id="tcNet">—</strong></div></div>
+      <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:800">Open arithmetic calculator</summary><div style="margin-top:10px"><input class="calc-display" id="basicCalcDisplay" value="0" aria-label="Calculator display" inputmode="decimal" readonly><div class="calc-keys" id="basicCalcKeys"><button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="/" class="operator">÷</button><button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="*" class="operator">×</button><button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="-" class="operator">−</button><button type="button" data-key="0">0</button><button type="button" data-key=".">.</button><button type="button" data-key="clear" class="operator">C</button><button type="button" data-key="+" class="operator">+</button><button type="button" data-key="back">⌫</button><button type="button" data-key="(" class="operator">(</button><button type="button" data-key=")" class="operator">)</button><button type="button" data-key="=" class="equals">=</button></div></div></details>
+    </section>
+  </div>
+</section>
+
+<section class="section-card" id="p2p-assets">
+  <h2>🪙 Supported Peer2Peer (P2P) assets</h2>
+  <p class="muted">Choose from the supported BANG BNG ecosystem assets below. P2P escrow can lock and transfer BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE and XRP after the asset is available in your internal wallet.</p>
+  <div class="p2p-grid" style="grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px">
+    <div class="section-card" style="margin:0;padding:12px"><strong>🟣 BNG</strong><div class="note">Internal escrow enabled</div></div>
+    <div class="section-card" style="margin:0;padding:12px"><strong>₿ BTC · ◆ BNB · ₮ USDT</strong><div class="note">P2P escrow enabled after swap</div></div>
+    <div class="section-card" style="margin:0;padding:12px"><strong>ADA · BCH · ETH</strong><div class="note">P2P escrow enabled after swap</div></div>
+    <div class="section-card" style="margin:0;padding:12px"><strong>SOL · DOGE · XRP</strong><div class="note">P2P escrow enabled after swap</div></div>
+  </div>
+</section>
+
+<section class="section-card" id="escrow">
+  <h2>🤝 Create a Peer2Peer (P2P) offer</h2>
+  <div class="theme-tools" aria-label="Peer2Peer (P2P) color themes"><strong>Interface theme:</strong><button type="button" data-p2p-theme="purple" aria-pressed="true">🟣 Purple</button><button type="button" data-p2p-theme="emerald" aria-pressed="false">🟢 Emerald</button><button type="button" data-p2p-theme="blue" aria-pressed="false">🔵 Ocean</button><button type="button" data-p2p-theme="gold" aria-pressed="false">🟡 Gold</button></div>
+  <div class="status" id="p2pLiveMarket"><strong>Live market reference</strong><br>Loading BNG/USDT, BTC/USDT and BNB/USDT prices…</div>
+  <p class="muted">Publish buy or sell offers for BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE or XRP. Choose an expiration from 20 minutes to 7 days, or keep an offer active with no expiration. You can renew or extend it later. Once a buyer accepts and proceeds to the trade, the active escrow does not expire. Swap BNG into another supported asset first, then use that asset balance to create a P2P sell offer. Sell offers lock the selected asset immediately; the 0.878690% P2P fee is charged separately in BNG. Buy offers are funded by the seller when accepted. All escrow is internal website-ledger accounting, not on-chain custody. External M-Pesa or bank payments are never verified automatically.</p>
+  <div class="status" id="internalEscrowStatus">Loading your internal escrow…</div>
+  <div class="status" id="p2pBalanceEligibility" role="status" aria-live="polite">Sign in to check your supported-token balances and offer eligibility.</div>
+  <details class="offer-details">
+    <summary><span>＋ Create a new offer</span><span class="muted" style="font-size:12px;font-weight:500">Amount · Price · Payment</span></summary>
+    <div class="offer-form-body">
+      <div class="field"><label for="internalEscrowSide">Offer side</label><select id="internalEscrowSide" style="width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff"><option value="sell">Sell selected asset — lock it when publishing</option><option value="buy">Buy selected asset — seller locks it when accepting</option></select><small class="note">Both buyers and sellers can publish offers. A seller accepting a buy offer must have enough of the selected asset and BNG for the 0.878690% fee.</small></div>
+      <div class="field"><label for="internalEscrowAsset">Asset to sell / buy</label><select id="internalEscrowAsset" style="width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff"><option>BNG</option><option>BTC</option><option>BNB</option><option>USDT</option><option>ADA</option><option>BCH</option><option>ETH</option><option>SOL</option><option>DOGE</option><option>XRP</option></select><small class="note">All 10 supported internal assets are available. Minimum offer value: 10 BNG-equivalent. Non-BNG sell offers also require enough BNG to pay the P2P fee.</small></div>
+      <div class="field"><label for="internalEscrowTitle">Offer title <span class="muted">(optional)</span></label><input id="internalEscrowTitle" maxlength="80" placeholder="e.g. Sell BNG for USD"></div>
+      <div class="field"><label for="internalEscrowExpiration">Offer expiration</label><select id="internalEscrowExpiration" style="width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff"><option value="20m" selected>20 minutes</option><option value="1h">1 hour</option><option value="6h">6 hours</option><option value="12h">12 hours</option><option value="24h">24 hours</option><option value="7d">7 days</option><option value="never">No expiration</option></select><small class="note">Choose how long this offer stays visible if nobody accepts it. You can change this later by renewing the offer.</small></div>
+      <div class="p2p-grid">
+        <div class="field"><label for="internalEscrowAmount"><span id="internalEscrowAmountLabel">BNG</span> amount</label><input id="internalEscrowAmount" class="compact-number" type="number" min="0.00000001" step="0.00000001" placeholder="Minimum 10 BNG-equivalent" inputmode="decimal"></div>
+        <div class="field" style="grid-column:1/-1"><label>Offer price type</label><div class="price-mode"><label class="fixed"><input type="radio" name="p2pPriceMode" value="fixed" checked> 🔵 Fixed price</label><label class="market"><input type="radio" name="p2pPriceMode" value="market"> 🟢 Market reference</label></div><div id="p2pPriceModeHint" class="price-hint fixed">Fixed: you choose the price and it stays as your offer quote.</div></div>
+        <div class="field"><label for="internalEscrowPrice">Price per <span id="internalEscrowPriceLabel">BNG</span></label><input id="internalEscrowPrice" class="compact-number" type="number" min="0.000001" step="0.000001" placeholder="e.g. 5" inputmode="decimal"></div>
+        <div class="field"><label for="internalEscrowCountry">Your country / market</label><select id="internalEscrowCountry" style="width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff"></select><small class="note">Suggested from your browser settings when possible. Choose your actual country; this does not use precise GPS.</small></div>
+        <div class="field"><label for="internalEscrowCurrency">Payment currency</label><select id="internalEscrowCurrency" style="width:100%;padding:12px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff"></select><small class="note" id="p2pCurrencyHint">Default currency is based on your selected country. You can change it.</small></div>
+        <div class="field" style="grid-column:1/-1"><label for="internalEscrowPayment">Accepted payment methods <span class="muted">(choose one or more)</span></label><select id="internalEscrowPayment" class="payment-native-select" aria-hidden="true" tabindex="-1" multiple size="7" aria-describedby="p2pPaymentHelp" style="width:100%;padding:10px;border-radius:9px;border:1px solid #402652;background:#08050d;color:#fff;min-height:150px"><optgroup label="Bank and card"><option value="Bank transfer">🏦 Bank transfer</option><option value="SEPA transfer">🌍 SEPA transfer</option><option value="SWIFT / international wire">🌐 SWIFT / international wire</option><option value="Debit / credit card">💳 Debit / credit card (arranged directly)</option></optgroup><optgroup label="Mobile money"><option value="M-Pesa">📱 M-Pesa</option><option value="MTN Mobile Money">📱 MTN Mobile Money</option><option value="Airtel Money">📱 Airtel Money</option><option value="Orange Money">📱 Orange Money</option><option value="bKash">📱 bKash</option><option value="GCash">📱 GCash</option><option value="UPI">📱 UPI</option><option value="PIX">📱 PIX</option></optgroup><optgroup label="Online payment services"><option value="PayPal">PayPal</option><option value="Wise">Wise</option><option value="Payoneer">Payoneer</option><option value="Cash App">Cash App</option><option value="Venmo">Venmo</option><option value="Zelle">Zelle</option><option value="Revolut">Revolut</option><option value="Apple Pay">Apple Pay</option><option value="Google Pay">Google Pay</option><option value="Interac e-Transfer">🇨🇦 Interac e-Transfer</option><option value="Easypaisa">📱 Easypaisa</option><option value="DuitNow">📱 DuitNow</option><option value="PayNow">📱 PayNow</option><option value="PromptPay">📱 PromptPay</option></optgroup><optgroup label="Other"><option value="Cash in person">💵 Cash in person</option><option value="Cash deposit">Cash deposit</option><option value="Crypto transfer">Crypto transfer</option></optgroup><optgroup label="Instant bank and local transfer networks"><option value="ACH">ACH</option><option value="Faster Payments">Faster Payments</option><option value="BACS">BACS</option><option value="CHAPS">CHAPS</option><option value="SEPA Instant">SEPA Instant</option><option value="iDEAL">iDEAL</option><option value="BLIK">BLIK</option><option value="Przelewy24">Przelewy24</option><option value="Bancontact">Bancontact</option><option value="EPS">EPS</option><option value="Bizum">Bizum</option><option value="MB WAY">MB WAY</option><option value="Multibanco">Multibanco</option><option value="Swish">Swish</option><option value="Vipps">Vipps</option><option value="MobilePay">MobilePay</option><option value="TWINT">TWINT</option><option value="Trustly">Trustly</option><option value="Pay by Bank">Pay by Bank</option><option value="PayID">PayID</option><option value="BPAY">BPAY</option><option value="New Payments Platform (NPP)">New Payments Platform (NPP)</option><option value="FPS Hong Kong">FPS Hong Kong</option><option value="SPEI">SPEI</option><option value="PSE">PSE</option><option value="SINPE Móvil">SINPE Móvil</option><option value="Khipu">Khipu</option><option value="Servipag">Servipag</option><option value="Faster Payments (UK)">Faster Payments (UK)</option><option value="IMPS">IMPS</option><option value="NEFT">NEFT</option><option value="RTGS">RTGS</option><option value="Net banking">Net banking</option><option value="QRIS">QRIS</option><option value="VietQR">VietQR</option><option value="FAST Singapore">FAST Singapore</option><option value="InstaPay Philippines">InstaPay Philippines</option><option value="PESONet">PESONet</option><option value="QR Ph">QR Ph</option><option value="FPX">FPX</option><option value="BAKONG">BAKONG</option><option value="PayNow QR">PayNow QR</option><option value="PromptPay QR">PromptPay QR</option></optgroup><optgroup label="Card networks"><option value="Visa">Visa</option><option value="Mastercard">Mastercard</option><option value="American Express">American Express</option><option value="Discover">Discover</option><option value="Diners Club">Diners Club</option><option value="UnionPay">UnionPay</option><option value="JCB">JCB</option><option value="Maestro">Maestro</option><option value="RuPay">RuPay</option><option value="Verve">Verve</option><option value="mada">mada</option><option value="Meeza">Meeza</option><option value="Troy">Troy</option><option value="Elo">Elo</option><option value="Cartes Bancaires">Cartes Bancaires</option><option value="Interac Debit">Interac Debit</option><option value="Mir">Mir</option></optgroup><optgroup label="Digital wallets and regional apps"><option value="Alipay">Alipay</option><option value="WeChat Pay">WeChat Pay</option><option value="DANA">DANA</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="LinkAja">LinkAja</option><option value="GoPay Indonesia">GoPay Indonesia</option><option value="GrabPay">GrabPay</option><option value="TrueMoney">TrueMoney</option><option value="MoMo Vietnam">MoMo Vietnam</option><option value="ZaloPay">ZaloPay</option><option value="Paytm">Paytm</option><option value="PhonePe">PhonePe</option><option value="Google Pay India">Google Pay India</option><option value="PayPay Japan">PayPay Japan</option><option value="Rakuten Pay">Rakuten Pay</option><option value="LINE Pay">LINE Pay</option><option value="KakaoPay">KakaoPay</option><option value="Naver Pay">Naver Pay</option><option value="Maya">Maya</option><option value="Toss Pay">Toss Pay</option><option value="Mercado Pago">Mercado Pago</option><option value="PicPay">PicPay</option><option value="Nequi">Nequi</option><option value="DaviPlata">DaviPlata</option><option value="Yape">Yape</option><option value="Plin">Plin</option><option value="RappiPay">RappiPay</option><option value="Mach">Mach</option><option value="Webpay / Redcompra">Webpay / Redcompra</option><option value="PagoEfectivo">PagoEfectivo</option><option value="Boleto Bancário">Boleto Bancário</option><option value="OXXO Pay">OXXO Pay</option><option value="Yappy">Yappy</option><option value="DeUna">DeUna</option><option value="Fawry">Fawry</option><option value="InstaPay Egypt">InstaPay Egypt</option><option value="Vodafone Cash">Vodafone Cash</option><option value="Orange Cash">Orange Cash</option><option value="Etisalat Cash">Etisalat Cash</option><option value="STC Pay">STC Pay</option><option value="Careem Pay">Careem Pay</option><option value="urpay">urpay</option><option value="BenefitPay">BenefitPay</option><option value="KNET">KNET</option><option value="CliQ">CliQ</option><option value="Aani">Aani</option><option value="Bankily">Bankily</option><option value="EVC Plus">EVC Plus</option><option value="eDahab">eDahab</option><option value="Zaad">Zaad</option><option value="EcoCash">EcoCash</option><option value="InnBucks">InnBucks</option><option value="OneMoney">OneMoney</option><option value="telebirr">telebirr</option><option value="CBE Birr">CBE Birr</option><option value="Wave">Wave</option><option value="Moov Money">Moov Money</option><option value="Free Money">Free Money</option><option value="Tigo Pesa">Tigo Pesa</option><option value="Chipper Cash">Chipper Cash</option><option value="Paga">Paga</option><option value="OPay">OPay</option><option value="PalmPay">PalmPay</option><option value="PayShap">PayShap</option><option value="Ozow">Ozow</option><option value="SnapScan">SnapScan</option><option value="Mukuru">Mukuru</option><option value="TMoney">TMoney</option><option value="Flooz">Flooz</option><option value="AirtelTigo Money">AirtelTigo Money</option><option value="MTN MoMo Ghana">MTN MoMo Ghana</option><option value="Orange Money Africa">Orange Money Africa</option><option value="M-Pesa Tanzania">M-Pesa Tanzania</option><option value="M-Pesa Ethiopia">M-Pesa Ethiopia</option><option value="Airtel Money Africa">Airtel Money Africa</option><option value="Tigo Cash">Tigo Cash</option><option value="Skrill">Skrill</option><option value="Neteller">Neteller</option><option value="Satispay">Satispay</option><option value="PostFinance Pay">PostFinance Pay</option><option value="Payz">Payz</option><option value="Multicaixa Express">Multicaixa Express</option><option value="Yape Perú">Yape Perú</option><option value="Plin Perú">Plin Perú</option></optgroup><optgroup label="Cash, vouchers and local collection"><option value="Boleto cash payment">Boleto cash payment</option><option value="OXXO cash payment">OXXO cash payment</option><option value="Efecty">Efecty</option><option value="Rapipago">Rapipago</option><option value="Pago Fácil">Pago Fácil</option><option value="Cash-in network">Cash-in network</option><option value="Bank branch deposit">Bank branch deposit</option><option value="Post office payment">Post office payment</option><option value="Cash on delivery">Cash on delivery</option></optgroup></select>
+<div id="paymentMethodPicker" class="payment-picker" aria-label="Choose accepted payment methods"></div><small id="p2pPaymentHelp" class="note">Only select methods you can actually receive. Availability depends on country and provider. Never share PINs, passwords, or one-time codes.</small></div>
+      </div>
+      <details style="margin:8px 0"><summary style="cursor:pointer;color:#cdb5dc;font-size:13px">Optional trade terms</summary><div class="field"><label for="internalEscrowTerms">Trade terms (never include passwords, PINs, or sensitive banking details)</label><input id="internalEscrowTerms" maxlength="500" placeholder="e.g. Verify payment before releasing BNG"></div></details>
+      <div class="status" id="internalEscrowQuote">Enter an amount and price to calculate the external payment total.</div>
+      <button class="btn primary" id="internalEscrowCreate">＋ Publish offer</button>
+      <p class="note">Publishing reserves the selected asset in the website ledger. External payments are not held or automatically verified. This is not on-chain escrow.</p>
+    </div>
+  </details>
+</section>
+<section class="section-card"><h2>Marketplace — available offers</h2><p class="muted">Browse offers published by other members. Accept an offer to start a trade. The buyer and seller must handle external payment separately and honestly.</p><div id="internalEscrowOffers" class="p2p-grid"><div class="status">Loading offers…</div></div></section>
+<section class="section-card"><h2>Your escrow activity</h2><div id="internalEscrowMine" class="p2p-grid"><div class="status">Loading your trades…</div></div></section>
+<section class="section-card"><h2>How internal escrow works</h2><ol class="muted"><li>For a SELL offer, the seller's selected asset is locked when the offer is published. For a BUY offer, the seller accepts and the full required asset amount is locked atomically from the seller's internal wallet into escrow.</li><li>The circular purple-and-green seal appears only after the backend confirms the internal ledger lock. The buyer then completes the agreed external payment separately.</li><li>Buyer marks payment as sent; seller must verify receipt independently before releasing BNG.</li><li>Seller releases the selected asset to the buyer, or either party can open a dispute. Disputed funds remain locked until an authorized administrator resolves them.</li></ol><p class="note">Internal escrow does not send on-chain tokens, does not verify M-Pesa/bank payments, and does not provide a blockchain wallet. Do not release an asset until payment is actually received.</p></section>
+<footer class="footer">BANG BNG Peer2Peer (P2P) • Internal ledger escrow • No blockchain transacti<script>
+// Public market display only; prices do not execute a swap or settle an escrow.
+</script>
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
+import { firebaseConfig } from './firebase-config.js';
+import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
+// Reuse the same default Firebase app/auth instance initialized by assets/bng-site-auth.js.
+const app = getApps().find(a => a.name === '[DEFAULT]') || initializeApp(firebaseConfig);
+const db = getFirestore(app); const auth = getAuth(app);
+await setPersistence(auth,browserLocalPersistence).catch(()=>{});
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const short=s=>s?String(s).slice(0,10)+'…'+String(s).slice(-5):'Internal account';
+async function api(action,extra={}){
+ const isRead=action==='list'||action==='mine';
+ const isPublicList=action==='list';
+ const user=auth.currentUser;
+ if(!isPublicList&&!user)throw new Error('Sign in from the Home or Wallet page to create an offer or manage a trade. Public offers can be browsed without signing in.');
+ const headers={'Content-Type':'application/json'};
+ if(user&&!isPublicList)headers.Authorization='Bearer '+await user.getIdToken();
+ const opts={method:isRead?'GET':'POST',headers};
+ if(!isRead)opts.body=JSON.stringify({action,...extra});
+ const r=await fetch('/api/p2p/escrow'+(isPublicList?'?view=public&ts='+Date.now():'?'+(action==='mine'?'view=mine':'')),{...opts,cache:'no-store'});let d={};try{d=await r.json()}catch(_){}
+ if(!r.ok)throw new Error(d.error||'Escrow request failed.');return d;
+}
+function setStatus(msg,bad=false){const el=$('internalEscrowStatus');if(el){el.textContent=msg;el.style.borderColor=bad?'#e44':'#3a2549';}}
+ let p2pCachedBalances=null,p2pMinimumAmounts=null,p2pBngRates=null,p2pBngBalance=null,p2pFeeRate=0.00878690;
+ function updateOfferEligibility(data,error=''){
+  if(data&&typeof data==='object'){
+   if(data.assetBalances)p2pCachedBalances=data.assetBalances;
+   if(data.minimumOfferAmounts)p2pMinimumAmounts=data.minimumOfferAmounts;
+   if(data.bngRates)p2pBngRates=data.bngRates;
+   if(Number.isFinite(Number(data.bngBalance)))p2pBngBalance=Number(data.bngBalance);
+   if(Number.isFinite(Number(data.p2pFeeRate)))p2pFeeRate=Number(data.p2pFeeRate);
+  }
+  const panel=$('p2pBalanceEligibility'),btn=$('internalEscrowCreate'),side=$('internalEscrowSide')?.value||'sell',asset=String(assetInput?.value||'BNG').toUpperCase(),amount=Number(amountInput?.value||0);
+  if(!panel||!btn)return;
+  if(!auth.currentUser){panel.textContent='Sign in to check your supported-token balances and publish/manage offers.';panel.style.borderColor='#8b5cf6';btn.disabled=true;btn.title='Sign in to use P2P escrow.';return;}
+  if(side==='buy'){panel.textContent='Buy offer selected. No balance is locked when publishing. A seller must later provide '+asset+' and pay the P2P fee in BNG to accept.';panel.style.borderColor='#16a34a';btn.disabled=false;btn.title='Publish a buy offer for '+asset+'.';return;}
+  if(!p2pCachedBalances){panel.textContent='Could not verify your wallet balances. Refresh the page before creating a sell offer.'+(error?' '+error:'');panel.style.borderColor='#e44';btn.disabled=true;btn.title='Balance verification is required.';return;}
+  const balance=Number(p2pCachedBalances[asset]||0),minimum=Number(p2pMinimumAmounts?.[asset]||(asset==='BNG'?10:NaN)),rate=Number(p2pBngRates?.[asset]||(asset==='BNG'?1:NaN));
+  if(!Number.isFinite(minimum)||!Number.isFinite(rate)||rate<=0){panel.textContent='The '+asset+' reference rate is unavailable. P2P offer creation is paused until rates refresh.';panel.style.borderColor='#e44';btn.disabled=true;btn.title='Reference rate required.';return;}
+  const feeBng=amount>0?amount*rate*p2pFeeRate:0;
+  const requiredAsset=Math.max(amount||minimum,minimum);
+  const enoughAsset=balance+1e-8>=requiredAsset;
+  const enoughFee=asset==='BNG'?balance+1e-8>=requiredAsset+feeBng:Number(p2pBngBalance||0)+1e-8>=feeBng;
+  amountInput.min=String(minimum); amountInput.placeholder='Minimum '+minimum+' '+asset;
+  if(balance+1e-8<minimum){panel.textContent='Not enough '+asset+' for the minimum offer. Available: '+balance+' '+asset+'; minimum: '+minimum+' '+asset+' (10 BNG-equivalent). Swap BNG into '+asset+' first.';panel.style.borderColor='#e44';btn.disabled=true;btn.title='Insufficient '+asset+' balance.';return;}
+  if(amount>0&&amount+1e-8<minimum){panel.textContent='Minimum offer is '+minimum+' '+asset+' (10 BNG-equivalent). Increase the offer amount.';panel.style.borderColor='#e44';btn.disabled=true;btn.title='Offer is below the minimum.';return;}
+  if(amount>0&&!enoughAsset){panel.textContent='Insufficient '+asset+' balance. Available: '+balance+' '+asset+'.';panel.style.borderColor='#e44';btn.disabled=true;btn.title='Offer amount exceeds your '+asset+' balance.';return;}
+  if(amount>0&&!enoughFee){panel.textContent='You need approximately '+feeBng.toFixed(8)+' BNG to pay the P2P fee. Your BNG balance is '+Number(p2pBngBalance||0)+'.';panel.style.borderColor='#e44';btn.disabled=true;btn.title='Insufficient BNG for the P2P fee.';return;}
+  panel.textContent='Eligible for '+asset+' P2P. Available: '+balance+' '+asset+'. Minimum offer: '+minimum+' '+asset+' (10 BNG-equivalent). P2P fee: 0.878690% paid separately in BNG.';
+  panel.style.borderColor='#16a34a';btn.disabled=false;btn.title='Publish a '+asset+' sell offer.';
+ }
+function card(x,own){
+ const status=String(x.status||'').replace(/_/g,' ');let controls='';
+ if(x.status==='open'&&!x.isSeller&&!x.isBuyer)controls+=`<button class="btn primary offer-action" data-action="accept" data-id="${esc(x.id)}">${x.side==='buy'?'Accept buy offer · Sell '+esc(x.asset||'BNG'):'Accept sell offer · Buy '+esc(x.asset||'BNG')}</button>`;
+ if(x.status==='open'&&(x.isSeller||x.isBuyer))controls+=`<button class="btn red" data-action="cancel" data-id="${esc(x.id)}">Close offer${x.side==='sell'?' & unlock '+esc(x.asset||'BNG'):''}</button>`;
+ if((x.status==='open'||x.status==='expired')&&(x.isSeller||x.isBuyer))controls+=`<div class="field offer-renew-field"><label>Extend offer expiration</label><select data-renew-duration="${esc(x.id)}"><option value="20m">20 minutes</option><option value="1h">1 hour</option><option value="6h">6 hours</option><option value="12h">12 hours</option><option value="24h">24 hours</option><option value="7d">7 days</option><option value="never">No expiration</option></select><button class="btn" data-action="renew" data-id="${esc(x.id)}">↻ Extend / renew offer</button></div>`;
+ if(x.status==='accepted'&&x.isBuyer)controls+=`<div class="status" style="border-color:#7c4dba;background:linear-gradient(110deg,rgba(137,75,205,.13),rgba(0,190,125,.10))"><strong style="color:#a7f3d0">🔒 Seller-funded escrow confirmed.</strong> The ${esc(x.asset||'BNG')} amount is locked in the internal escrow ledger. Check the amount above before sending payment.</div><div class="field"><label>Optional payment reference (avoid sensitive details)</label><input data-reference="${esc(x.id)}" maxlength="120" placeholder="Reference / note"></div><button class="btn primary" data-action="paid" data-id="${esc(x.id)}">I've sent payment</button><button class="btn" data-action="dispute" data-id="${esc(x.id)}">Open dispute</button>`;
+ if(x.status==='accepted'&&x.isSeller)controls+=`<div class="status" style="border-color:#7c4dba;background:linear-gradient(110deg,rgba(137,75,205,.13),rgba(0,190,125,.10))"><strong style="color:#a7f3d0">🔒 Your asset is secured in escrow.</strong> Wait for the buyer to mark payment sent, then verify the actual receipt independently.</div><button class="btn" data-action="dispute" data-id="${esc(x.id)}">Open dispute</button>`;
+ if(x.status==='paid'&&x.isSeller)controls+=`<button class="btn primary" data-action="release" data-id="${esc(x.id)}">Verify payment & release ${esc(x.asset||'BNG')}</button><button class="btn" data-action="dispute" data-id="${esc(x.id)}">Open dispute</button>`;
+ if(x.status==='paid'&&x.isBuyer)controls+=`<button class="btn" data-action="dispute" data-id="${esc(x.id)}">Open dispute</button>`;
+ if(own && (x.isSeller||x.isBuyer)) { if(x.status==='released'&&!x.ratedByMe) controls+=`<button class="btn" data-action="rate" data-id="${esc(x.id)}">⭐ Rate trade</button>`; if(['accepted','paid','disputed','released','refunded'].includes(x.status)) controls+=`<button class="btn" data-action="chat-open" data-id="${esc(x.id)}">💬 Trade chat</button><div id="chat-${esc(x.id)}" class="p2p-chat" style="display:none"><div class="chat-topline"><strong>Trade room</strong><span class="chat-private">🔒 Private buyer–seller chat</span></div><div class="chat-safety"><strong>To trade safely:</strong> use this room to communicate about the order. The seller must verify that the agreed payment has actually arrived before releasing the selected asset. Never share passwords, PINs, private keys, or one-time codes.<br><br><strong>Important:</strong> this chat is for communication only. Do not send payment details that you do not need to share.</div><div class="chat-messages">Loading messages…</div><div class="chat-compose"><input data-chat-input="${esc(x.id)}" maxlength="1000" placeholder="Write a message…" aria-label="Message the other trader"><button class="btn primary" data-action="chat-send" data-id="${esc(x.id)}">➤ Send</button></div><small class="chat-footnote">Only the buyer and seller can read this trade chat. Report suspicious requests using the dispute option on the order.</small></div>`; }
+ const asset=String(x.asset||'BNG').toUpperCase(),amount=Number(x.amount||0),price=Number(x.pricePerAsset||x.pricePerBng||0),fiatTotal=amount*price,currency=String(x.currency||'USD');
+ const money=(n)=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+ const methods=String(x.paymentMethod||'External payment').split(',').map(s=>s.trim()).filter(Boolean);
+ const paymentIcon=m=>/m.?pesa/i.test(m)?'📱':/bank/i.test(m)?'🏦':/google/i.test(m)?'🌐':/paypal/i.test(m)?'🅿️':/cash/i.test(m)?'💵':/card/i.test(m)?'💳':'💸';
+ const payment=methods.length?methods.map(m=>paymentIcon(m)+' '+m).join(' · '):'💸 External payment';
+ const market=String(x.priceMode||'').toLowerCase()==='market';
+ const title=String(x.offerTitle||'').toLowerCase();
+ const avatarSeed=String(x.sellerAddress||x.sellerName||'B').replace(/[^a-z0-9]/gi,'');
+ const initial=(own?'Y':(avatarSeed[0]||'B')).toUpperCase();
+ const sellerLabel=own?'Your offer':(x.sellerName||asset+' trader');
+ const rateLabel=market?'Market reference':(price>0?`↑ ${money(price)} ${currency}`:'Price on request');
+ const tagClass=market?'market':(price<0?'discount':'');
+ const sellerInfo=own?'Your published offer':`Seller · ${short(x.sellerAddress)}`;
+ const meta=`<span>Order: ${esc(short(x.id))}</span><span>Status: ${esc(status)}</span>${x.status==='open'&&x.expirationMode==='never'?'<span class="offer-no-expiry">No expiration</span>':''}${x.status==='open'&&Number(x.expiresAt)>0?`<span class="offer-expiry" data-expires-at="${Number(x.expiresAt)}">Expires soon</span>`:''}${x.status==='expired'?'<span>Offer expired · renew to relist</span>':''}${x.buyerAddress?`<span>Buyer: ${esc(short(x.buyerAddress))}</span>`:''}${own&&x.isSeller&&x.buyerEmail?`<span>Buyer email: ${esc(x.buyerEmail)}</span>`:''}${own&&x.isBuyer&&x.sellerEmail?`<span>Seller email: ${esc(x.sellerEmail)}</span>`:''}`;
+ const extra=own?`<div class="offer-meta">${meta}</div>`:'';
+ const ratings=Array.isArray(x.ratings)?x.ratings:[]; const ratingSummary=ratings.length?`<div class="status">⭐ Trade feedback: ${ratings.map(r=>'★'.repeat(Math.max(0,Math.min(5,Number(r.score)||0)))).map(esc).join(' · ')}${ratings.some(r=>r.comment)?'<div>'+ratings.filter(r=>r.comment).map(r=>esc(r.comment)).join(' · ')+'</div>':''}</div>`:'';
+ const offerTitle=esc(x.offerTitle||'BANG BNG');
+ const quoteTop=price>0?`${money(price)} ${esc(currency)}`:'Contact seller';
+ const amountText=`${money(amount)} ${asset} available`;
+ const totalText=price>0?`Total ${money(fiatTotal)} ${esc(currency)}`:'Total agreed with seller';
+ const escrowFunded=x.escrowFunded===true || (x.side==='sell' && ['open','accepted','paid','disputed','released'].includes(x.status));
+ const escrowStage=x.status==='released'?'ASSET RELEASED':x.status==='paid'?'PAYMENT MARKED SENT':x.status==='disputed'?'UNDER DISPUTE':escrowFunded?'FUNDED & SECURED':'WAITING FOR SELLER FUNDING';
+ const escrowDetail=escrowFunded?`<strong>${money(Number(x.escrowFundedAmount||amount))} ${esc(x.escrowFundedAsset||asset)}</strong> is locked in the internal escrow ledger${x.escrowFundedByRole==='seller'?' by the seller':''}.`:(x.side==='buy'?'The seller must accept this BUY offer and lock the full asset amount before payment proceeds.':'Funding status will appear here after escrow is confirmed.');
+ const escrowSeal=`<div class="escrow-seal-row ${escrowFunded?'funded':'pending'}"><div class="escrow-seal" aria-label="${esc(escrowStage)}"><div class="escrow-seal-core">${escrowFunded?'🔒':'◷'}<small>${escrowFunded?'SECURE':'PENDING'}</small></div></div><div class="escrow-seal-copy"><div class="escrow-seal-title">${esc(escrowStage)}</div><p>${escrowDetail}</p>${escrowFunded?'<span class="escrow-funded-pill">✦ PURPLE + GREEN · LEDGER LOCK CONFIRMED</span>':''}</div></div>`;
+ return `<article class="section-card p2p-offer-card"><div class="offer-quote"><div><div class="offer-asset">${asset==='BTC'?'₿':asset==='ETH'?'◆':'🪙'} ${offerTitle==='BANG BNG'?'BANG BNG (BNG)':offerTitle}</div><div class="offer-range">${esc(amountText)}</div></div><div class="offer-price"><div>${quoteTop}</div><div class="offer-arrow" aria-hidden="true"></div><span class="offer-price-tag ${tagClass}">${market?'Market price':(price>0?'Fixed price':'Price on request')}</span></div><div><div class="offer-payment">${esc(payment)}</div><div class="offer-range" style="text-align:right">${esc(totalText)}</div></div></div>${escrowSeal}<div class="offer-vendor"><div class="offer-avatar">${esc(initial)}</div><div class="offer-vendor-info"><div class="offer-vendor-name">${esc(sellerLabel)}</div><div class="offer-vendor-sub">${esc(sellerInfo)}${x.isVerified?' <span class="verified">✓ Verified</span>':''}</div></div>${controls&&!own?(controls.match(/<button[^>]*data-action="accept"[^>]*>Buy<\/button>/)?controls.match(/<button[^>]*data-action="accept"[^>]*>Buy<\/button>/)[0]:''):''}</div><div class="offer-meta"><span>${esc(asset)}</span><span>${esc(currency)}</span>${x.country?`<span>🌐 ${esc(countryNames.of(x.country)||x.country)}</span>`:''}<span>${esc(status)}</span>${x.status==='open'&&x.expirationMode==='never'?'<span class="offer-no-expiry">No expiration</span>':''}${x.status==='open'&&Number(x.expiresAt)>0?`<span class="offer-expiry" data-expires-at="${Number(x.expiresAt)}">Expires soon</span>`:''}${x.status==='expired'?'<span>Expired · renew to relist</span>':''}${x.createdAt?`<span>Listed: ${esc(new Date(x.createdAt).toLocaleString(undefined,{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZoneName:'short'}))}</span>`:''}<span>TX: ${esc(x.transactionId||('BNG-TX-'+String(x.id||'').toUpperCase()))}</span>${own?`<span>Offer ID: ${esc(short(x.id))}</span>`:''}</div>${own&&x.status==='released'?ratingSummary:''}${controls&&!own?controls.replace(/<button[^>]*data-action="accept"[^>]*>Buy<\/button>/,'')?`<div class="offer-controls"><div class="actions">${controls.replace(/<button[^>]*data-action="accept"[^>]*>Buy<\/button>/,'')}</div></div>`:'' :''}${own&&controls?`<div class="offer-controls"><div class="actions">${controls}</div></div>`:''}</article>`;
+}
+
+function updateP2PCountdowns(){
+ const now=Date.now();
+ document.querySelectorAll('.offer-expiry[data-expires-at]').forEach(el=>{
+   const left=Number(el.dataset.expiresAt)-now;
+   if(left<=0){el.textContent='Expired · refreshing';el.style.color='#f6465d';return;}
+   const mins=Math.floor(left/60000),secs=Math.floor((left%60000)/1000);
+   el.textContent='Expires in '+String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0');
+   el.style.color=left<3*60000?'#f0b90b':'#02c076';
+ });
+}
+setInterval(updateP2PCountdowns,1000);
+async function loadChat(id){const panel=$('chat-'+id);if(!panel)return;const box=panel.querySelector('.chat-messages');try{const d=await api('chat-list',{escrowId:id});const ms=d.messages||[];box.innerHTML=ms.length?ms.map(m=>`<div style="padding:7px 0;border-bottom:1px solid #241532"><strong>${esc(m.displayName||'P2P member')}</strong> <small class="muted">${m.createdAt?esc(new Date(m.createdAt).toLocaleString()):''}</small><div style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(m.text)}</div></div>`).join(''):'<div class="muted">No messages yet. Start the conversation.</div>';box.scrollTop=box.scrollHeight;}catch(e){box.textContent=e.message||'Could not load chat.'}}
+async function refresh(){try{const d=await api('list');const offers=d.offers||[];const open=offers.filter(x=>x.status==='open');let mine=[];if(auth.currentUser){try{const privateData=await api('mine');mine=(privateData.offers||[]).filter(x=>x.isSeller||x.isBuyer);updateOfferEligibility(privateData);}catch(e){updateOfferEligibility(null,e.message)}}else{updateOfferEligibility(null)}
+ $('internalEscrowOffers').innerHTML=open.length?open.map(x=>card(x,false)).join(''):'<div class="status">No open offers right now.</div>';
+ updateP2PCountdowns();
+ $('internalEscrowMine').innerHTML=auth.currentUser?(mine.length?mine.map(x=>card(x,true)).join(''):'<div class="status">You have no internal escrow trades yet.</div>'):'<div class="status">Sign in from Home or Wallet to view your private escrow activity. Public offers above remain visible to everyone.</div>';
+ setStatus('Public marketplace ready • creating and managing trades requires an account.');
+ }catch(e){$('internalEscrowOffers').innerHTML='<div class="status">Public offers could not load. Please refresh the page.</div>'; $('internalEscrowMine').innerHTML='<div class="status">'+esc(e.message)+'</div>';setStatus(e.message,true)}}
+const amountInput=$('internalEscrowAmount'),priceInput=$('internalEscrowPrice'),currencyInput=$('internalEscrowCurrency'),assetInput=$('internalEscrowAsset');
+function updateAssetLabels(){const a=assetInput.value; $('internalEscrowAmountLabel').textContent=a; $('internalEscrowPriceLabel').textContent=a; if(!$('internalEscrowTitle').value.trim()) $('internalEscrowTitle').placeholder='e.g. Sell '+a+' for '+(currencyInput.value||'KES'); updateEscrowQuote();}
+assetInput.addEventListener('change',()=>{updateAssetLabels();updateOfferEligibility();if(selectedPriceMode()==='market')setStatus('Asset changed. Re-select Market reference to refresh this asset’s quote, or enter a fixed price.',false);});
+ amountInput.addEventListener('input',()=>updateOfferEligibility());
+function resizeCompactNumber(input){if(!input)return;const digits=String(input.value||input.placeholder||'0').length;input.style.width=Math.min(24,Math.max(7,digits+2))+'ch';}
+[amountInput,priceInput].forEach(input=>{if(input){resizeCompactNumber(input);input.addEventListener('input',()=>resizeCompactNumber(input));input.addEventListener('change',()=>resizeCompactNumber(input));}});
+const countryInput=$('internalEscrowCountry');
+const countryCodes=[...new Set(('AD AE AF AG AI AL AM AO AQ AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BV BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EH ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GS GT GU GW GY HK HM HN HR HT HU ID IE IL IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TF TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG UM US UY UZ VA VC VE VG VI VN VU WF WS XK YE YT ZA ZM ZW').split(' '))];
+const countryNames=new Intl.DisplayNames([navigator.language||'en'],{type:'region'});
+const countryCurrency={US:'USD',CA:'CAD',GB:'GBP',IE:'EUR',KE:'KES',TZ:'TZS',UG:'UGX',NG:'NGN',GH:'GHS',ZA:'ZAR',IN:'INR',PK:'PKR',BD:'BDT',PH:'PHP',ID:'IDR',MY:'MYR',SG:'SGD',TH:'THB',VN:'VND',JP:'JPY',CN:'CNY',KR:'KRW',AU:'AUD',NZ:'NZD',BR:'BRL',MX:'MXN',AR:'ARS',CO:'COP',CL:'CLP',PE:'PEN',TR:'TRY',SA:'SAR',AE:'AED',QA:'QAR',IL:'ILS',EG:'EGP',MA:'MAD',DZ:'DZD',TN:'TND',ET:'ETB',RW:'RWF',SN:'XOF',CI:'XOF',BF:'XOF',ML:'XOF',NE:'XOF',TG:'XOF',BJ:'XOF',GW:'XOF',CM:'XAF',GA:'XAF',CG:'XAF',TD:'XAF',CF:'XAF',GQ:'XAF',CD:'CDF',ZM:'ZMW',ZW:'USD',BW:'BWP',NA:'NAD',MU:'MUR',MW:'MWK',MZ:'MZN',SO:'SOS',SD:'SDG',SS:'SSP',UA:'UAH',RU:'RUB',CH:'CHF',NO:'NOK',SE:'SEK',DK:'DKK',PL:'PLN',CZ:'CZK',HU:'HUF',RO:'RON',BG:'BGN',RS:'RSD',HR:'EUR',IS:'ISK',AL:'ALL',BA:'BAM',MK:'MKD',MD:'MDL',GE:'GEL',AM:'AMD',AZ:'AZN',KZ:'KZT',UZ:'UZS',KG:'KGS',TJ:'TJS',TM:'TMT',AF:'AFN',IQ:'IQD',IR:'IRR',JO:'JOD',KW:'KWD',LB:'LBP',OM:'OMR',BH:'BHD',YE:'YER',PS:'ILS',KH:'KHR',LA:'LAK',MM:'MMK',NP:'NPR',LK:'LKR',BT:'BTN',BN:'BND',TW:'TWD',HK:'HKD',MO:'MOP',MN:'MNT',FJ:'FJD',PG:'PGK',SB:'SBD',VU:'VUV',WS:'WST',TO:'TOP',TV:'AUD',KI:'AUD',NR:'AUD',PW:'USD',FM:'USD',MH:'USD',EC:'USD',SV:'USD',PA:'USD',TL:'USD',BQ:'USD',CW:'ANG',SX:'ANG',AW:'AWG',SR:'SRD',GY:'GYD',PY:'PYG',UY:'UYU',BO:'BOB',CR:'CRC',GT:'GTQ',HN:'HNL',NI:'NIO',DO:'DOP',JM:'JMD',TT:'TTD',BS:'BSD',BB:'BBD',BZ:'BZD',HT:'HTG',CU:'CUP',GD:'XCD',LC:'XCD',VC:'XCD',AG:'XCD',DM:'XCD',KN:'XCD',AI:'XCD',TC:'USD',VG:'USD',VI:'USD',PR:'USD',GU:'USD',MP:'USD',AS:'USD',UM:'USD',FK:'FKP',GI:'GIP',GG:'GBP',IM:'GBP',JE:'GBP',FO:'DKK',GL:'DKK',AX:'EUR',MC:'EUR',SM:'EUR',VA:'EUR',AD:'EUR',XK:'EUR',ME:'EUR',EH:'MAD',LY:'LYD',ER:'ERN',BI:'BIF',KM:'KMF',DJ:'DJF',MR:'MRU',GM:'GMD',GN:'GNF',LR:'LRD',SL:'SLE',LS:'LSL',SZ:'SZL',ST:'STN',CV:'CVE',AO:'AOA',MG:'MGA',SC:'SCR',RE:'EUR',YT:'EUR',GP:'EUR',MQ:'EUR',GF:'EUR',PF:'XPF',NC:'XPF',WF:'XPF',CK:'NZD',NU:'NZD',TK:'NZD',NF:'AUD',CC:'AUD',CX:'AUD',IO:'USD',SH:'SHP',BL:'EUR',MF:'EUR',PM:'EUR',BM:'BMD',KY:'KYD',MS:'XCD',BQ:'USD',AQ:'USD',BV:'NOK',HM:'AUD',GS:'GBP',TF:'EUR',PN:'NZD',SJ:'NOK',CC:'AUD',CX:'AUD',HM:'AUD',EH:'MAD'};
+Object.assign(countryCurrency,{KP:'KPW',LI:'CHF',MV:'MVR',SY:'SYP',VE:'VES',IS:'ISK',UZ:'UZS',AT:'EUR',BE:'EUR',CY:'EUR',EE:'EUR',FI:'EUR',FR:'EUR',DE:'EUR',GR:'EUR',IT:'EUR',LV:'EUR',LT:'EUR',LU:'EUR',MT:'EUR',NL:'EUR',PT:'EUR',SK:'EUR',SI:'EUR',ES:'EUR',XK:'EUR',BY:'BYN',MK:'MKD',PS:'ILS',CK:'NZD',NR:'AUD',TV:'AUD',HM:'AUD',CC:'AUD',CX:'AUD'});
+const currencyNames={KPW:'North Korean won',MVR:'Maldivian rufiyaa',SYP:'Syrian pound',VES:'Venezuelan bolívar',ISK:'Icelandic króna',UZS:'Uzbekistani soʻm',BYN:'Belarusian ruble',MRU:'Mauritanian ouguiya',SLE:'Sierra Leonean leone',USD:'US dollar',EUR:'Euro',GBP:'British pound',KES:'Kenyan shilling',CAD:'Canadian dollar',AUD:'Australian dollar',NZD:'New Zealand dollar',INR:'Indian rupee',PKR:'Pakistani rupee',BDT:'Bangladeshi taka',NGN:'Nigerian naira',GHS:'Ghanaian cedi',ZAR:'South African rand',TZS:'Tanzanian shilling',UGX:'Ugandan shilling',ETB:'Ethiopian birr',RWF:'Rwandan franc',XOF:'West African CFA franc',XAF:'Central African CFA franc',EGP:'Egyptian pound',MAD:'Moroccan dirham',DZD:'Algerian dinar',TND:'Tunisian dinar',BRL:'Brazilian real',MXN:'Mexican peso',ARS:'Argentine peso',COP:'Colombian peso',CLP:'Chilean peso',PEN:'Peruvian sol',JPY:'Japanese yen',CNY:'Chinese yuan',KRW:'South Korean won',SGD:'Singapore dollar',MYR:'Malaysian ringgit',IDR:'Indonesian rupiah',PHP:'Philippine peso',THB:'Thai baht',VND:'Vietnamese dong',TRY:'Turkish lira',SAR:'Saudi riyal',AED:'UAE dirham',QAR:'Qatari riyal',ILS:'Israeli shekel',CHF:'Swiss franc',NOK:'Norwegian krone',SEK:'Swedish krona',DKK:'Danish krone',PLN:'Polish złoty',CZK:'Czech koruna',HUF:'Hungarian forint',RON:'Romanian leu',BGN:'Bulgarian lev',RSD:'Serbian dinar',UAH:'Ukrainian hryvnia',RUB:'Russian ruble',KZT:'Kazakhstani tenge',LKR:'Sri Lankan rupee',NPR:'Nepalese rupee',MMK:'Myanmar kyat',KHR:'Cambodian riel',LAK:'Lao kip',MNT:'Mongolian tögrög',FJD:'Fijian dollar',PGK:'Papua New Guinean kina',XPF:'CFP franc',BWP:'Botswana pula',NAD:'Namibian dollar',MUR:'Mauritian rupee',MWK:'Malawian kwacha',MZN:'Mozambican metical',ZMW:'Zambian kwacha',BIF:'Burundian franc',CDF:'Congolese franc',SOS:'Somali shilling',SDG:'Sudanese pound',SSP:'South Sudanese pound',GMD:'Gambian dalasi',GNF:'Guinean franc',LRD:'Liberian dollar',SLE:'Sierra Leonean leone',LSL:'Lesotho loti',SZL:'Swazi lilangeni',AOA:'Angolan kwanza',MGA:'Malagasy ariary',SCR:'Seychellois rupee',CVE:'Cape Verdean escudo',STN:'São Tomé dobra',LYD:'Libyan dinar',ERN:'Eritrean nakfa',DJF:'Djiboutian franc',KMF:'Comorian franc',MRU:'Mauritanian ouguiya',ALL:'Albanian lek',BAM:'Bosnia convertible mark',MKD:'Macedonian denar',MDL:'Moldovan leu',GEL:'Georgian lari',AMD:'Armenian dram',AZN:'Azerbaijani manat',KGS:'Kyrgyz som',TJS:'Tajikistani somoni',TMT:'Turkmenistani manat',AFN:'Afghan afghani',IQD:'Iraqi dinar',IRR:'Iranian rial',JOD:'Jordanian dinar',KWD:'Kuwaiti dinar',LBP:'Lebanese pound',OMR:'Omani rial',BHD:'Bahraini dinar',YER:'Yemeni rial',BTN:'Bhutanese ngultrum',BND:'Brunei dollar',TWD:'New Taiwan dollar',HKD:'Hong Kong dollar',MOP:'Macanese pataca',AWG:'Aruban florin',ANG:'Caribbean guilder',SRD:'Surinamese dollar',GYD:'Guyanese dollar',PYG:'Paraguayan guaraní',UYU:'Uruguayan peso',BOB:'Bolivian boliviano',CRC:'Costa Rican colón',GTQ:'Guatemalan quetzal',HNL:'Honduran lempira',NIO:'Nicaraguan córdoba',DOP:'Dominican peso',JMD:'Jamaican dollar',TTD:'Trinidad and Tobago dollar',BSD:'Bahamian dollar',BBD:'Barbadian dollar',BZD:'Belize dollar',HTG:'Haitian gourde',CUP:'Cuban peso',XCD:'East Caribbean dollar',FKP:'Falkland Islands pound',GIP:'Gibraltar pound',KYD:'Cayman Islands dollar',BMD:'Bermudian dollar',SHP:'Saint Helena pound',SBD:'Solomon Islands dollar',VUV:'Vanuatu vatu',WST:'Samoan tālā',TOP:'Tongan paʻanga',PGK:'Papua New Guinean kina',GEL:'Georgian lari',MOP:'Macanese pataca',BND:'Brunei dollar',BAM:'Bosnia convertible mark',MRU:'Mauritanian ouguiya',ZWL:'Zimbabwean dollar'};
+const currencyCodes=[...new Set(Object.values(countryCurrency).concat(['USD','EUR','GBP','KES','CAD','AUD','NZD','INR','PKR','BDT','NGN','GHS','ZAR','TZS','UGX','XOF','XAF','JPY','CNY','KRW','SGD','MYR','IDR','PHP','THB','VND','BRL','MXN','ARS','COP','CLP','PEN','TRY','SAR','AED','QAR','ILS','CHF','NOK','SEK','DKK','PLN','CZK','HUF','RON','BGN','RSD','UAH','RUB']))].sort();
+const paymentDefaults={
+ US:['ACH','Cash App','Venmo','Zelle','PayPal'],
+ CA:['Interac e-Transfer','Interac Debit','Bank transfer'],
+ GB:['Faster Payments','BACS','CHAPS','Bank transfer'],
+ KE:['M-Pesa','Airtel Money','Bank transfer'],
+ TZ:['M-Pesa Tanzania','Tigo Pesa','Airtel Money','Bank transfer'],
+ UG:['MTN Mobile Money','Airtel Money','Bank transfer'],
+ NG:['Bank transfer','OPay','PalmPay','Paga','MTN Mobile Money'],
+ GH:['MTN Mobile Money','AirtelTigo Money','Wave','Bank transfer'],
+ ZA:['PayShap','Ozow','SnapScan','Bank transfer'],
+ IN:['UPI','IMPS','NEFT','RTGS','Paytm','PhonePe'],
+ PK:['Easypaisa','Bank transfer'],
+ BD:['bKash','Nagad','Bank transfer'],
+ PH:['GCash','Maya','InstaPay Philippines','PESONet','QR Ph'],
+ BR:['PIX','Mercado Pago','PicPay','Boleto Bancário'],
+ AR:['Mercado Pago','Rapipago','Pago Fácil','Bank transfer'],
+ MX:['SPEI','OXXO Pay','Mercado Pago','Bank transfer'],
+ CO:['PSE','Nequi','DaviPlata','Efecty'],
+ PE:['Yape','Plin','PagoEfectivo','Bank transfer'],
+ CL:['Mach','Webpay / Redcompra','Servipag'],
+ CR:['SINPE Móvil','Bank transfer'],
+ PA:['Yappy','Bank transfer'],
+ EC:['DeUna','Bank transfer'],
+ EU:['SEPA transfer','SEPA Instant','iDEAL','Bancontact','BLIK','Bizum','MB WAY','Multibanco'],
+ NL:['iDEAL','SEPA Instant','Bank transfer'],
+ BE:['Bancontact','SEPA Instant','Bank transfer'],
+ PL:['BLIK','Przelewy24','Bank transfer'],
+ ES:['Bizum','SEPA transfer','Bank transfer'],
+ PT:['MB WAY','Multibanco','SEPA transfer'],
+ FR:['Cartes Bancaires','SEPA transfer','Bank transfer'],
+ DE:['EPS','SEPA transfer','Bank transfer'],
+ CH:['TWINT','PostFinance Pay','Bank transfer'],
+ SE:['Swish','Bank transfer'],
+ NO:['Vipps','Bank transfer'],
+ DK:['MobilePay','Bank transfer'],
+ FI:['MobilePay','Bank transfer'],
+ AU:['PayID','BPAY','Bank transfer'],
+ NZ:['PayID','Bank transfer'],
+ SG:['PayNow','FAST Singapore','Bank transfer'],
+ HK:['FPS Hong Kong','Bank transfer'],
+ MY:['DuitNow','FPX','Bank transfer'],
+ ID:['QRIS','DANA','OVO','ShopeePay','GoPay Indonesia','LinkAja'],
+ TH:['PromptPay','TrueMoney','Bank transfer'],
+ VN:['MoMo Vietnam','ZaloPay','VietQR','Bank transfer'],
+ JP:['PayPay Japan','Rakuten Pay','Bank transfer'],
+ KR:['KakaoPay','Naver Pay','Toss Pay','Bank transfer'],
+ CN:['Alipay','WeChat Pay','UnionPay'],
+ AE:['Aani','Careem Pay','Bank transfer'],
+ SA:['mada','STC Pay','Bank transfer'],
+ BH:['BenefitPay','Bank transfer'],
+ KW:['KNET','Bank transfer'],
+ JO:['CliQ','Bank transfer'],
+ EG:['Fawry','InstaPay Egypt','Vodafone Cash','Bank transfer'],
+ MA:['Orange Money','Bank transfer'],
+ SN:['Wave','Orange Money','Free Money'],
+ CI:['Wave','Orange Money','Moov Money'],
+ CM:['MTN Mobile Money','Orange Money'],
+ ET:['telebirr','CBE Birr','M-Pesa Ethiopia'],
+ ZW:['EcoCash','InnBucks','OneMoney'],
+ SO:['EVC Plus','eDahab','Zaad'],
+ AO:['Multicaixa Express','Bank transfer']
+};
+function detectCountry(){const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';const tzMap=[[/Nairobi|Mombasa/,'KE'],[/Dar_es_Salaam/,'TZ'],[/Kampala/,'UG'],[/Lagos/,'NG'],[/Accra/,'GH'],[/Kolkata|Calcutta/,'IN'],[/Karachi/,'PK'],[/Dhaka/,'BD'],[/Manila/,'PH'],[/Sao_Paulo|Fortaleza|Recife/,'BR'],[/New_York|Detroit|Indiana|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Honolulu/,'US'],[/Toronto|Vancouver|Edmonton|Winnipeg|Halifax/,'CA'],[/London/,'GB'],[/Dublin/,'IE'],[/Paris|Brussels|Amsterdam|Luxembourg/,'FR'],[/Berlin/,'DE'],[/Rome/,'IT'],[/Madrid/,'ES'],[/Lisbon/,'PT'],[/Zurich/,'CH'],[/Stockholm/,'SE'],[/Oslo/,'NO'],[/Copenhagen/,'DK'],[/Warsaw/,'PL'],[/Prague/,'CZ'],[/Bucharest/,'RO'],[/Athens/,'GR'],[/Helsinki/,'FI'],[/Vienna/,'AT'],[/Moscow/,'RU'],[/Istanbul/,'TR'],[/Riyadh/,'SA'],[/Dubai/,'AE'],[/Cairo/,'EG'],[/Johannesburg/,'ZA'],[/Sydney|Melbourne/,'AU'],[/Auckland/,'NZ'],[/Tokyo/,'JP'],[/Singapore/,'SG'],[/Bangkok/,'TH'],[/Jakarta/,'ID'],[/Kuala_Lumpur/,'MY'],[/Hong_Kong/,'HK'],[/Taipei/,'TW'],[/Seoul/,'KR'],[/Shanghai/,'CN']];for(const [re,c] of tzMap)if(re.test(tz))return c;const region=(navigator.language||'').match(/[-_]([A-Z]{2})$/i)?.[1]?.toUpperCase();if(region&&countryCodes.includes(region))return region;return 'US';}
+function fillCountryOptions(){countryInput.innerHTML=countryCodes.map(code=>{let name;try{name=countryNames.of(code)}catch(_){name=code}return `<option value="${code}">${name} (${code})</option>`}).sort((a,b)=>a.localeCompare(b)).join('');countryInput.value=detectCountry();}
+
+const paymentBrandStyle = {
+ 'Bank transfer':['BANK','#24344b','#dbeafe'],
+ 'SEPA transfer':['SEPA','#123c66','#bfe3ff'],
+ 'SWIFT / international wire':['SWIFT','#24344b','#dbeafe'],
+ 'Debit / credit card':['CARD','#25334a','#f7f7f7'],
+ 'M-Pesa':['M','#087b45','#ffffff'],
+ 'MTN Mobile Money':['MTN','#ffcc00','#161616'],
+ 'Airtel Money':['A','#e31b3b','#ffffff'],
+ 'Orange Money':['OM','#ff7900','#ffffff'],
+ 'bKash':['bK','#d12053','#ffffff'],
+ 'GCash':['G','#007dff','#ffffff'],
+ 'UPI':['UPI','#5f259f','#ffffff'],
+ 'PIX':['PIX','#32bcad','#062b29'],
+ 'PayPal':['P','#003087','#ffffff'],
+ 'Wise':['W','#9fe870','#102d20'],
+ 'Payoneer':['PAY','#ff4800','#ffffff'],
+ 'Cash App':['CA','#00d632','#06230f'],
+ 'Venmo':['V','#008cff','#ffffff'],
+ 'Zelle':['Z','#6d1ed4','#ffffff'],
+ 'Revolut':['R','#20242d','#ffffff'],
+ 'Apple Pay':['Pay','#171717','#ffffff'],
+ 'Google Pay':['GPay','#ffffff','#263238'],
+ 'Interac e-Transfer':['INT','#f8d21c','#14202b'],
+ 'Easypaisa':['EP','#65b32e','#ffffff'],
+ 'DuitNow':['DN','#e52629','#ffffff'],
+ 'PayNow':['PN','#e82d55','#ffffff'],
+ 'PromptPay':['PP','#1a4b9b','#ffffff'],
+ 'Cash in person':['CASH','#18794e','#ffffff'],
+ 'Cash deposit':['DEP','#53657d','#ffffff'],
+ 'Crypto transfer':['₿','#f7931a','#241600'],
+ 'ACH':['ACH','#243b53','#eaf2ff'],
+ 'Faster Payments':['FPS','#174a7e','#ffffff'],
+ 'BACS':['BACS','#0b6e4f','#ffffff'],
+ 'CHAPS':['CHAPS','#5b2c83','#ffffff'],
+ 'SEPA Instant':['SCT','#b45309','#ffffff'],
+ 'iDEAL':['iD','#c41230','#ffffff'],
+ 'BLIK':['BLIK','#111827','#ffffff'],
+ 'Przelewy24':['P24','#334155','#ffffff'],
+ 'Bancontact':['BC','#166534','#ffffff'],
+ 'EPS':['EPS','#7c2d12','#ffffff'],
+ 'Bizum':['BIZ','#00a5e5','#ffffff'],
+ 'MB WAY':['MB','#365314','#ffffff'],
+ 'Multibanco':['MB','#243b53','#eaf2ff'],
+ 'Swish':['SW','#5b2c83','#ffffff'],
+ 'Vipps':['VIP','#0b6e4f','#ffffff'],
+ 'MobilePay':['MP','#5b2c83','#ffffff'],
+ 'TWINT':['TW','#e30613','#ffffff'],
+ 'Trustly':['TR','#9f1239','#ffffff'],
+ 'Pay by Bank':['BANK','#075985','#ffffff'],
+ 'PayID':['PID','#1d4ed8','#ffffff'],
+ 'BPAY':['BPAY','#166534','#ffffff'],
+ 'New Payments Platform (NPP)':['NPP','#7c2d12','#ffffff'],
+ 'FPS Hong Kong':['FPS','#1d4ed8','#ffffff'],
+ 'SPEI':['SPEI','#365314','#ffffff'],
+ 'PSE':['PSE','#243b53','#eaf2ff'],
+ 'SINPE Móvil':['SINPE','#174a7e','#ffffff'],
+ 'Khipu':['KH','#0b6e4f','#ffffff'],
+ 'Servipag':['SP','#5b2c83','#ffffff'],
+ 'Faster Payments (UK)':['FPS','#b45309','#ffffff'],
+ 'IMPS':['IMPS','#9f1239','#ffffff'],
+ 'NEFT':['NEFT','#075985','#ffffff'],
+ 'RTGS':['RTGS','#334155','#ffffff'],
+ 'Net banking':['NET','#166534','#ffffff'],
+ 'QRIS':['QRIS','#7c2d12','#ffffff'],
+ 'VietQR':['VQR','#1d4ed8','#ffffff'],
+ 'FAST Singapore':['FAST','#365314','#ffffff'],
+ 'InstaPay Philippines':['IP','#243b53','#eaf2ff'],
+ 'PESONet':['PESO','#174a7e','#ffffff'],
+ 'QR Ph':['QRPH','#0b6e4f','#ffffff'],
+ 'FPX':['FPX','#5b2c83','#ffffff'],
+ 'BAKONG':['BK','#b45309','#ffffff'],
+ 'PayNow QR':['PNQR','#9f1239','#ffffff'],
+ 'PromptPay QR':['PPQR','#075985','#ffffff'],
+ 'Visa':['VISA','#1a1f71','#ffffff'],
+ 'Mastercard':['MC','#eb001b','#ffffff'],
+ 'American Express':['AMEX','#2e77bc','#ffffff'],
+ 'Discover':['DISC','#f58220','#ffffff'],
+ 'Diners Club':['DIN','#365314','#ffffff'],
+ 'UnionPay':['UP','#d71920','#ffffff'],
+ 'JCB':['JCB','#0b4ea2','#ffffff'],
+ 'Maestro':['MAE','#0b6e4f','#ffffff'],
+ 'RuPay':['RUP','#097d4c','#ffffff'],
+ 'Verve':['VER','#b45309','#ffffff'],
+ 'mada':['MADA','#0a8f54','#ffffff'],
+ 'Meeza':['MEE','#075985','#ffffff'],
+ 'Troy':['TROY','#334155','#ffffff'],
+ 'Elo':['ELO','#166534','#ffffff'],
+ 'Cartes Bancaires':['CB','#7c2d12','#ffffff'],
+ 'Interac Debit':['INT','#1d4ed8','#ffffff'],
+ 'Mir':['MIR','#365314','#ffffff'],
+ 'Alipay':['ALI','#1677ff','#ffffff'],
+ 'WeChat Pay':['WX','#07c160','#ffffff'],
+ 'DANA':['DANA','#118eea','#ffffff'],
+ 'OVO':['OVO','#4c2a86','#ffffff'],
+ 'ShopeePay':['SPay','#ee4d2d','#ffffff'],
+ 'LinkAja':['LINK','#9f1239','#ffffff'],
+ 'GoPay Indonesia':['GOPAY','#075985','#ffffff'],
+ 'GrabPay':['GRAB','#00b14f','#ffffff'],
+ 'TrueMoney':['TRUE','#166534','#ffffff'],
+ 'MoMo Vietnam':['MOMO','#7c2d12','#ffffff'],
+ 'ZaloPay':['ZALO','#1d4ed8','#ffffff'],
+ 'Paytm':['PAYTM','#00baf2','#ffffff'],
+ 'PhonePe':['PHONE','#5f259f','#ffffff'],
+ 'Google Pay India':['GPay','#174a7e','#ffffff'],
+ 'PayPay Japan':['PAY','#0b6e4f','#ffffff'],
+ 'Rakuten Pay':['R','#5b2c83','#ffffff'],
+ 'LINE Pay':['LINE','#b45309','#ffffff'],
+ 'KakaoPay':['KAKAO','#9f1239','#ffffff'],
+ 'Naver Pay':['NAVER','#075985','#ffffff'],
+ 'Maya':['MAYA','#334155','#ffffff'],
+ 'Toss Pay':['TOSS','#166534','#ffffff'],
+ 'Mercado Pago':['MP','#00a6e8','#ffffff'],
+ 'PicPay':['PIC','#21c25e','#ffffff'],
+ 'Nequi':['NEQUI','#f5a623','#1f2937'],
+ 'DaviPlata':['DAV','#243b53','#eaf2ff'],
+ 'Yape':['YAPE','#742284','#ffffff'],
+ 'Plin':['PLIN','#0b6e4f','#ffffff'],
+ 'RappiPay':['RAPPI','#5b2c83','#ffffff'],
+ 'Mach':['MACH','#b45309','#ffffff'],
+ 'Webpay / Redcompra':['WEB','#9f1239','#ffffff'],
+ 'PagoEfectivo':['PE','#075985','#ffffff'],
+ 'Boleto Bancário':['BOLETO','#334155','#ffffff'],
+ 'OXXO Pay':['OXXO','#166534','#ffffff'],
+ 'Yappy':['YAPPY','#7c2d12','#ffffff'],
+ 'DeUna':['DEUNA','#1d4ed8','#ffffff'],
+ 'Fawry':['FAWRY','#f6b21a','#1f2937'],
+ 'InstaPay Egypt':['IP','#243b53','#eaf2ff'],
+ 'Vodafone Cash':['VODA','#174a7e','#ffffff'],
+ 'Orange Cash':['ORC','#0b6e4f','#ffffff'],
+ 'Etisalat Cash':['ETC','#5b2c83','#ffffff'],
+ 'STC Pay':['STC','#4c1d95','#ffffff'],
+ 'Careem Pay':['CAREEM','#00a88f','#ffffff'],
+ 'urpay':['UR','#075985','#ffffff'],
+ 'BenefitPay':['BEN','#d71920','#ffffff'],
+ 'KNET':['KNET','#166534','#ffffff'],
+ 'CliQ':['CLIQ','#7c2d12','#ffffff'],
+ 'Aani':['AANI','#1d4ed8','#ffffff'],
+ 'Bankily':['BANK','#365314','#ffffff'],
+ 'EVC Plus':['EVC','#243b53','#eaf2ff'],
+ 'eDahab':['ED','#174a7e','#ffffff'],
+ 'Zaad':['ZAAD','#0b6e4f','#ffffff'],
+ 'EcoCash':['ECO','#5b2c83','#ffffff'],
+ 'InnBucks':['INN','#b45309','#ffffff'],
+ 'OneMoney':['ONE','#9f1239','#ffffff'],
+ 'telebirr':['TEL','#075985','#ffffff'],
+ 'CBE Birr':['CBE','#334155','#ffffff'],
+ 'Wave':['WAVE','#2c6bed','#ffffff'],
+ 'Moov Money':['MOOV','#7c2d12','#ffffff'],
+ 'Free Money':['FREE','#1d4ed8','#ffffff'],
+ 'Tigo Pesa':['TIGO','#365314','#ffffff'],
+ 'Chipper Cash':['CHIP','#1c1c1c','#ffffff'],
+ 'Paga':['PAGA','#174a7e','#ffffff'],
+ 'OPay':['OPAY','#00a85a','#ffffff'],
+ 'PalmPay':['PALM','#6a39d8','#ffffff'],
+ 'PayShap':['PS','#b45309','#ffffff'],
+ 'Ozow':['OZOW','#9f1239','#ffffff'],
+ 'SnapScan':['SNAP','#075985','#ffffff'],
+ 'Mukuru':['MUK','#334155','#ffffff'],
+ 'TMoney':['TM','#166534','#ffffff'],
+ 'Flooz':['FLOO','#7c2d12','#ffffff'],
+ 'AirtelTigo Money':['ATM','#1d4ed8','#ffffff'],
+ 'MTN MoMo Ghana':['MTN','#365314','#ffffff'],
+ 'Orange Money Africa':['OM','#243b53','#eaf2ff'],
+ 'M-Pesa Tanzania':['MPESA','#087b45','#ffffff'],
+ 'M-Pesa Ethiopia':['MPESA','#0b6e4f','#ffffff'],
+ 'Airtel Money Africa':['AIRTEL','#5b2c83','#ffffff'],
+ 'Tigo Cash':['TIGO','#b45309','#ffffff'],
+ 'Skrill':['SKR','#862165','#ffffff'],
+ 'Neteller':['NET','#78b82a','#ffffff'],
+ 'Satispay':['SAT','#334155','#ffffff'],
+ 'PostFinance Pay':['POST','#166534','#ffffff'],
+ 'Payz':['PAYZ','#7c2d12','#ffffff'],
+ 'Multicaixa Express':['MULTI','#1d4ed8','#ffffff'],
+ 'Yape Perú':['YAPE','#365314','#ffffff'],
+ 'Plin Perú':['PLIN','#243b53','#eaf2ff'],
+ 'Boleto cash payment':['BOLETO','#174a7e','#ffffff'],
+ 'OXXO cash payment':['OXXO','#0b6e4f','#ffffff'],
+ 'Efecty':['EFECTY','#5b2c83','#ffffff'],
+ 'Rapipago':['RAPI','#b45309','#ffffff'],
+ 'Pago Fácil':['PAGO','#9f1239','#ffffff'],
+ 'Cash-in network':['CASH','#075985','#ffffff'],
+ 'Bank branch deposit':['BRANCH','#334155','#ffffff'],
+ 'Post office payment':['POST','#166534','#ffffff'],
+ 'Cash on delivery':['COD','#7c2d12','#ffffff']
+};
+function paymentInitials(value){return paymentBrandStyle[value]||[String(value).slice(0,3).toUpperCase(),'#354052','#ffffff'];}
+let paymentSearchQuery='';
+function applyPaymentSearch(){
+ const root=$('paymentMethodPicker');
+ if(!root)return;
+ const query=paymentSearchQuery.trim().toLowerCase();
+ root.querySelectorAll('.payment-group').forEach(group=>{
+   let visible=0;
+   group.querySelectorAll('.payment-option').forEach(button=>{
+     const show=!query||button.dataset.paymentValue.toLowerCase().includes(query);
+     button.hidden=!show;
+     if(show)visible++;
+   });
+   group.hidden=visible===0;
+ });
+}
+function renderPaymentPicker(){
+ const select=$('internalEscrowPayment'),root=$('paymentMethodPicker');
+ if(!select||!root)return;
+ const groups=Array.from(select.children).filter(n=>n.tagName==='OPTGROUP');
+ const html=groups.map(group=>{
+   const buttons=Array.from(group.querySelectorAll('option')).map(option=>{
+     const [mark,bg,fg]=paymentInitials(option.value),active=option.selected;
+     return `<button type="button" class="payment-option" data-payment-value="${esc(option.value)}" aria-pressed="${active?'true':'false'}"><span class="payment-logo" style="--brand-bg:${bg};--brand-fg:${fg}">${esc(mark)}</span><span class="payment-name">${esc(option.value)}</span><span class="payment-check" aria-hidden="true"></span></button>`;
+   }).join('');
+   return `<section class="payment-group"><div class="payment-group-title">${esc(group.label)}</div><div class="payment-group-grid">${buttons}</div></section>`;
+ }).join('');
+ const count=Array.from(select.selectedOptions).length;
+ root.innerHTML=`<input type="search" class="payment-search" id="paymentMethodSearch" placeholder="Search payment methods worldwide…" value="${esc(paymentSearchQuery)}" aria-label="Search payment methods">${html}<div class="payment-selection-summary"><span>Selected payment methods</span><strong>${count} selected · ${select.options.length} available</strong></div>`;
+ applyPaymentSearch();
+}
+document.addEventListener('input',ev=>{
+ if(ev.target&&ev.target.id==='paymentMethodSearch'){
+   paymentSearchQuery=ev.target.value||'';
+   applyPaymentSearch();
+ }
+});
+document.addEventListener('click',ev=>{
+ const button=ev.target.closest('[data-payment-value]');
+ if(!button)return;
+ const select=$('internalEscrowPayment');
+ const option=Array.from(select.options).find(o=>o.value===button.dataset.paymentValue);
+ if(!option)return;
+ option.selected=!option.selected;
+ renderPaymentPicker();
+});
+
+function setCurrencyOptions(preferred){currencyInput.innerHTML=currencyCodes.map(code=>`<option value="${code}">${code} — ${currencyNames[code]||code}</option>`).join('');currencyInput.value=currencyCodes.includes(preferred)?preferred:'USD';}
+function applyCountryDefaults(resetCurrency=true){const country=countryInput.value||'US';const currency=countryCurrency[country]||'USD';if(resetCurrency)setCurrencyOptions(currency);const preferred=paymentDefaults[country]||(['AT','BE','CY','EE','FI','FR','DE','GR','IT','LV','LT','LU','MT','NL','PT','SK','SI','ES'].includes(country)?paymentDefaults.EU:['M-Pesa','Bank transfer']);const paymentSelect=$('internalEscrowPayment');Array.from(paymentSelect.options).forEach(o=>o.selected=false);let selected=0;for(const method of preferred){const option=Array.from(paymentSelect.options).find(o=>o.value===method);if(option){option.selected=true;selected++;}}if(!selected){const bank=Array.from(paymentSelect.options).find(o=>o.value==='Bank transfer');if(bank)bank.selected=true;}const hint=$('p2pCurrencyHint');hint.textContent=`Default payment currency: USD. Your country (${countryNames.of(country)||country}) only suggests payment methods; you can change the currency before publishing.`;renderPaymentPicker();updateEscrowQuote();}
+fillCountryOptions();setCurrencyOptions('USD');applyCountryDefaults(false);countryInput.addEventListener('change',()=>applyCountryDefaults(false));
+// Theme presets are presentation-only and do not change balances or permissions.
+document.querySelectorAll('[data-p2p-theme]').forEach(btn=>btn.addEventListener('click',()=>{document.body.classList.remove('p2p-theme-emerald','p2p-theme-blue','p2p-theme-gold');if(btn.dataset.p2pTheme!=='purple')document.body.classList.add('p2p-theme-'+btn.dataset.p2pTheme);document.querySelectorAll('[data-p2p-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));}));
+const p2pMarketCoinIds={BTC:'bitcoin',BNB:'binancecoin',USDT:'tether',ADA:'cardano',BCH:'bitcoin-cash',ETH:'ethereum',SOL:'solana',DOGE:'dogecoin',XRP:'ripple'};
+ async function fetchP2PAssetUsd(asset){
+  const symbol=String(asset||'BNG').toUpperCase();
+  const url=symbol==='BNG'? '/.netlify/functions/bng-price?pair=BNGUSDT' : '/.netlify/functions/crypto-market?coin='+encodeURIComponent(p2pMarketCoinIds[symbol]||'');
+  if(symbol!=='BNG'&&!p2pMarketCoinIds[symbol])throw Error('Unsupported market asset.');
+  const response=await fetch(url,{cache:'no-store'}),data=await response.json();
+  if(!response.ok||!(Number(data.priceUsd)>0))throw Error('Market reference unavailable for '+symbol+'.');
+  return Number(data.priceUsd);
+ }
+ const priceHint=$('p2pPriceModeHint');function selectedPriceMode(){return document.querySelector('input[name="p2pPriceMode"]:checked')?.value||'fixed'}
+document.querySelectorAll('input[name="p2pPriceMode"]').forEach(r=>r.addEventListener('change',async()=>{const mode=selectedPriceMode();priceHint.className='price-hint '+mode;priceHint.textContent=mode==='fixed'?'Fixed: you choose the price and it stays as your offer quote.':'Market reference: fetches the selected asset’s indicative USD reference and converts it to the selected currency. Confirm the suggested rate before publishing; it is a snapshot, not a guaranteed execution price.';if(mode==='market'){try{const [pr,fx]=await Promise.all([fetchP2PAssetUsd(assetInput.value),fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'}).then(r=>r.json())]);const usd=Number(pr),rate=Number(fx.rates?.[currencyInput.value]);if(!(usd>0))throw Error('Live asset quote unavailable');if(!(rate>0)&&currencyInput.value!=='USD')throw Error('FX rate unavailable for '+currencyInput.value);priceInput.value=(usd*(currencyInput.value==='USD'?1:rate)).toFixed(6);updateEscrowQuote();}catch(e){setStatus('Market quote unavailable. Enter a price manually or choose Fixed price.',true)}}}));
+async function refreshP2PMarket(){const el=$('p2pLiveMarket');try{const pairs=['BNGUSDT','BTCUSDT','BNBUSDT'];const vals=await Promise.all(pairs.map(async pair=>{const r=await fetch('/api/bng-price?pair='+pair,{cache:'no-store'});const d=await r.json();if(!r.ok||!(Number(d.priceUsd)>0))throw Error(pair+' unavailable');return {pair,price:Number(d.priceUsd)}}));el.innerHTML='<strong>🟢 Live market reference</strong><div class="p2p-grid" style="gap:8px;margin-top:8px">'+vals.map(v=>'<div class="price-hint market"><strong>'+esc(v.pair)+'</strong><br>$'+v.price.toLocaleString(undefined,{maximumFractionDigits:8})+'</div>').join('')+'</div><small class="note">Indicative quotes from the site market-price endpoint; refreshes every 2 minutes. BNG price depends on the configured market feed.</small>';}catch(e){el.textContent='Live market prices are currently unavailable. Fixed-price offers can still be entered manually.'}}
+refreshP2PMarket();setInterval(refreshP2PMarket,120000);
+function updateEscrowQuote(){const amount=Number(amountInput.value),price=Number(priceInput.value),currency=currencyInput.value,asset=assetInput.value;const el=$('internalEscrowQuote');if(amount>0&&price>0&&Number.isFinite(amount*price)){el.textContent=`Expected external payment for ${amount} ${asset}: ${(amount*price).toLocaleString(undefined,{maximumFractionDigits:2})} ${currency}. This is the seller's stated quote, not a verified market price.`;}else{el.textContent='Enter an amount and price to calculate the external payment total.';}}
+amountInput.addEventListener('input',updateEscrowQuote);priceInput.addEventListener('input',updateEscrowQuote);currencyInput.addEventListener('change',async()=>{updateEscrowQuote();if(selectedPriceMode()==='market'){try{const [pr,fx]=await Promise.all([fetchP2PAssetUsd(assetInput.value),fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'}).then(r=>r.json())]);const usd=Number(pr),rate=Number(fx.rates?.[currencyInput.value]);if(!(usd>0)||(!(rate>0)&&currencyInput.value!=='USD'))throw Error('Rate unavailable');priceInput.value=(usd*(currencyInput.value==='USD'?1:rate)).toFixed(6);updateEscrowQuote();}catch(_){setStatus('Could not refresh the market quote for this currency. Enter a price manually.',true)}}});
+$('internalEscrowSide').addEventListener('change',()=>{const side=$('internalEscrowSide').value,asset=assetInput.value;if(!$('internalEscrowTitle').value.trim())$('internalEscrowTitle').placeholder='e.g. '+(side==='buy'?'Buy ':'Sell ')+asset+' for KES';updateOfferEligibility();});
+$('internalEscrowCreate').addEventListener('click',async()=>{const btn=$('internalEscrowCreate');btn.disabled=true;try{const amount=Number(amountInput.value),pricePerAsset=Number(priceInput.value),currency=currencyInput.value,asset=assetInput.value,terms=$('internalEscrowTerms').value.trim();const side=$('internalEscrowSide').value;const offerTitle=$('internalEscrowTitle').value.trim()||((side==='buy'?'Buy ':'Sell ')+asset);const selectedPayments=Array.from($('internalEscrowPayment').selectedOptions).map(o=>o.value);if(!['BNG','BTC','BNB','USDT','ADA','BCH','ETH','SOL','DOGE','XRP'].includes(asset))throw Error('Choose a supported P2P asset.');if(!selectedPayments.length)throw Error('Select at least one accepted payment method.');const d=await api('create',{side,offerTitle,asset,amount,pricePerAsset,currency,country:countryInput.value,terms,expirationMode:$('internalEscrowExpiration').value, paymentMethod:Array.from($('internalEscrowPayment').selectedOptions).map(o=>o.value).join(', '),priceMode:selectedPriceMode()});$('internalEscrowTitle').value='';amountInput.value='';priceInput.value='';$('internalEscrowTerms').value='';updateEscrowQuote();setStatus(side==='sell'?`Sell offer created. ${d.lockedAmount} ${asset} is reserved and the P2P fee was deducted separately in BNG. Transaction ID: ${d.transactionId||'see Explorer'} · Escrow ID: ${d.escrowId}`:`Buy offer created. No asset was reserved from your balance. An accepting seller must lock ${amount} ${asset} and pay the P2P fee in BNG. Transaction ID: ${d.transactionId||'see Explorer'} · Escrow ID: ${d.escrowId}`);await refresh()}catch(e){setStatus(e.message,true)}finally{btn.disabled=false}});
+document.addEventListener('click',async ev=>{const b=ev.target.closest('[data-action]');if(!b)return;const action=b.dataset.action,id=b.dataset.id;if(action==='chat-open'){const panel=$('chat-'+id);if(!panel)return;panel.style.display=panel.style.display==='none'?'block':'none';if(panel.style.display==='block')loadChat(id);return;}if(action==='chat-send'){b.disabled=true;try{const input=document.querySelector(`[data-chat-input="${CSS.escape(id)}"]`);const text=input?input.value.trim():'';if(!text)throw Error('Type a message first.');await api('chat-send',{escrowId:id,text});input.value='';await loadChat(id)}catch(e){setStatus(e.message,true)}finally{b.disabled=false}return;}b.disabled=true;try{let extra={escrowId:id};if(action==='cancel'&&!confirm('Close this open offer? Its locked asset will be returned to your internal wallet balance. Accepted or paid offers cannot be closed this way.'))return;if(action==='renew'){const duration=document.querySelector(`[data-renew-duration="${CSS.escape(id)}"]`);extra.expirationMode=duration?duration.value:'20m';const label=({ '20m':'20 minutes','1h':'1 hour','6h':'6 hours','12h':'12 hours','24h':'24 hours','7d':'7 days','never':'no expiration' })[extra.expirationMode]||'20 minutes';if(!confirm('Extend this listing for '+label+'? If it expired, the sell amount will be reserved again from your internal wallet.'))return;}if(action==='paid'){const input=document.querySelector(`[data-reference="${CSS.escape(id)}"]`);extra.paymentReference=input?input.value.trim():'';if(!confirm('Only mark payment sent if you have actually sent the agreed external payment.'))return;}if(action==='release'&&!confirm('Confirm you independently verified payment was received. Release transfers the locked asset to the buyer and cannot be reversed by this button.'))return;if(action==='dispute'){extra.reason=prompt('Briefly describe the issue (do not enter passwords or private keys):')||'Payment or trade issue';}if(action==='rate'){const raw=prompt('Rate this completed trade from 1 to 5 stars:','5');const score=Number(raw);if(!Number.isInteger(score)||score<1||score>5)throw Error('Enter a rating from 1 to 5.');extra.score=score;extra.comment=prompt('Optional short review:','')||'';}const d=await api(action,extra);setStatus(d.message||`Escrow ${id}: ${d.status||'updated'}`);await refresh()}catch(e){setStatus(e.message,true)}finally{b.disabled=false}});
+refresh();
+onAuthStateChanged(auth,()=>refresh());
+// Keep the public marketplace current even when visitors remain signed out.
+setInterval(()=>{if(!document.hidden)refresh()},30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+</script>
+<script>
+// Multi-currency conversion and trade calculator. Prices are estimates, not settlement instructions.
+(function(){
+ const $=id=>document.getElementById(id);const amount=$('fxAmount'),from=$('fxFrom'),to=$('fxTo'),result=$('fxResult'),summary=$('fxSummary'),marketLabel=$('bngMarketValue');if(!amount||!from||!to)return;
+ let usdRates={USD:1},usdPrices={BNG:null,BTC:null,BNB:null,USDT:1,USDC:1},lastRatesAt=0;
+ const fmt=(v,c)=>Number.isFinite(v)?new Intl.NumberFormat(undefined,{maximumFractionDigits:Math.abs(v)>=100?2:Math.abs(v)>=1?6:10}).format(v)+' '+c:'Unavailable';
+ async function getPair(pair){const r=await fetch('/api/bng-price?pair='+pair,{cache:'no-store'});const d=await r.json();if(!r.ok||!Number.isFinite(Number(d.priceUsd))||Number(d.priceUsd)<=0)throw Error(d.message||'Market quote unavailable');return Number(d.priceUsd)}
+ async function refreshRates(){result.textContent='Refreshing rates…';const tasks=[];tasks.push(fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('FX rates unavailable');return r.json()}).then(d=>{if(d.result!=='success'||!d.rates)throw Error('FX rates unavailable');usdRates={...d.rates,USD:1,USDT:1,USDC:1};lastRatesAt=Date.now()}));tasks.push(getPair('BNGUSDT').then(v=>usdPrices.BNG=v));tasks.push(getPair('BTCUSDT').then(v=>usdPrices.BTC=v));tasks.push(getPair('BNBUSDT').then(v=>usdPrices.BNB=v));const settled=await Promise.allSettled(tasks);const failures=settled.filter(x=>x.status==='rejected');if(usdPrices.BNG&&usdRates.KES)marketLabel.textContent='Indicative BNG market quote: '+fmt(usdPrices.BNG,'USD')+' per BNG • about '+fmt(usdPrices.BNG*usdRates.KES,'KES')+' per BNG'+(failures.length?' • Some rates unavailable':'')+'.';else marketLabel.textContent='Live BNG quote or FX rates unavailable; retry refresh. No fixed BNG value is assumed.';render();}
+ function usdPerUnit(code){if(['USD','USDT','USDC'].includes(code))return 1;if(['BNG','BTC','BNB'].includes(code))return usdPrices[code];const r=Number(usdRates[code]);return Number.isFinite(r)&&r>0?1/r:null}
+ function render(){const n=Number(amount.value),a=usdPerUnit(from.value),b=usdPerUnit(to.value);if(!Number.isFinite(n)||n<0||!a||!b){result.textContent='Rate unavailable';summary.textContent='Please refresh rates or choose another currency.';return}const out=n*a/b;result.textContent=fmt(out,to.value);summary.textContent=fmt(n,from.value)+' ≈ '+fmt(out,to.value)+(lastRatesAt?' • FX updated '+new Date(lastRatesAt).toLocaleTimeString():'');}
+ [amount,from,to].forEach(el=>el.addEventListener('input',render));$('fxSwap').addEventListener('click',()=>{const v=from.value;from.value=to.value;to.value=v;render()});$('fxRefresh').addEventListener('click',refreshRates);
+ // Pre-fill the suggested quote only as a convenience; users must confirm/edit it.
+ refreshRates().then(()=>{const price=$('internalEscrowPrice'),currency=$('internalEscrowCurrency');if(price&&currency&&!price.value&&usdPrices.BNG){const fx=Number(usdRates[currency.value]|| (currency.value==='USD'?1:0));if(fx>0){price.value=(usdPrices.BNG*fx).toFixed(6);price.dataset.suggested='true';}}const tcPrice=$('tcPrice'),tcCurrency=$('tcCurrency');if(tcPrice&&Number(tcPrice.value)===0&&usdPrices.BNG&&usdRates.KES){tcPrice.value=(usdPrices.BNG*(tcCurrency.value==='KES'?usdRates.KES:1)).toFixed(6);tcPrice.dispatchEvent(new Event('input'));}});setInterval(refreshRates,120000);
+ const ca=$('tcAmount'),cp=$('tcPrice'),cf=$('tcFee'),cc=$('tcCurrency');function tradeCalc(){const q=Number(ca.value),p=Number(cp.value),f=Number(cf.value),cur=cc.value;const valid=[q,p,f].every(Number.isFinite)&&q>=0&&p>=0&&f>=0&&f<=100;const money=v=>valid?new Intl.NumberFormat(undefined,{style:'currency',currency:cur,maximumFractionDigits:2}).format(v):'—';const gross=q*p,fee=gross*f/100;$('tcGross').textContent=money(gross);$('tcFeeValue').textContent=money(fee);$('tcTotal').textContent=money(gross+fee);$('tcNet').textContent=money(gross-fee)}[ca,cp,cf,cc].forEach(el=>el.addEventListener('input',tradeCalc));tradeCalc();
+ const display=$('basicCalcDisplay'),keys=$('basicCalcKeys');let expr='0',fresh=true;function paint(){display.value=expr}keys.addEventListener('click',ev=>{const b=ev.target.closest('button[data-key]');if(!b)return;const k=b.dataset.key;if(k==='clear'){expr='0';fresh=true;paint();return}if(k==='back'){expr=expr.length>1?expr.slice(0,-1):'0';paint();return}if(k==='='){try{if(!/^[0-9+*/().\s-]+$/.test(expr))throw Error();const tokens=expr.match(/(?:\d*\.\d+|\d+\.?\d*|[()+*/-])/g)||[];if(tokens.join('')!==expr.replace(/\s/g,''))throw Error();let depth=0;for(const t of tokens){if(t==='(')depth++;if(t===')')depth--;if(depth<0)throw Error()}if(depth!==0||/[*+/.-]$/.test(expr))throw Error();const val=(function evaluateArithmetic(input){let i=0;function ws(){while(/\s/.test(input[i]||''))i++}function atom(){ws();if(input[i]==='+'){i++;return atom()}if(input[i]==='-'){i++;return -atom()}if(input[i]==='('){i++;const v=add();ws();if(input[i]!==')')throw Error();i++;return v}const m=input.slice(i).match(/^(?:\d*\.\d+|\d+\.?\d*)/);if(!m)throw Error();i+=m[0].length;return Number(m[0])}function mul(){let v=atom();while(true){ws();const op=input[i];if(op!=='*'&&op!=='/')break;i++;const r=atom();v=op==='*'?v*r:v/r}return v}function add(){let v=mul();while(true){ws();const op=input[i];if(op!=='+'&&op!=='-')break;i++;const r=mul();v=op==='+'?v+r:v-r}return v}const v=add();ws();if(i!==input.length||!Number.isFinite(v))throw Error();return v})(expr);expr=String(Number(val.toPrecision(12)));fresh=true}catch(e){expr='Error';fresh=true}paint();return}if(expr==='Error'||fresh&&/[0-9.]/.test(k)){expr='0';fresh=false}if(fresh&&/[+*/-]/.test(k))fresh=false;if(expr==='0'&&/[0-9.]/.test(k))expr=k;else expr+=k;paint()});
+})();
+</script>
+<script>
+// Robust P2P market chart. Defaults to BNG/BNB and uses the site's verified market-data endpoint.
+(function(){
+ const canvas=document.getElementById("p2pChart"),priceEl=document.getElementById("marketPrice"),changeEl=document.getElementById("marketChange"),pairEl=document.getElementById("marketPair"),statusEl=document.getElementById("marketStatus"),payAmount=document.getElementById("payAmount"),receiveAmount=document.getElementById("receiveAmount"),payToken=document.getElementById("payToken"),receiveToken=document.getElementById("receiveToken"),payUsd=document.getElementById("payUsd"),receiveUsd=document.getElementById("receiveUsd");
+ if(!canvas)return;const ctx=canvas.getContext("2d");let pair="BNGBNB",price=0,priceUsd=0,quoteUsd=0,candles=[],windowSize=24;
+ const labels={BNGBNB:"BNG/BNB",BNGUSDT:"BNG/USDT",BTCUSDT:"BTC/USDT",BNBUSDT:"BNB/USDT"};
+ const money=v=>Number.isFinite(v)?(v>=100?v.toLocaleString(undefined,{maximumFractionDigits:2}):v>=1?v.toFixed(2):v.toFixed(4)):"—";
+ function fallback(base){const out=[];let p=base||1;for(let i=0;i<96;i++){const o=p;const drift=(Math.sin(i*.47)+Math.cos(i*.13))*.008*p;p=Math.max(0.000001,p+drift);const h=Math.max(p,o)*(1+Math.abs(Math.sin(i*1.7))*.012),l=Math.min(p,o)*(1-Math.abs(Math.cos(i*1.3))*.012);out.push({o,h,l,c:p,v:1})}return out}
+ function resize(){const r=canvas.getBoundingClientRect(),d=window.devicePixelRatio||1;canvas.width=Math.max(1,Math.round(r.width*d));canvas.height=Math.max(1,Math.round(r.height*d));ctx.setTransform(d,0,0,d,0,0);draw()}
+ function draw(){const r=canvas.getBoundingClientRect(),w=r.width,h=r.height;ctx.clearRect(0,0,w,h);const rows=candles.slice(-windowSize);if(!rows.length){ctx.fillStyle="#a88bb9";ctx.textAlign="center";ctx.font="12px system-ui";ctx.fillText("Waiting for market data…",w/2,h/2);return}const left=8,right=42,top=12,bottom=18,pw=Math.max(1,w-left-right),ph=Math.max(1,h-top-bottom),hi=Math.max(...rows.map(x=>x.h)),lo=Math.min(...rows.map(x=>x.l)),pad=Math.max((hi-lo)*.1,hi*.002),y=v=>top+(hi+pad-v)/(hi-lo+2*pad)*ph,x=i=>left+(i*pw/Math.max(rows.length-1,1));ctx.font="10px system-ui";ctx.strokeStyle="rgba(180,120,220,.13)";ctx.fillStyle="#8d789d";ctx.textAlign="right";for(let j=0;j<=4;j++){const yy=top+j*ph/4;ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(left+pw,yy);ctx.stroke();ctx.fillText(money(hi+pad-(hi-lo+2*pad)*j/4),w-5,yy+3)}rows.forEach((c,i)=>{const xx=x(i),up=c.c>=c.o,yo=y(c.o),yc=y(c.c),yh=y(c.h),yl=y(c.l),cw=Math.max(2,pw/rows.length*.55);ctx.strokeStyle=up?"#22df92":"#ff4d61";ctx.fillStyle=ctx.strokeStyle;ctx.beginPath();ctx.moveTo(xx,yh);ctx.lineTo(xx,yl);ctx.stroke();ctx.fillRect(xx-cw/2,Math.min(yo,yc),cw,Math.max(1,Math.abs(yc-yo)))});ctx.textAlign="left";ctx.fillStyle="#8d789d";ctx.fillText("BSC • "+labels[pair],left,h-4)}
+ function updateQuote(){const n=Number(payAmount.value)||0;const out=n*price;receiveAmount.value=price&&n?String(Number(out.toFixed(8))):"0";const parts=labels[pair].split("/");payToken.textContent=parts[0];receiveToken.textContent=parts[1];payUsd.textContent="≈ $"+money(n*priceUsd)+" USD";receiveUsd.textContent="≈ $"+money(out*quoteUsd)+" USD"}
+ async function refresh(){const requested=pair;statusEl.textContent="Loading "+labels[pair]+" market data…";try{const r=await fetch("/api/bng-price?pair="+encodeURIComponent(pair),{cache:"no-store"}),m=await r.json();if(requested!==pair)return;if(!r.ok||!Number.isFinite(Number(m.priceUsd)))throw new Error(m.message||"No market");price=Number(m.priceQuote||m.priceUsd);priceUsd=Number(m.priceUsd)||0;quoteUsd=Number(m.quotePriceUsd)||0;candles=Array.isArray(m.candles)&&m.candles.length?m.candles:fallback(price);priceEl.textContent=pair==="BNGBNB"?money(price)+" BNB":"$"+money(price);const ch=Number(m.priceChange24h);changeEl.textContent=(ch>=0?"↑ +":"↓ ")+ch.toFixed(2)+"%";changeEl.style.color=ch>=0?"#18e78a":"#ff5a68";pairEl.textContent=m.pairLabel||labels[pair];statusEl.textContent="LIVE • "+String(m.marketPair||m.pairLabel||labels[pair])+" • "+String(m.dexId||"DEX").toUpperCase()+" • Liquidity $"+money(Number(m.liquidityUsd));updateQuote();draw()}catch(e){price=0;priceUsd=0;quoteUsd=0;candles=[];priceEl.textContent="—";changeEl.textContent="Market unavailable";pairEl.textContent=labels[pair];statusEl.textContent="Live market data unavailable. Chart will retry automatically.";draw()}}
+ document.querySelectorAll(".pair-tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".pair-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");pair=b.dataset.pair;payAmount.value="1";refresh()}));
+ document.querySelectorAll(".range button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".range button").forEach(x=>x.classList.remove("active"));b.classList.add("active");windowSize=Number(b.dataset.range);draw()}));
+ payAmount.addEventListener("input",updateQuote);receiveAmount.addEventListener("input",()=>{const n=Number(receiveAmount.value)||0;if(price)payAmount.value=String(Number((n/price).toFixed(8)));updateQuote()});window.addEventListener("resize",resize);resize();refresh();setInterval(refresh,30000);
+})();
+
+</script>
+eload())}
+</script>
+
+<!-- BANG BNG visitor analytics -->
+<script>
+(function(){
+ const params=new URLSearchParams(location.search),adminKey=params.get("analytics");if(adminKey){try{sessionStorage.setItem("bangAnalyticsKey",adminKey)}catch(e){}}
+ let sid="";try{sid=sessionStorage.getItem("bangVisitorId")||"";if(!sid){sid=crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(36).slice(2);sessionStorage.setItem("bangVisitorId",sid)}}catch(e){sid=Date.now()+"-"+Math.random().toString(36).slice(2)}
+ function send(action){return fetch("/api/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sessionId:sid,action,page:location.pathname+location.hash,referrer:document.referrer}),keepalive:true}).catch(()=>{})}
+ send("visit");setInterval(()=>send("active"),20000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")send("active")});
+})();
+</script>
+
+
+<link rel="stylesheet" href="/assets/beginner-friendly.css">
+<script src="/assets/beginner-friendly.js" defer></script>
+<script src="assets/bng-cookie-consent.js" defer></script>
+
+</body>
+</html>

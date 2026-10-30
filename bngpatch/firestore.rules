@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+
+    function validProfileFields(data) {
+      return data.keys().hasOnly([
+        'displayName', 'email', 'username',
+        'avatarSeed', 'avatarHue', 'avatarStyle', 'avatarShape', 'avatarPattern',
+        'avatarData', 'updatedAt', 'isAdmin'
+      ])
+      && (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 80))
+      && (!('username' in data) || (data.username is string && data.username.size() <= 40))
+      && (!('email' in data) || (data.email is string && data.email.size() <= 254 && data.email == request.auth.token.email))
+      && (!('avatarData' in data) || (data.avatarData is string && data.avatarData.size() <= 200000))
+      && (!('avatarSeed' in data) || (data.avatarSeed is string && data.avatarSeed.size() <= 100))
+      && (!('avatarStyle' in data) || (data.avatarStyle is string && data.avatarStyle.size() <= 40))
+      && (!('avatarShape' in data) || (data.avatarShape is string && data.avatarShape.size() <= 40))
+      && (!('avatarPattern' in data) || (data.avatarPattern is string && data.avatarPattern.size() <= 40))
+      && (!('avatarHue' in data) || data.avatarHue is number)
+      && (!('updatedAt' in data) || data.updatedAt == request.time);
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn()
+        && request.auth.uid == uid
+        && validProfileFields(request.resource.data)
+        && (!('isAdmin' in request.resource.data) || request.resource.data.isAdmin == false);
+      // Ordinary users can edit only explicitly approved profile fields. They
+      // cannot add/change isAdmin or any unlisted privileged/financial fields.
+      allow update: if isAdmin()
+        || (signedIn()
+          && request.auth.uid == uid
+          && validProfileFields(request.resource.data)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'displayName', 'email', 'username',
+            'avatarSeed', 'avatarHue', 'avatarStyle', 'avatarShape', 'avatarPattern',
+            'avatarData', 'updatedAt'
+          ]));
+      allow delete: if isAdmin();
+    }
+
+    // Persistent, per-account mining state. Users may read only their own
+    // display record; all writes are server-side through trusted functions.
+    match /miningUsers/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create, update, delete: if false;
+    }
+
+    // Internal ledger and security-sensitive records are server-only.
+    match /walletBalances/{uid} { allow read, write: if false; }
+    match /walletTransactions/{transactionId} { allow read, write: if false; }
+    match /walletAddresses/{uid} { allow read, write: if false; }
+    match /walletAddressLookup/{address} { allow read, write: if false; }
+    match /walletTransfers/{transferId} { allow read, write: if false; }
+    match /walletTransferOtpIntents/{intentId} { allow read, write: if false; }
+    match /walletTransferOtpThrottle/{uid} { allow read, write: if false; }
+    match /adminBalanceAudits/{auditId} { allow read, write: if false; }
+    match /bngStakes/{stakeId} { allow read, write: if false; }
+    match /internalP2PEscrows/{escrowId} { allow read, write: if false; }
+
+    match /rooms/{roomId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+    match /rooms/{roomId}/messages/{messageId} {
+      function profilePath(uid) {
+        return /databases/$(database)/documents/users/$(uid);
+      }
+      function hasOwnProfile() { return exists(profilePath(request.auth.uid)); }
+      function profile() { return get(profilePath(request.auth.uid)).data; }
+      function validMessageText(data) {
+        return data.text is string && data.text.size() > 0 && data.text.size() <= 2000;
+      }
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && hasOwnProfile()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.displayName == profile().displayName
+        && request.resource.data.username == profile().username
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.isAdmin == isAdmin()
+        && validMessageText(request.resource.data);
+      allow update: if isAdmin()
+        || (signedIn()
+          && resource.data.uid == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text', 'editedAt'])
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.isAdmin == resource.data.isAdmin
+          && validMessageText(request.resource.data));
+      allow delete: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+    }
+  }
+}

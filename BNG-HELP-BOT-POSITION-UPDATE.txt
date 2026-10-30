@@ -1,0 +1,4 @@
+BNG Help Bot update
+- Loaded only on index.html (home page).
+- Fixed position is bottom-right; the launcher and panel use right/bottom offsets in bng-faq-bot.js.
+- Other pages no longer load the chatbot script.

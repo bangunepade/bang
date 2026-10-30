@@ -1,0 +1,3 @@
+BANG BNG Home Page — Digital Asset Showcase
+
+Added a responsive Explore Digital Assets section between the existing cinematic hero/news block and the feature launcher. Includes BTC, BCH, ADA, SOL, ETH, BNB, DOGE, USDT, XRP, LTC and BNG logos/symbols. Uses local SVG assets for consistent rendering and includes a note that logo presence does not guarantee the asset is supported for wallet/swap/P2P. The existing cinematic video and news ticker markup were not changed.

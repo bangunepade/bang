@@ -1,0 +1,20 @@
+BANG BNG MULTI-ASSET P2P ESCROW UPDATE
+
+Supported P2P assets now match the internal swap assets:
+BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE, XRP.
+
+Behavior:
+- A user can swap BNG into any supported asset, then publish a sell offer using that asset balance.
+- Buy offers can request any supported asset; the seller locks the selected asset when accepting.
+- Sell offers lock the selected asset atomically when published.
+- The 0.878690% P2P fee is retained from the current implementation and is charged separately in BNG. For non-BNG offers, the seller must hold both the offered asset and enough BNG for the fee.
+- The minimum offer value is 10 BNG-equivalent, calculated from the internal BNG reference and external token USD reference. The server revalidates rates and balances before locking.
+- Accept, mark-paid, release, cancel/unlock, dispute resolution, ratings and private trade activity preserve the selected asset.
+- The public marketplace shows supported asset symbols but does not expose account IDs or email addresses.
+- Wallet balance checks and escrow writes are server-side and transactional; the browser cannot choose a balance or bypass the checks.
+
+Important:
+- These are internal website-ledger balances and escrow records, not public-chain tokens, external custody, or on-chain transactions.
+- The internal BNG reference price is not a live exchange quote or guaranteed cash value. Other token prices are indicative references and may change.
+- External M-Pesa/bank payments are not automatically verified. The seller must independently confirm receipt before releasing the selected asset.
+- Preserve existing Firestore records and security rules. Deploy frontend and Netlify functions together, then test with test accounts and small amounts before production.

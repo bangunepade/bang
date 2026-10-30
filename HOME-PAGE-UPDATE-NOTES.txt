@@ -1,0 +1,7 @@
+BANG BNG home page update
+
+- Removed MetaMask connect buttons and connection UI from index.html.
+- Added a large, responsive, multi-colour feature grid with direct links to Token, Explorer, P2P, Swap, Wallet, Mining, Chart, Staking, Network, Developers, Docs, Community, Security, About, and Contact.
+- Kept the cinematic video and NEWS ticker markup unchanged.
+- Kept other pages and backend files unchanged.
+- Feature links are navigation shortcuts; they do not imply unsupported on-chain capabilities.

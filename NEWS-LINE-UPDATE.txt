@@ -1,0 +1,1 @@
+NEWS line now rotates live BNG/BNB, BTC/USDT, and BNB/USDT prices with 24-hour movement for BTC and BNB, plus P2P/escrow information, future BANG BNG Mainnet updates, and privacy-preserving ACTIVE/VISITED/CONNECT indicators. Market prices refresh every 15 seconds through the site's /api/bng-price endpoint. No IP address is displayed or collected by this front-end ticker.

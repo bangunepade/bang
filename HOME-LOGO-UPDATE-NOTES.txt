@@ -1,0 +1,3 @@
+BANG BNG current logo update
+============================
+Replaced home/site header and favicon references to the old BANG BNG SVG with assets/bang-bng-current-logo.jpg, using the exact image supplied by the user. Updated the BNG asset card logo. Cinematic video and NEWS ticker files/markup were not changed.

@@ -1,0 +1,22 @@
+BANG BNG REFERRAL FIX NOTES
+
+Changes made
+1. Fixed the referral signup race in mining.html. Referral registration now runs directly after successful email/password account creation or first-time Google sign-in, rather than relying on a timing-sensitive onAuthStateChanged flag.
+2. Captures a valid referral code in sessionStorage so it survives a page refresh before registration.
+3. Prevents stale overlapping referral-summary requests from overwriting a newer summary.
+4. Corrected the initial Referral BNG Earned placeholder from 0.500000 BNG to 0.000000 BNG. Actual credited totals are read from the server.
+5. Moved Firebase Auth inviter validation outside the Firestore transaction callback in netlify/functions/referral.js. This avoids repeating an external Auth lookup if Firestore retries the transaction.
+6. Existing one-time 0.5 provisional BNG bonus and first-valid-referrer behavior remain unchanged. The bonus is still awarded by mining-toggle when a pending referred account first starts mining.
+
+Checks performed
+- Node syntax check passed for mining page module JavaScript.
+- Node syntax check passed for referral.js and mining-toggle.js.
+
+Important deployment/testing notes
+- This archive has not been deployed to Netlify by this change.
+- Deploy the extracted website files, not the ZIP itself.
+- Test with a genuinely new Firebase account opened from a link of the form https://1bang.top/mining?ref=INVITER_FIREBASE_UID.
+- Verify the referral appears as Pending after signup, then becomes Eligible and credits exactly 0.5 provisional BNG to the inviter when the new account starts mining for the first time.
+- Test self-referral and duplicate attribution are rejected/ignored.
+- A referral registration that was missed for an already-existing account is not automatically backfilled by this patch; doing so would need an explicit policy and verification to preserve first-time qualification rules.
+- Rewards are internal provisional ledger records, not on-chain BNG or guaranteed cash value.

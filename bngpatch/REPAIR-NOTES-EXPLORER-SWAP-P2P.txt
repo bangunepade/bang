@@ -1,0 +1,24 @@
+BANG BNG — Explorer / Swap / P2P repair notes
+=============================================
+
+Changes in this package
+- Explorer: bounded fallback query if the user UID + createdAt Firestore query fails specifically because a composite index is missing; records are still sorted newest-first in memory.
+- Swap: exchange-rate interpretation now matches the public convention “1 BNG = X units of quote asset”. Example: BNG_PER_USDT=0.895 means 1 BNG = 0.895 USDT, so 1 USDT is worth 1/0.895 BNG.
+- Internal transfer fee conversion uses the same rate convention, so the 0.5% BNG fee is calculated consistently.
+- Existing OTP-free P2P flow, Firebase configuration, and ledger collections are preserved.
+
+Required live configuration checks (code cannot create these values)
+1. Netlify environment variables must include FIREBASE_SERVICE_ACCOUNT_JSON containing the valid service-account JSON for Firebase project bang-bng-community. Never expose its value publicly or commit it to GitHub. If it is missing/invalid, Explorer, Swap, and P2P backend requests will fail.
+2. Trigger a new Netlify deploy after updating environment variables and deploying this ZIP.
+3. Swap requires BANG_ADMIN_UID to be the intended treasury Firebase UID and walletBalances/{BANG_ADMIN_UID} to contain sufficient destination-asset reserves. Do not guess or fabricate reserves.
+4. Set BNG_PER_USDT using the convention 1 BNG = X USDT. Set BNG_PER_BNB and BNG_PER_BTC using the same convention. A positive rate alone does not prove the treasury has reserves.
+5. Confirm the Netlify redirects in netlify.toml are deployed:
+   /api/internal-explorer -> /.netlify/functions/internal-explorer
+   /api/wallet/swap -> /.netlify/functions/internal-swap
+   /api/p2p/escrow -> /.netlify/functions/p2p-internal-escrow
+6. Test with a normal account using small amounts. Explorer should load only that user's records; P2P should list/create offers and test cancel/accept/release with two test accounts; Swap should only succeed when source balance, configured rates, and destination treasury reserve are all sufficient.
+
+Important
+- The P2P service is internal-ledger escrow; external M-Pesa/bank payments are not held or automatically verified by the website.
+- Internal swaps and escrow are not blockchain transactions.
+- Keep Firestore security rules restrictive. Deploying this ZIP does not publish Firestore rules or Firebase Cloud Functions.

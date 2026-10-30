@@ -1,0 +1,17 @@
+BANG BNG Firestore rules hardening — review package
+
+This package includes the profile allowlist hardening and retains the rest of the supplied platform files. It has NOT been deployed.
+
+Additional compatibility protections in this revision:
+- A profile create may omit isAdmin; if present, it must be false.
+- A profile email must match the authenticated Firebase token email.
+- Ordinary users may update only allowlisted profile fields; privileged and financial fields remain protected.
+- Direct client access to wallet, OTP, stake and internal escrow records remains denied.
+
+Before production deployment:
+1. Run Firebase Emulator Suite tests for sign-up, Google sign-in, profile update, avatar upload/removal, chat posting/edit/delete, and unauthorized writes.
+2. Confirm all client profile fields in community.html are compatible with the allowlist.
+3. Confirm the target Firebase project and authenticated deployment account.
+4. Deploy only after tests pass and the owner approves.
+
+Important: Firebase Admin SDK calls bypass Firestore Security Rules; backend functions must independently enforce authorization. This ZIP does not change the live site or Firebase project.

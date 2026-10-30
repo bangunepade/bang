@@ -1,0 +1,14 @@
+BANG BNG P2P PUBLIC MARKETPLACE UPDATE
+
+- Public visitors can browse open offers for BNG, BTC, BNB, USDT, ADA, BCH, ETH, SOL, DOGE and XRP.
+- Authenticated users can create buy or sell offers for any supported internal asset.
+- Sell offers lock the selected asset; the existing 0.878690% P2P fee is charged separately in BNG.
+- The minimum offer value is 10 BNG-equivalent. For non-BNG assets, the server uses indicative token USD references and the internal BNG reference to calculate the threshold.
+- Buy offers are funded by the accepting seller, who must have the selected asset and enough BNG for the fee.
+- Public offer responses omit seller/buyer UIDs, email addresses, payment references and private trade activity.
+- Creating offers and accepting/managing trades require Firebase sign-in and server-side authorization.
+
+Important:
+- This is internal website-ledger escrow, not on-chain escrow or externally backed custody.
+- External M-Pesa/bank payments are not automatically verified; the seller must verify receipt before releasing the selected asset.
+- Preserve Firebase configuration, existing Firestore records and security rules. Deploy frontend and backend functions together.

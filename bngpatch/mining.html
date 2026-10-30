@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08030f">
+<title>BANG BNG | Mining</title>
+<style>
+:root{--bg:#07030d;--panel:#10081a;--line:#3a1b52;--purple:#8b00ff;--gold:#f4c65d;--text:#f7f2ff;--muted:#b9a9c9;--green:#18e78a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#2a0050,#08030f 48%,#030207);color:var(--text);font:15px system-ui,Arial,sans-serif}
+.wrap{width:min(900px,92%);margin:auto}header{border-bottom:1px solid var(--line);background:#09030fe8;backdrop-filter:blur(12px);position:sticky;top:0;z-index:5}.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-weight:950;letter-spacing:.08em}.nav a,.btn{border:1px solid #6d27a8;background:#13091e;color:#fff;border-radius:9px;padding:9px 12px;text-decoration:none;font-weight:800;cursor:pointer}.hero{text-align:center;padding:42px 0 25px}.hero h1{font-size:clamp(38px,8vw,65px);margin:8px 0;background:linear-gradient(135deg,#fff,#d19aff,#8b00ff);-webkit-background-clip:text;color:transparent}.hero p{color:var(--muted);max-width:650px;margin:auto;line-height:1.6}
+.card{background:linear-gradient(145deg,#160726,#08040e);border:1px solid #7a20bd;border-radius:17px;padding:20px;margin:14px 0;box-shadow:0 15px 50px #35006033}.status{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12px}.pill{padding:6px 9px;border:1px solid var(--line);border-radius:999px}.green{color:var(--green)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.value{font-size:23px;font-weight:950;color:#d29aff;margin-top:5px}.label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.mine{text-align:center;padding:26px}.mine-btn{width:min(330px,100%);padding:18px;border:0;border-radius:14px;background:linear-gradient(135deg,#a000ff,#5c00d8);color:#fff;font-size:20px;font-weight:950;cursor:pointer;box-shadow:0 12px 35px #7900ff44}.mine-btn.active{background:linear-gradient(135deg,#7a12c7,#3c008d)}.mine-btn:disabled{opacity:.5}.rate{margin-top:12px;color:#d7c4e8}.pending{font-size:clamp(25px,8vw,42px);font-weight:950;color:var(--gold);margin:10px 0;overflow-wrap:anywhere;word-break:break-word;line-height:1.15}.notice{font-size:12px;line-height:1.55;color:#b9a9c9;background:#0d0716;border:1px solid #2c173c;border-radius:11px;padding:12px}.actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:15px}.danger{border-color:#6d2832!important;background:#260b12!important}.login{display:none!important;text-align:center}.footer{text-align:center;color:#766a83;padding:30px 0 50px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.nav{min-height:60px}.hero{padding-top:30px}.pending{font-size:34px}}
+
+.mining-brand-image{display:flex;justify-content:center;align-items:center;margin:8px auto 18px;padding:0 12px}
+.mining-brand-image img{display:block;width:min(180px,42vw);height:auto;max-height:180px;object-fit:contain;border:1px solid #6d27a8;border-radius:14px;box-shadow:0 8px 28px #8b00ff2b}
+
+</style>
+<script src="/assets/bng-global-time.js" defer></script>
+
+<script src="/assets/bng-simulated-price.js" defer></script>  <link rel="stylesheet" href="/assets/bng-compat.css">
+
+<!-- Social preview cards: Open Graph + X/Twitter -->
+<meta property="og:site_name" content="BANG BNG">
+<meta property="og:title" content="BANG BNG | Mining">
+<meta property="og:description" content="Explore the BANG BNG platform, internal coin features, wallet, and community updates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://1bang.top/mining.html">
+<meta property="og:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:secure_url" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BANG BNG blockchain network preview artwork">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BANG BNG | Mining">
+<meta name="twitter:description" content="Explore the BANG BNG platform and community updates.">
+<meta name="twitter:image" content="https://1bang.top/assets/bang-bng-social-preview.jpg">
+</head>
+<body>
+<script src="/assets/bng-compat.js" defer></script>
+<header><div class="wrap nav"><div class="brand">⛏ BANG BNG MINING</div><div style="display:flex;gap:7px;align-items:center"><span id="miningAccount" style="font-size:11px;color:#b9a9c9"></span><button class="btn" id="logoutBtn" style="display:none">Sign Out</button><a href="/">Home</a><a href="/index.html">Community</a></div></div><a href="wallet.html" class="btn" style="margin-left:8px">Wallet</a> <a href="/stake.html" class="btn" style="margin-left:8px">Stake BNG</a>
+</header>
+<main class="wrap">
+<section class="hero"><h1>Mine BNG</h1><p>Sign in, start mining, and track your rewards.</p></section>
+<section class="card mine">
+<div id="loginBox" class="login"><h2>Sign in once from Home</h2><p class="notice">Use your existing BANG BNG account. You do not need to sign in again on this page.</p><a class="btn" href="/index.html">Open Home Sign In</a><div hidden aria-hidden="true"><input id="emailInput" type="email"><input id="passwordInput" type="password"><button id="passwordVisibilityToggle" type="button"></button><button id="loginBtn" type="button"></button><button id="googleBtn" type="button"></button><button id="signupBtn" type="button"></button><p id="authError"></p></div></div>
+<div id="mineBox">
+<div class="label">Pending BNG (internal ledger)</div><div class="pending" id="pending">0.000000</div><p class="notice" id="miningBalanceUpdatedAt">Mining balance timestamp: waiting for server data</p>
+<div class="status"><span class="pill" id="state">● Mining paused</span><span class="pill">BNG rate: <b id="rate">1.500000 BNG/day (internal ledger)</b></span></div>
+<div style="margin-top:24px"><button class="mine-btn" id="mineBtn">⛏ START MINING</button></div>
+<div class="actions"><button class="btn" id="claimBtn" disabled>Claim BNG</button><button class="btn danger" id="resetBtn">Reset Session</button></div>
+<p class="notice" style="margin-top:12px"><b>Internal BNG deposit limits:</b> minimum 100 BNG; maximum 10,000,000 BNG per deposit. Deposits must be recorded and verified by the server before they can qualify as mining-contract balance. This page does not itself accept or verify deposits yet.</p>
+<p class="notice" style="margin-top:12px">Only BNG mining is supported. Rewards are internal website-ledger entries, not on-chain assets. Deposit-backed mining must use a verified internal mining-contract balance.</p>
+</div>
+</section>
+
+<section class="card" id="miningHelp" aria-labelledby="miningHelpTitle"><h2 id="miningHelpTitle">BANG BNG Mining Help</h2><p class="notice">Mining rewards are internal website ledger entries. Only BNG mining is displayed. Rewards remain internal ledger entries, not on-chain assets or guaranteed payouts. Mining should only be enabled against a verified deposited internal mining-contract balance; this ZIP does not yet establish the source field for that balance.</p><details><summary style="cursor:pointer;padding:8px 0;font-weight:800">Why are these balances shown as internal?</summary><p class="notice">They are website ledger entries. The page does not perform proof-of-work mining or automatically create real blockchain assets. Swaps require configured conversion rates and treasury reserves. P2P escrow is currently BNG-only.</p></details><details><summary style="cursor:pointer;padding:8px 0;font-weight:800">How do swaps and P2P work?</summary><p class="notice">Internal swaps only complete when server-side rates and treasury reserves are configured. P2P offers currently support BNG only; other assets must not be offered through escrow until multi-asset escrow settlement is implemented and tested.</p></details></section>
+
+<section class="card" id="referralCard" style="margin-top:20px">
+<h2>Invite & Earn</h2>
+<p class="notice">Earn a provisional 0.5 BNG for each eligible referral.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="referralLink" readonly aria-label="Your referral link" style="flex:1;min-width:220px;padding:12px;border-radius:9px;background:#09030f;color:white;border:1px solid #6d27a8"><button class="btn" id="copyReferral">Copy invite link</button></div>
+<div class="grid" style="margin-top:14px">
+<div class="card"><div class="label">Referral BNG Earned</div><div class="value" id="referralEarned">0.000000 BNG</div></div>
+<div class="card"><div class="label">Active Referrals</div><div class="value" id="activeReferrals">0</div></div>
+<div class="card"><div class="label">Eligible Referrals</div><div class="value" id="eligibleReferrals">0</div></div>
+</div>
+<p class="notice" id="referralStats">Sign in to view referrals.</p>
+<h3 style="margin-top:18px">Your Referrals</h3>
+<div id="referredPeople" aria-live="polite"><p class="notice">Sign in to view your referrals.</p></div>
+</section>
+
+<section class="grid">
+<div class="card"><div class="label">Session</div><div class="value" id="session">00:00:00</div></div>
+<div class="card"><div class="label">Total BNG (internal)</div><div class="value" id="total">0.000000 BNG</div></div>
+<div class="card"><div class="label">Network</div><div class="value" style="font-size:18px">Planned BANG BNG L1</div></div>
+</section>
+</main>
+<footer class="footer">© 2026 BANG BNG • Independent Pioneer Platform • Network in development</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, getAdditionalUserInfo, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import { firebaseConfig } from "./firebase-config.js";
+
+const app=initializeApp(firebaseConfig), auth=getAuth(app);
+await setPersistence(auth,browserLocalPersistence).catch(()=>{});
+async function miningApi(path, method="GET") {
+  if (!auth.currentUser) throw new Error("Sign in before mining.");
+  const token = await auth.currentUser.getIdToken();
+  const response = await fetch(`/.netlify/functions/${path}`, {
+    method,
+    headers: { "Authorization": `Bearer ${token}`, "Accept": "application/json" }
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const err = new Error(body.error || `Mining request failed (${response.status}).`);
+    err.status = response.status;
+    throw err;
+  }
+  return body;
+}
+const provider=new GoogleAuthProvider(); provider.setCustomParameters({prompt:"select_account"});
+const RATE=1.5, BOOST_PER_MINUTE=1e12;
+let user=null, running=false, start=0, basePending=0, total=0, sessionTimer=null, promoStartAtMs=0, promoEndAtMs=0, boostPerMinute=BOOST_PER_MINUTE;
+const SESSION_KEY="bngAuthStartedAt";
+const $=id=>document.getElementById(id);
+
+function fmt(n){return Number(n||0).toFixed(6)}
+function elapsed(){return running?Math.max(0,(Date.now()-start)/1000):0}
+function accruedLocal(startMs,endMs){
+  if(!startMs||endMs<=startMs)return 0;
+  const totalMs=endMs-startMs;
+  const overlap=Math.max(0,Math.min(endMs,promoEndAtMs)-Math.max(startMs,promoStartAtMs));
+  return Math.max(0,totalMs-overlap)/86400000*RATE + overlap/60000*boostPerMinute;
+}
+function render(){
+  const seconds=elapsed(), effectiveNow=running&&start?Math.min(Date.now(),start+48*60*60*1000):Date.now(), earnedThisSession=accruedLocal(start,effectiveNow), reward=basePending+earnedThisSession;
+  $("pending").textContent=fmt(reward);
+  $("total").textContent=fmt(total+earnedThisSession)+" BNG";
+  if(start&&Date.now()>=start+48*60*60*1000){running=false;$("state").textContent="● 48-hour campaign complete";$("mineBtn").textContent="⛏ CAMPAIGN COMPLETE";$("mineBtn").disabled=true;}
+  const s=Math.floor(seconds),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;
+  $("session").textContent=[h,m,sec].map(x=>String(x).padStart(2,"0")).join(":");
+  $("rate").textContent=(promoStartAtMs>0 && Date.now()<promoEndAtMs)?boostPerMinute.toLocaleString()+" BNG/min":"1.500000 BNG/day";
+  $("state").textContent=running?"● Mining active":"● Mining paused";
+  $("state").classList.toggle("green",running);
+  $("mineBtn").textContent=running?"⛏ MINING ACTIVE":"⛏ START MINING";
+  $("mineBtn").classList.toggle("active",running);
+}
+async function applyServerState(d){
+  basePending=Number(d.pending||0); total=Number(d.total||0); start=Number(d.startedAtMs||0); running=!!d.running && start>0 && !d.sessionExpired; $("mineBtn").disabled=!!d.sessionExpired; promoStartAtMs=Number(d.promoStartAtMs||0); promoEndAtMs=Number(d.promoEndAtMs||0); boostPerMinute=Number(d.boostPerMinute||BOOST_PER_MINUTE); if($("miningBalanceUpdatedAt"))$("miningBalanceUpdatedAt").textContent="Mining balance data updated: "+new Date(d.stateUpdatedAt||d.serverTime||Date.now()).toLocaleString(undefined,{year:"numeric",month:"short",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",timeZoneName:"short"}); render();
+}
+async function load(){
+  if(!user)return;
+  const result=await miningApi("mining-state");
+  await applyServerState(result||{});
+}
+async function toggleMiningSecure(){
+  if(!user) throw new Error("Sign in before mining.");
+  const result=await miningApi("mining-toggle", "POST");
+  await applyServerState(result||{});
+  if(result.referralAwarded) alert("A pioneer you invited has started mining. Your one-time 0.5 BNG provisional referral bonus has been added.");
+  await loadReferralSummary();
+}
+$("mineBtn").onclick=async()=>{
+  if(!user)return $("loginBtn").click();
+  const btn=$("mineBtn"); btn.disabled=true;
+  try { await toggleMiningSecure(); }
+  catch(e){ console.error(e); alert("Mining update failed: "+(e.message||e.code||"Please try again.")); }
+  finally { btn.disabled=false; }
+};
+$("claimBtn").onclick=()=>alert("On-chain claiming is not part of the internal BNG Coin system. This action is unavailable; internal ledger records remain on the website.");
+$("resetBtn").textContent="Pause Mining";
+$("resetBtn").onclick=async()=>{
+  if(!user||!running)return;
+  if(!confirm("Pause mining? Earned rewards will be calculated by the server."))return;
+  const btn=$("resetBtn"); btn.disabled=true;
+  try { await toggleMiningSecure(); }
+  catch(e){ console.error(e); alert("Could not pause mining: "+(e.message||e.code||"Please try again.")); }
+  finally { btn.disabled=false; }
+};
+const urlReferralCode=new URLSearchParams(location.search).get("ref");
+if(urlReferralCode && /^[A-Za-z0-9_-]{10,150}$/.test(urlReferralCode)) sessionStorage.setItem("bngPendingReferralCode",urlReferralCode);
+const referralCode=urlReferralCode || sessionStorage.getItem("bngPendingReferralCode") || "";
+let referralLoadVersion=0;
+async function registerReferralForNewUser(newUser){
+  if(!newUser || !referralCode || referralCode===newUser.uid) return false;
+  // Called directly after successful new-account authentication, avoiding the
+  // onAuthStateChanged race that could skip attribution on first sign-up.
+  const data=await referralApi("POST",referralCode);
+  sessionStorage.removeItem("bngPendingReferralCode");
+  return !!(data && data.ok);
+}
+async function referralApi(method="GET",referrerUid=""){
+  if(!auth.currentUser) return null;
+  const token=await auth.currentUser.getIdToken();
+  const response=await fetch("/.netlify/functions/referral",{method,headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json","Accept":"application/json"},body:method==="POST"?JSON.stringify({referrerUid}):undefined});
+  const body=await response.json().catch(()=>({}));
+  if(!response.ok) throw new Error(body.error||"Referral request failed.");
+  return body;
+}
+async function loadReferralSummary(){
+  if(!auth.currentUser)return;
+  const requestVersion=++referralLoadVersion;
+  try{
+    const data=await referralApi();
+    // Ignore an older response if a newer refresh started while it was in flight.
+    if(requestVersion!==referralLoadVersion || !auth.currentUser)return;
+    $("referralLink").value=data.referralLink;
+    $("referralEarned").textContent=Number(data.referralEarnedBng||0).toFixed(6)+" BNG";
+    $("activeReferrals").textContent=String(Number(data.activeCount||0));
+    $("eligibleReferrals").textContent=String(Number(data.eligibleCount||0));
+    $("referralStats").textContent=`Eligible: ${data.eligibleCount} • Pending: ${data.pendingCount} • Active miners: ${data.activeCount||0} • Reward: 0.5 BNG per eligible referral.`;
+    const list=$("referredPeople"); list.replaceChildren();
+    const people=Array.isArray(data.referredUsers)?data.referredUsers:[];
+    if(!people.length){const empty=document.createElement("p");empty.className="notice";empty.textContent="No referred accounts yet.";list.appendChild(empty);}
+    for(const person of people){
+      const row=document.createElement("div");row.style.cssText="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding:12px;margin:8px 0;border:1px solid #6d27a8;border-radius:9px";
+      const details=document.createElement("div");details.style.cssText="display:flex;flex-direction:column;gap:6px;min-width:180px;flex:1";
+      const email=document.createElement("strong");email.textContent=person.email||"Email unavailable";email.style.overflowWrap="anywhere";
+      const reward=document.createElement("span");reward.style.color="#d7c4e8";reward.textContent="Referral reward: "+Number(person.bonusEarnedBng||0).toFixed(6)+" BNG";
+      const status=document.createElement("span");status.className="notice";status.style.margin=0;
+      status.textContent=person.miningActive?"● MINING ACTIVE":(person.status==="eligible"?"✓ Eligible • Mining paused":"○ Pending: start mining");
+      status.style.borderColor=person.miningActive?"#269b64":"#6d27a8";
+      details.append(email,reward);row.append(details,status);list.appendChild(row);
+    }
+  }catch(e){if(requestVersion!==referralLoadVersion)return;console.warn("Referral summary unavailable",e);$("referralStats").textContent="Referral details could not load. Please try again later.";const list=$("referredPeople");if(list)list.textContent="Referral details could not load. Please try again later.";}
+}
+$("copyReferral").onclick=async()=>{const link=$("referralLink").value;if(!link)return;try{await navigator.clipboard.writeText(link);$("copyReferral").textContent="Copied!";setTimeout(()=>$("copyReferral").textContent="Copy invite link",1800)}catch(e){$("referralLink").focus();$("referralLink").select();alert("Select and copy your referral link.")}};
+$("loginBtn").onclick=async()=>{try{await signInWithPopup(auth,provider)}catch(e){alert(e.message||"Sign-in failed.")}};
+async function logSecurityEvent(user, eventType){try{const token=await user.getIdToken();await fetch("/api/security-events",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},body:JSON.stringify({eventType}),keepalive:true})}catch(_){}}
+async function authenticate(action){
+  const err=$("authError");err.style.display="none";
+  try{
+    const email=$("emailInput").value.trim(),password=$("passwordInput").value;
+    if(action!=="google"&&(!email||!password))throw new Error("Enter your email and password.");
+    let credential=null, isNewUser=false;
+    if(action==="google"){
+      credential=await signInWithPopup(auth,provider);
+      isNewUser=!!getAdditionalUserInfo(credential)?.isNewUser;
+      await logSecurityEvent(credential.user,isNewUser?"registration":"google_sign_in");
+    }else if(action==="signup"){
+      credential=await createUserWithEmailAndPassword(auth,email,password);
+      isNewUser=true;
+      await logSecurityEvent(credential.user,"registration");
+    }else{
+      credential=await signInWithEmailAndPassword(auth,email,password);
+      await logSecurityEvent(credential.user,"login");
+    }
+    if(isNewUser && credential?.user){
+      try {
+        const token = await credential.user.getIdToken();
+        const bonusResponse = await fetch('/api/account/welcome-bonus', { method:'POST', headers:{ Authorization:'Bearer '+token, 'Content-Type':'application/json' }, body:'{}' });
+        const bonusData = await bonusResponse.json().catch(()=>({}));
+        if(!bonusResponse.ok) console.warn('Welcome bonus was not applied:', bonusData.error || bonusResponse.status);
+        else if(bonusData.granted) alert('Welcome! 2 BNG has been added to your internal wallet ledger.');
+      } catch(bonusError) { console.warn('Welcome bonus initialization will need a retry:', bonusError); }
+    }
+    if(isNewUser && credential?.user && referralCode && referralCode!==credential.user.uid){
+      try{
+        await registerReferralForNewUser(credential.user);
+        await loadReferralSummary();
+      }catch(refError){
+        console.warn("Referral registration not applied:",refError);
+        $("referralStats").textContent="Account created, but referral registration failed. Keep this page open and try signing out and signing in again only after support checks the referral.";
+      }
+    }
+  }catch(e){err.textContent=e.message||"Authentication failed";err.style.display="block";}
+}
+$("loginBtn").onclick=()=>authenticate("login");$("signupBtn").onclick=()=>authenticate("signup");$("googleBtn").onclick=()=>authenticate("google");
+$("logoutBtn").onclick=async()=>{
+  const btn=$("logoutBtn");
+  btn.disabled=true;
+  try {
+    await signOut(auth);
+    localStorage.removeItem(SESSION_KEY);
+  } catch (e) {
+    console.error("Sign out failed:", e);
+    alert(e.message || "Sign out failed. Please try again.");
+  } finally {
+    btn.disabled=false;
+  }
+};
+onAuthStateChanged(auth,async u=>{
+  user=u;
+  $("loginBox").style.display=u?"none":"block";
+  $("mineBox").style.display=u?"block":"none";
+  $("logoutBtn").style.display=u?"inline-block":"none";
+  $("miningAccount").textContent=u?(u.email||u.displayName||"Signed in"):"";
+  clearTimeout(sessionTimer);
+  if(!u){localStorage.removeItem(SESSION_KEY);$("referralLink").value="";$("referralStats").textContent="Sign in to see referral earnings and active referred miners.";$("referralEarned").textContent="0.000000 BNG";$("activeReferrals").textContent="0";$("eligibleReferrals").textContent="0";render();return;}
+  await loadReferralSummary();
+  // Keep the original sign-in timestamp across refreshes; never renew an expired session.
+  let began=Number(localStorage.getItem(SESSION_KEY)||0);
+  if(!began){began=Date.now();localStorage.setItem(SESSION_KEY,String(began));}
+  const remaining=3600000-(Date.now()-began);
+  if(remaining<=0){await signOut(auth).catch(console.error);return;}
+  sessionTimer=setTimeout(async()=>{try{await signOut(auth);}catch(e){console.error("Automatic logout failed",e);}},remaining);
+  try{await load();}catch(e){console.error("Could not load mining state",e);alert("Could not load your saved mining data. Check the Netlify mining backend configuration and Firestore access. Error: "+(e.code||e.message||"unknown"));}
+});
+setInterval(()=>{if(running)render()},1000);
+</script>
+
+
+<link rel="stylesheet" href="/assets/beginner-friendly.css">
+<script src="/assets/beginner-friendly.js" defer></script>
+<script src="assets/bng-cookie-consent.js" defer></script>
+
+<script>
+(function(){const p=document.getElementById('passwordInput'),b=document.getElementById('passwordVisibilityToggle');if(!p||!b)return;b.addEventListener('click',function(){const show=p.type==='password';p.type=show?'text':'password';b.textContent=show?'Hide':'Show';b.setAttribute('aria-label',show?'Hide password':'Show password');b.setAttribute('aria-pressed',String(show));p.focus();});})();
+</script>
+</body></html>

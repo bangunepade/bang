@@ -1,0 +1,15 @@
+BANG AI ASSISTANT — NETLIFY SETUP
+
+1. Deploy this ZIP to the existing Netlify site.
+2. In Netlify: Site configuration > Environment variables, add:
+   OPENAI_API_KEY = your OpenAI API key
+   OPENAI_MODEL = gpt-6-luna (recommended low-cost default; optional because the function defaults to gpt-6-luna)
+3. Redeploy after adding the variable. If you leave OPENAI_MODEL unset, the function uses gpt-6-luna and sends the required reasoning_effort=none setting for Chat Completions.
+4. Test https://1bang.top/api/bang-ai by sending a question through the Ask BANG widget.
+
+IMPORTANT:
+- Keep OPENAI_API_KEY only in Netlify server-side environment variables. Never put it in index.html, JavaScript, GitHub, or a public config file.
+- OpenAI API usage is billed separately from a ChatGPT subscription. Set usage limits/budget in the API platform.
+- Without OPENAI_API_KEY, the chatbot falls back to the existing local FAQ answers.
+- BANG can answer general topics from its model knowledge. This package does not add live web search, so current events, live prices, weather and other changing facts must be verified separately.
+- The backend limits requests per IP in each running function instance, but production deployments should also use a persistent rate limiter/WAF for robust abuse prevention.

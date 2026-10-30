@@ -1,0 +1,9 @@
+BANG BNG P2P Traderoom redesign
+================================
+- Updated p2p.html traderoom/chat presentation to follow the supplied Symplix-inspired reference.
+- Default interface is now black/charcoal with understated purple accents.
+- Existing selectable Purple, Emerald, Ocean, and Gold theme controls remain available.
+- Added a prominent yellow safety notice to each private trade chat.
+- Redesigned chat messages and composer for mobile and desktop.
+- Preserved existing Netlify functions, Firebase setup, public offer listing, and escrow action logic.
+- No live payments, blockchain escrow, or payment verification behavior was added; internal escrow remains a website ledger as documented in the original package.

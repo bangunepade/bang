@@ -1,0 +1,22 @@
+BANG BNG security fix notes
+
+- Mining balance writes moved to callable Cloud Functions getMiningState/toggleMining.
+- Firestore rules now deny client-side create/update/delete on miningUsers; users can read only their own record.
+- Account deletion now asks for the signed-in account email and password, verifies the email matches, reauthenticates via Firebase Email/Password, and then invokes the server deletion function.
+- Server deletion removes users/{uid}, miningUsers/{uid}, chat messages whose uid matches, then deletes the Firebase Authentication account.
+- Cloud Functions and Firestore rules must be deployed separately from Netlify: firebase deploy --only functions,firestore:rules
+- Test using a staging Firebase project first. Google-only accounts need to set up email/password or use a separate provider-specific reauthentication flow; this delete flow intentionally requires email/password as requested.
+- Existing records remain in Firestore until user deletes their account; deploy the updated rules/functions before the updated mining page, otherwise mining actions will fail.
+- Mining rewards are provisional display records, not on-chain BNG. Server functions use a rate of 1 BNG per 24 hours.
+
+COMMUNITY MESSAGE IDENTITY / ADMIN ROLE FIX
+- New community messages must use the signed-in UID and match the saved
+  Firebase user profile's displayName and username.
+- Message email must match the authenticated Firebase token email.
+- Admin badge is derived only from the Firebase custom claim admin=true;
+  client-editable profile fields cannot grant admin status.
+- Message owners may update only text and editedAt; ownership and admin role
+  fields are immutable to ordinary users. Owners may delete their own messages;
+  admins may moderate messages.
+- Deploy updated firestore.rules with: firebase deploy --only firestore:rules
+- This ZIP changes local rules only. It does not deploy changes to Firebase.
